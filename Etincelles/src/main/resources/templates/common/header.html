@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="common-header">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="utf-8" />
+<!--[if lt IE 9]>
+	<script src="http://github.com/aFarkas/html5shiv/blob/master/dist/html5shiv.js"></script>
+	<![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/stylesheet.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+<link href="https://fonts.googleapis.com/css?family=Muli"
+	rel="stylesheet" />
+<title>Etincelles</title>
+</head>
+
+<body id="index_page">
+	<header th:fragment="navbar">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/"><img id="home"
+						src="images/home3.png" /></a>
+				</div>
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					
+					<ul class="nav navbar-nav">
+						<li><a href="Pages/annuaire.html">Annuaire</a></li>
+						<li><a href="Pages/actualite.html">Actualité</a></li>
+						<li><a href="Pages/forum.html">Forum</a></li>					
+						<li>
+						<form class="navbar-form" role="search">
+							<div class="input-group">
+							<input type="text" name="keyword" class="form-control" placeholder="Recherche"/>
+							</div>
+							<button type="submit" class="btn btn-default">OK</button>
+						</form>
+						</li>
+					</ul> <!-- navbar-left -->
+					
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Mon compte</a></li>
+						<li><a href="#">Déconnexion</a></li>
+					</ul> <!-- navbar-right -->
+					
+				</div>
+			</div>
+		</nav>
+	</header>
+	
+	<div th:fragment="body-bottom-scripts">
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	</div>
+</body>
+</html>

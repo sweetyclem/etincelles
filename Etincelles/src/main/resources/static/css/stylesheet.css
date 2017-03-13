@@ -74,7 +74,7 @@ main {
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #747a78;
+    color: black;
     font-size: 19px;
     background-color: #00FAA0;
 }
@@ -100,10 +100,6 @@ main {
   	font-size: 18px;
   	float: left;
  	max-width: 160px;
-}
-
-.navbar-default .navbar-brand {
-    color: rgba(0, 0, 0, 0.7);
 }
 
 #lang {
@@ -238,6 +234,9 @@ hr {
 
 #no-border {
 	border: none;
+}
+
+.navbar-form {
 }
 
 
