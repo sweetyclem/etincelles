@@ -2,21 +2,12 @@ body {
 	font-family: 'Muli', sans-serif;
 }
 
-#index_page {
-	/*background-image: url("../images/Lyon.jpg");*/
+/* #index_page {
 	background-image: url("../images/lyon2.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment:fixed;
-}
-
-body:before {
-	/*content: url("../images/paris.jpg");
-	background-image: url("../images/paris.jpg");
-	visibility: hidden;
-	position: absolute;
-	left: -999em;*/
-}
+} */
 
 header {
 		text-align: center;
@@ -24,6 +15,10 @@ header {
 
 main {
 	margin-top: 30px;
+}
+
+.container {
+	width: 90%;
 }
 
 .navbar-default {
@@ -138,80 +133,6 @@ h3 {
 	
 }
 
-@media screen and (min-width: 900px) {
-	#me {
-		width: 70%;
-	}
-	.row {
-		margin-top: 40px;
-	}
-	#hobbies {
-		margin-left: 50px;
-	}
-}
-
-@media screen and (min-width: 700px) and (max-width: 899px) {
-	#me {
-		width: 30%;
-		z-index: 1;
-		position: relative;
-	}
-}
-
-@media screen and (max-width: 690px) {
-	#me {
-		width: 50%;
-	}
-	#white_back {
-		background-color: rgba(255, 250, 250, 0.7);
-	}
-	#index-pic {
-		padding-bottom: 30px;
-	}
-	.projectdescription {
-		margin-top: 20px;
-	}
-}
-
-#index_white_back {
-	background-color: rgba(255, 250, 250, 0.8);
-	border-radius: 3px;
-	color: black;
-	/*margin: 20px;*/
-	padding: 20px;
-}
-
-.back {
-	background-color: rgba(32,188,175, 1);
-	border-radius: 3px;
-	color: black;
-	padding-right: 6px;
-	padding-left: 6px;
-	display: inline-block;
-}
-
-.box {
-	border: 2px solid rgba(32,188,175, 1);
-	border-radius: 3px;
-	padding: 10px 10px 10px 15px;
-}
-
-
-#me {
-	    margin-right: auto;
-	    border-radius: 300px;
-}
-
-#velo {
-	border-radius: 30px;
-	margin-right: 30px;
-}
-@media screen and (max-width: 700px) {
-	#velo {
-		width: 50%;
-		margin: auto;
-	}
-}
 
 a {
 	text-decoration: underline;
@@ -234,36 +155,13 @@ p {
 	margin-bottom: 0px;
 }
 
-.poste {
-	font-size: 20px;
-	display: inline-block;
-	margin-bottom: 8px;
-}
-
-#hotels {
-	list-style-type: none;
-	padding-left:0;
-	font-size: 16px;
-}
-
-.listes:before {
-    content: "•  ";
-    color: rgba(0,206,209,1);
-}
-
-
-#email {
-	text-align: center;
-	font-size: 20px;
-}
-
 li {
 	font-size: 16px;
 }
-li:before {
+/* li:before {
 	content: "•  ";
 	color: #57402F;
-}
+} */
 
 ul {
     list-style: none;
@@ -277,37 +175,6 @@ nav ul li:before {
 
 nav ul li {
 	font-size: 20px
-}
-
-
-div.project {
-    border: 1px solid rgba(32,188,175, 1);
-}
-
-div.project:hover {
-    -webkit-transform:scale(1.1); /* Safari and Chrome */
-    -moz-transform:scale(1.1); /* Firefox */
-    -ms-transform:scale(1.1); /* IE 9 */
-    -o-transform:scale(1.1); /* Opera */
-     transform:scale(1.1);
-}
-
-div.project:visited {
-    border: 1px solid rgba(0,206,209,1);
-}
-
-div.project img {
-    width: 100%;
-    height: auto;
-}
-
-.projectdescription {
-	border: solid 1px rgba(0,206,209,1);
-	padding: 8px;
-	background-color: rgba(32,188,175, 1);
-	border-radius: 3px;
-	color: black;
-	margin-bottom: 12px;
 }
 
 * {
@@ -335,7 +202,44 @@ td a {
     color: black;
 }
 
-#contact {
-	padding: 20px;
-	border-radius: 4px;
+.box {
+	border: 2px solid rgba(32,188,175, 1);
+	border-radius: 3px;
 }
+
+
+
+@media screen and (min-width: 900px) {
+	.carousel-inner img {
+		margin: auto;
+	}
+	
+	.carousel {
+	  /* width:640px;
+	  height:481px; */
+	  margin: auto;
+	}
+	
+	#logo {
+	/* margin-left: -8em; */
+	}
+}
+
+#logo {
+	width: 70%;
+}
+
+hr {
+	border: none;
+	height: 0.15em;
+	color: #747a78;
+	background-color: #747a78;
+}
+
+#no-border {
+	border: none;
+}
+
+
+
+
