@@ -29,14 +29,14 @@ main {
 .navbar-default {
     background-color: #00FAA0;
     border-color: #06e293;
-    color: #88938f;
+    color: #747a78;
 }
 .navbar-default .navbar-nav > li  {
 	border: solid 0.1px rgba(253, 253, 253, 0.1);
 	border-radius: 3px;
 }
 .navbar-default .navbar-nav > li > a {
-	color: #88938f;
+	color: #747a78;
 	text-decoration: none;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
@@ -79,7 +79,7 @@ main {
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #88938f;
+    color: #747a78;
     font-size: 19px;
     background-color: #00FAA0;
 }
@@ -91,7 +91,7 @@ main {
 
 .navbar-default .navbar-toggle {
 	background-color: #00FAA0;
-    border-color: #89796D;
+    border-color: #07c480;
 }
 
 #home {
