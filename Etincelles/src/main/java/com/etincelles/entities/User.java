@@ -22,24 +22,25 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User implements UserDetails {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
     @Column( name = "id", nullable = false, updatable = false )
-    private Long          id;
-    private String        first_name;
-    private String        last_name;
+    private Long              id;
+    private String            firstName;
+    private String            lastName;
     @Column( name = "email", nullable = false )
-    private String        email;
-    private String        description;
-    private String        city;
-    private String        picture;
-    private String        password;
-    private String        phone;
-    private boolean       enabled   = true;
+    private String            email;
+    private String            description;
+    private String            city;
+    private String            picture;
+    private String            password;
+    private String            phone;
+    private boolean           enabled          = true;
 
     @OneToMany( mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     @JsonIgnore
-    private Set<UserRole> userRoles = new HashSet<>();
+    private Set<UserRole>     userRoles        = new HashSet<>();
 
     public Set<UserRole> getUserRoles() {
         return userRoles;
@@ -61,20 +62,20 @@ public class User implements UserDetails {
         this.enabled = enabled;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name( String first_name ) {
-        this.first_name = first_name;
+    public void setFirstName( String first_name ) {
+        this.firstName = first_name;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name( String last_name ) {
-        this.last_name = last_name;
+    public void setLastName( String last_name ) {
+        this.lastName = last_name;
     }
 
     public String getEmail() {

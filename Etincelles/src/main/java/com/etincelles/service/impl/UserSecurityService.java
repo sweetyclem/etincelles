@@ -21,11 +21,11 @@ public class UserSecurityService implements UserDetailsService {
 
     }
 
-    public UserDetails loadUserByEmail( String email ) throws Exception {
+    public UserDetails loadUserByEmail( String email ) throws UsernameNotFoundException {
         User user = userRepository.findByEmail( email );
 
         if ( null == user ) {
-            throw new Exception( "Email not found" );
+            throw new UsernameNotFoundException( "Email not found" );
         }
 
         return user;
