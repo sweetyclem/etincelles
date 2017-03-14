@@ -69,12 +69,6 @@ public class HomeController {
         model.addAttribute( "email", email );
 
         if ( userService.findByEmail( email ) != null ) {
-            model.addAttribute( "usernameExists", true );
-
-            return "myAccount";
-        }
-
-        if ( userService.findByEmail( email ) != null ) {
             model.addAttribute( "emailExists", true );
 
             return "myAccount";
