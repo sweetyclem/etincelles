@@ -23,9 +23,12 @@
 
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs">
-					<li><a class="no-under" href="#tab-1" data-toggle="tab"><span>Créer un compte</span></a></li>
-					<li><a class="no-under" href="#tab-2" data-toggle="tab"><span>S'identifier</span></a></li>
-					<li><a class="no-under" href="#tab-3" data-toggle="tab"><span>Mot de passe oublié</span></a></li>
+					<li th:classappend="${classActiveNewAccount}? 'active'"><a class="no-under" href="#tab-1" data-toggle="tab">
+					<span>Créer un compte</span></a></li>
+					<li th:classappend="${classActiveLogin}? 'active'"><a class="no-under" href="#tab-2" data-toggle="tab">
+					<span>S'identifier</span></a></li>
+					<li th:classappend="${classActiveForgetPassword}? 'active'"><a class="no-under" href="#tab-3" data-toggle="tab">
+					<span>Mot de passe oublié</span></a></li>
 				</ul>
 
 				<!-- Tab panels -->
