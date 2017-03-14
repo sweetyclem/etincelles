@@ -18,7 +18,7 @@ public class MailConstructor {
             String contextPath, Locale locale, String token, User user, String password ) {
 
         String url = contextPath + "/newUser?token=" + token;
-        String message = "\nVeuillez cliquer sur le lien pour créer votre compte. Votre mot de passe est : \n"
+        String message = "\n\nVeuillez cliquer sur le lien pour créer votre compte.\n Votre mot de passe est : \n"
                 + password;
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo( user.getEmail() );
