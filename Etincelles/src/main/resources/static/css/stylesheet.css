@@ -31,9 +31,24 @@ main {
 	border-radius: 3px;
 }
 .navbar-default .navbar-nav > li > a {
-	color: #747a78;
+	color: black;
 	text-decoration: none;
 }
+
+.dropdown-menu > li > a {
+	color: black;
+	text-decoration: none;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+	color: black;
+	text-decoration: none;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+	background-color: #07c480;
+}
+
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
 	color: #B5E5D1;
 	background-color: #89796D;
@@ -74,6 +89,12 @@ main {
 }
 
 .navbar-default .navbar-nav > li > a {
+    color: black;
+    font-size: 19px;
+    background-color: #00FAA0;
+}
+
+nav-link {
     color: black;
     font-size: 19px;
     background-color: #00FAA0;
@@ -132,7 +153,11 @@ h3 {
 
 a {
 	text-decoration: underline;
-	color: #57402F;
+}
+
+.no-under {
+	text-decoration: none;
+	color: #747a78;
 }
 
 a:hover {
