@@ -17,8 +17,13 @@ public class UserSecurityService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername( String username ) throws UsernameNotFoundException {
-        return null;
+        User user = userRepository.findByEmail( username );
 
+        if ( null == user ) {
+            throw new UsernameNotFoundException( "Email not found" );
+        }
+
+        return user;
     }
 
     public UserDetails loadUserByEmail( String email ) throws UsernameNotFoundException {
