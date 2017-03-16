@@ -155,6 +155,7 @@ public class HomeController {
         SecurityContextHolder.getContext().setAuthentication( authentication );
 
         model.addAttribute( "classActiveEdit", true );
+        model.addAttribute( "user", user );
         return "myProfile";
     }
 }

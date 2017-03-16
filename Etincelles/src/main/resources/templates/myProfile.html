@@ -27,7 +27,7 @@
 
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li th:classappend="${classActiveEdit}? 'active'"><a
+                <li th:classappend="${classActiveEdit}? 'active'"><a class="no-under"
                         href="#tab-1" data-toggle="tab"><span>Modifier</span></a></li>
                 <!-- <li th:classappend="${classActiveOrders}? 'active'"><a
                         href="#tab-2" data-toggle="tab"><span style="color: red;">Orders</span></a></li>
@@ -71,14 +71,14 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="email">* Email</label> ' <input
+                                        <label for="email">* Email</label><input
                                             type="text" class="form-control" id="email" name="email"
                                             th:value="${user.email}"/>
                                     </div>
                                     <p style="color: #828282"></p>
                                     
                                     <div class="form-group">
-                                        <label for="currentPassword">Mot de passe actuel</label> ' <input
+                                        <label for="currentPassword">Mot de passe actuel</label><input
                                             type="text" class="form-control" id="currentPassword"
                                             name="currentPassword" th:value="${currentPassword}"/>
                                     </div>
@@ -87,17 +87,17 @@
 
                                     
                                     <div class="form-group">
-                                        <label for="txtNewPassword">Mot de passe</label> ' <input
+                                        <label for="txtNewPassword">Mot de passe</label><input
                                             type="password" class="form-control" id="txtNewPassword"
                                             name="newPassword"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="txtConfirmPassword">Confirmer mot de passe</label> ' <input
+                                        <label for="txtConfirmPassword">Confirmer mot de passe</label><input
                                             type="password" class="form-control" id="txtConfirmPassword"/>
                                     </div>
                                     <p style="color: #828282">Entrez à nouveau le mot de passe.</p>
-
+									<br/>
                                     <button type="submit" class="btn btn-primary">Créer un compte
                                     </button>
                                 </form>
