@@ -333,3 +333,8 @@ hr {
 }
 
 
+input[type="checkbox"]{
+  width: 1em; /*Desired width*/
+  height: 1em; /*Desired height*/
+  display: inline;
+}

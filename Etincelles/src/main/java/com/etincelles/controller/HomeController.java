@@ -1,6 +1,7 @@
 package com.etincelles.controller;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
@@ -21,10 +22,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.etincelles.entities.Category;
 import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.User;
 import com.etincelles.entities.security.Role;
 import com.etincelles.entities.security.UserRole;
+import com.etincelles.service.CategoryService;
 import com.etincelles.service.UserService;
 import com.etincelles.service.impl.UserSecurityService;
 import com.etincelles.utility.MailConstructor;
@@ -42,6 +45,9 @@ public class HomeController {
     private UserService         userService;
 
     @Autowired
+    private CategoryService     categoryService;
+
+    @Autowired
     private UserSecurityService userSecurityService;
 
     @RequestMapping( "/" )
@@ -52,6 +58,8 @@ public class HomeController {
     @RequestMapping( "/login" )
     public String login( Model model ) {
         model.addAttribute( "classActiveLogin", true );
+        List<Category> categoryList = categoryService.findAll();
+        model.addAttribute( "categoryList", categoryList );
         return "myAccount";
     }
 
@@ -155,6 +163,8 @@ public class HomeController {
         SecurityContextHolder.getContext().setAuthentication( authentication );
 
         model.addAttribute( "classActiveEdit", true );
+        List<Category> categoryList = categoryService.findAll();
+        model.addAttribute( "categoryList", categoryList );
         model.addAttribute( "user", user );
         return "myProfile";
     }

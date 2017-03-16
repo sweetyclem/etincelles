@@ -1,5 +1,6 @@
 package com.etincelles.service.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -67,6 +68,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save( User user ) {
         return userRepository.save( user );
+    }
+
+    @Override
+    public List<User> findAll() {
+        return (List<User>) userRepository.findAll();
     }
 
 }
