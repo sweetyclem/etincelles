@@ -158,4 +158,29 @@ public class HomeController {
         model.addAttribute( "user", user );
         return "myProfile";
     }
+
+    @RequestMapping( "/directory" )
+    public String directory( Model model ) {
+        return "directory";
+    }
+
+    @RequestMapping( "/calendar" )
+    public String calendar( Model model ) {
+        return "calendar";
+    }
+
+    @RequestMapping( "/faq" )
+    public String faq( Model model ) {
+        return "faq";
+    }
+
+    @RequestMapping( "/forum" )
+    public String forum( Model model ) {
+        return "forum";
+    }
+
+    @RequestMapping( "/news" )
+    public String news( Model model ) {
+        return "news";
+    }
 }

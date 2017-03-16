@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<html lang="fr" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header">
+<meta charset="utf-8" />
 </head>
-<body>
 
+<body>
+<div th:replace="common/header :: navbar"/>
+
+<div th:replace="common/header :: body-bottom-scripts" />
 </body>
 </html>
