@@ -22,12 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.etincelles.entities.Category;
 import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.User;
 import com.etincelles.entities.security.Role;
 import com.etincelles.entities.security.UserRole;
-import com.etincelles.service.CategoryService;
 import com.etincelles.service.UserService;
 import com.etincelles.service.impl.UserSecurityService;
 import com.etincelles.utility.MailConstructor;
@@ -45,9 +43,6 @@ public class HomeController {
     private UserService         userService;
 
     @Autowired
-    private CategoryService     categoryService;
-
-    @Autowired
     private UserSecurityService userSecurityService;
 
     @RequestMapping( "/" )
@@ -58,8 +53,6 @@ public class HomeController {
     @RequestMapping( "/login" )
     public String login( Model model ) {
         model.addAttribute( "classActiveLogin", true );
-        List<Category> categoryList = categoryService.findAll();
-        model.addAttribute( "categoryList", categoryList );
         return "myAccount";
     }
 
@@ -103,8 +96,9 @@ public class HomeController {
     @RequestMapping( value = "/newUser", method = RequestMethod.POST )
     public String newUserPost(
             HttpServletRequest request,
-            @ModelAttribute( "email" ) String email,
-            Model model ) throws Exception {
+            @ModelAttribute( "email" ) String email, @RequestParam( value = "category" ) List<String> categories,
+            Model model )
+            throws Exception {
         model.addAttribute( "classActiveNewAccount", true );
         model.addAttribute( "email", email );
 
@@ -116,6 +110,7 @@ public class HomeController {
 
         User user = new User();
         user.setEmail( email );
+        user.setCategories( categories );
 
         String password = SecurityUtility.randomPassword();
 
@@ -125,6 +120,7 @@ public class HomeController {
         Role role = new Role();
         role.setRoleId( 1 );
         role.setName( "ROLE_USER" );
+
         Set<UserRole> userRoles = new HashSet<>();
         userRoles.add( new UserRole( user, role ) );
         userService.createUser( user, userRoles );
@@ -163,8 +159,6 @@ public class HomeController {
         SecurityContextHolder.getContext().setAuthentication( authentication );
 
         model.addAttribute( "classActiveEdit", true );
-        List<Category> categoryList = categoryService.findAll();
-        model.addAttribute( "categoryList", categoryList );
         model.addAttribute( "user", user );
         return "myProfile";
     }

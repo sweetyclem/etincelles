@@ -47,12 +47,12 @@
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
 									style="background-color: #ededed; margin-top: 20px;">
-									<form th:action="@{/updateUserInfo}" method="post"
+									<form th:action="@{/user/update}" method="post"
 										enctype="multipart/form-data">
 										<input type="hidden" name="id" th:value="${user.id}" />
 
 										<div class="bg-info" th:if="${updateUserInfo}">Informations
-											mises à jour</div>							
+											mises à jour</div>
 
 										<div class="form-group">
 											<div class="row">
@@ -101,15 +101,21 @@
 												class="form-control" id="picture" name="picture"
 												th:value="${user.picture}" />
 										</div>
-										
-										<div class="form-group" style="border: solid 0.05em #828282; padding: 1em; width:10em">
+
+										<div class="form-group"
+											style="border: solid 0.05em #828282; padding: 1em; width: 10em">
 											<label th:if="${categoryList}" for="category">Catégorie</label>
+											<div th:each="cat : ${user.categories}">
 											<div th:each="category : ${categoryList}">
 												<!-- <div th:text="${category.name}"></div> -->
-												<label style="width:5em;" for="${category.name}" th:text="${category.name}"></label>
-												<input type="checkbox" name="${category.name}" th:value="${category.name}" class="form-control" />
+												<label style="width: 5em;" for="${category.name}"
+													th:text="${category.name}"></label> <input type="checkbox"
+													name="${category.name}" th:value="${category.name}"
+													th:checked="${category.name} == ${user.cat.name}"
+													class="form-control" />
 											</div>
-										</div><!-- th:checked="${category.name} == ${category.name}" -->
+											</div>
+										</div>
 
 										<!-- Pour étincelles -->
 										<!-- <div class="form-group">

@@ -2,6 +2,7 @@ package com.etincelles.entities;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -45,8 +46,7 @@ public class User implements UserDetails {
     private String            job_title;
     private String            promo_id;
 
-    @OneToMany( mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
-    private Set<UserCategory> categories       = new HashSet<>();
+    private List<String>      categories;
 
     @OneToMany( mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     @JsonIgnore
@@ -173,11 +173,11 @@ public class User implements UserDetails {
         this.promo_id = promo_id;
     }
 
-    public Set<UserCategory> getCategories() {
+    public List<String> getCategories() {
         return categories;
     }
 
-    public void setCategories( Set<UserCategory> categories ) {
+    public void setCategories( List<String> categories ) {
         this.categories = categories;
     }
 

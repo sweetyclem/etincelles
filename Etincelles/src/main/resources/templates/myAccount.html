@@ -56,11 +56,14 @@
 
 										<div class="form-group" style="border: solid 0.05em #828282; padding: 1em; width:10em">
 											<label for="category">Catégorie</label>
-											<div th:each="category : ${categoryList}">
-												<!-- <div th:text="${category.name}"></div> -->
-												<label style="width:5em;" for="${category.name}" th:text="${category.name}"></label>
-												<input type="checkbox" name="${category.name}" th:value="${category.name}" class="form-control" />
-											</div>
+											Etincelle
+												<input type="checkbox" name="category" value="Etincelle" class="form-control" required="required" />
+												Mentor.e
+												<input type="checkbox" name="category" value="Mentor.e" class="form-control" />
+												Coach
+												<input type="checkbox" name="category" value="Coach" class="form-control" />
+												Staff
+												<input type="checkbox" name="category" value="Staff" class="form-control" />
 										</div>
 
 										<button type="submit" class="btn btn-primary">Créer
