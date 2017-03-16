@@ -41,10 +41,7 @@
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
 									style="background-color: #ededed; margin-top: 20px;">
-									<div class="alert alert-info" th:if="${emailSent}">An
-										email has been sent to the email address you just registered.
-										Please validate your email address and update your password
-										information.</div>
+									<div class="alert alert-info" th:if="${emailSent}">Email envoyé.</div>
 									<form th:action="@{/newUser}" method="post">
 										<div class="form-group">
 											<label for="email">* Email: </label> <input
