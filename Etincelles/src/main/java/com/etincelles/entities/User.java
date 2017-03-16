@@ -6,12 +6,15 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
@@ -45,7 +48,9 @@ public class User implements UserDetails {
     private String            organization;
     private String            job_title;
     private String            promo_id;
-
+    @ElementCollection
+    @CollectionTable( name = "categories", joinColumns = @JoinColumn( name = "categoryId" ) )
+    @Column( name = "category" )
     private List<String>      categories;
 
     @OneToMany( mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
