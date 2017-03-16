@@ -12,9 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.etincelles.entities.security.Authority;
 import com.etincelles.entities.security.UserRole;
@@ -31,12 +33,20 @@ public class User implements UserDetails {
     private String            lastName;
     @Column( name = "email", nullable = false )
     private String            email;
+    @Column( columnDefinition = "text" )
     private String            description;
     private String            city;
-    private String            picture;
+    @Transient
+    private MultipartFile     picture;
     private String            password;
     private String            phone;
     private boolean           enabled          = true;
+    private String            organization;
+    private String            job_title;
+    private String            promo_id;
+
+    @OneToMany( mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    private Set<UserCategory> categories       = new HashSet<>();
 
     @OneToMany( mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     @JsonIgnore
@@ -102,11 +112,11 @@ public class User implements UserDetails {
         this.city = city;
     }
 
-    public String getPicture() {
+    public MultipartFile getPicture() {
         return picture;
     }
 
-    public void setPicture( String picture ) {
+    public void setPicture( MultipartFile picture ) {
         this.picture = picture;
     }
 
@@ -137,6 +147,38 @@ public class User implements UserDetails {
     public String getUsername() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization( String organization ) {
+        this.organization = organization;
+    }
+
+    public String getJob_title() {
+        return job_title;
+    }
+
+    public void setJob_title( String job_title ) {
+        this.job_title = job_title;
+    }
+
+    public String getPromo_id() {
+        return promo_id;
+    }
+
+    public void setPromo_id( String promo_id ) {
+        this.promo_id = promo_id;
+    }
+
+    public Set<UserCategory> getCategories() {
+        return categories;
+    }
+
+    public void setCategories( Set<UserCategory> categories ) {
+        this.categories = categories;
     }
 
     @Override
