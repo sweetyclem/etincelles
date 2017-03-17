@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.etincelles.entities.User;
 import com.etincelles.entities.security.Role;
 import com.etincelles.entities.security.UserRole;
+import com.etincelles.enumeration.Category;
 import com.etincelles.service.UserService;
 import com.etincelles.utility.SecurityUtility;
 
@@ -31,6 +32,7 @@ public class EtincellesApplication implements CommandLineRunner {
         user1.setLastName( "Adams" );
         user1.setEmail( "janet@adams.com" );
         user1.setPassword( SecurityUtility.passwordEncoder().encode( "p" ) );
+        user1.setCategory( Category.STAFF );
         Set<UserRole> userRoles = new HashSet<>();
         Role role1 = new Role();
         role1.setRoleId( 1 );

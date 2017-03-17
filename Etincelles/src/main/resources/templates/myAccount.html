@@ -57,13 +57,13 @@
 										<div class="form-group" style="border: solid 0.05em #828282; padding: 1em; width:10em">
 											<label for="category">Catégorie</label>
 											Etincelle
-												<input type="checkbox" name="category" value="Etincelle" class="form-control" required="required" />
+												<input type="checkbox" name="category" th:value="${etincelle}" class="form-control" />
 												Mentor.e
-												<input type="checkbox" name="category" value="Mentor.e" class="form-control" />
+												<input type="checkbox" name="category" th:value="${mentor}" class="form-control" />
 												Coach
-												<input type="checkbox" name="category" value="Coach" class="form-control" />
+												<input type="checkbox" name="category" th:value="${coach}" class="form-control" />
 												Staff
-												<input type="checkbox" name="category" value="Staff" class="form-control" />
+												<input type="checkbox" name="category" th:value="${staff}" class="form-control" />
 										</div>
 
 										<button type="submit" class="btn btn-primary">Créer

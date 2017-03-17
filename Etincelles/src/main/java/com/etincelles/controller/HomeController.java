@@ -1,7 +1,9 @@
 package com.etincelles.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
@@ -21,11 +23,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.User;
 import com.etincelles.entities.security.Role;
 import com.etincelles.entities.security.UserRole;
+import com.etincelles.enumeration.Category;
 import com.etincelles.service.UserService;
 import com.etincelles.service.impl.UserSecurityService;
 import com.etincelles.utility.MailConstructor;
@@ -53,6 +57,10 @@ public class HomeController {
     @RequestMapping( "/login" )
     public String login( Model model ) {
         model.addAttribute( "classActiveLogin", true );
+        model.addAttribute( "coach", Category.COACH );
+        model.addAttribute( "etincelle", Category.ETINCELLE );
+        model.addAttribute( "staff", Category.STAFF );
+        model.addAttribute( "mentor", Category.MENTOR );
         return "myAccount";
     }
 
@@ -96,7 +104,7 @@ public class HomeController {
     @RequestMapping( value = "/newUser", method = RequestMethod.POST )
     public String newUserPost(
             HttpServletRequest request,
-            @ModelAttribute( "email" ) String email, @RequestParam( value = "category" ) List<String> categories,
+            @ModelAttribute( "email" ) String email, @RequestParam( value = "category" ) Category category,
             Model model )
             throws Exception {
         model.addAttribute( "classActiveNewAccount", true );
@@ -110,7 +118,7 @@ public class HomeController {
 
         User user = new User();
         user.setEmail( email );
-        user.setCategories( categories );
+        user.setCategory( category );
 
         String password = SecurityUtility.randomPassword();
 
@@ -161,6 +169,25 @@ public class HomeController {
         model.addAttribute( "classActiveEdit", true );
         model.addAttribute( "user", user );
         return "myProfile";
+    }
+
+    @RequestMapping( "/updateUserInfo" )
+    public String updateUserPost( @ModelAttribute( "user" ) User user, HttpServletRequest request ) {
+        userService.save( user );
+
+        MultipartFile picture = user.getPicture();
+
+        try {
+            byte[] bytes = picture.getBytes();
+            String name = user.getId() + ".png";
+            BufferedOutputStream stream = new BufferedOutputStream(
+                    new FileOutputStream( new File( "src/main/resources/static/images/user/" + name ) ) );
+            stream.write( bytes );
+            stream.close();
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return "redirect:index";
     }
 
     @RequestMapping( "/directory" )

@@ -2,19 +2,17 @@ package com.etincelles.entities;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
@@ -24,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.etincelles.entities.security.Authority;
 import com.etincelles.entities.security.UserRole;
+import com.etincelles.enumeration.Category;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -48,14 +47,21 @@ public class User implements UserDetails {
     private String            organization;
     private String            job_title;
     private String            promo_id;
-    @ElementCollection
-    @CollectionTable( name = "categories", joinColumns = @JoinColumn( name = "categoryId" ) )
-    @Column( name = "category" )
-    private List<String>      categories;
+
+    @Enumerated( EnumType.STRING )
+    private Category          category;
 
     @OneToMany( mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     @JsonIgnore
     private Set<UserRole>     userRoles        = new HashSet<>();
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory( Category category ) {
+        this.category = category;
+    }
 
     public Set<UserRole> getUserRoles() {
         return userRoles;
@@ -176,14 +182,6 @@ public class User implements UserDetails {
 
     public void setPromo_id( String promo_id ) {
         this.promo_id = promo_id;
-    }
-
-    public List<String> getCategories() {
-        return categories;
-    }
-
-    public void setCategories( List<String> categories ) {
-        this.categories = categories;
     }
 
     @Override

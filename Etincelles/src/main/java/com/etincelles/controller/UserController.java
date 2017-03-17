@@ -36,7 +36,7 @@ public class UserController {
     private UserSecurityService userSecurityService;
 
     @RequestMapping( value = "/update", method = RequestMethod.POST )
-    public String addUserPost( @ModelAttribute( "user" ) User user, HttpServletRequest request ) {
+    public String updateUserPost( @ModelAttribute( "user" ) User user, HttpServletRequest request ) {
         userService.save( user );
 
         MultipartFile picture = user.getPicture();
