@@ -60,13 +60,13 @@
 										<div class="form-group">
 											<div class="row">
 												<div class="col-xs-6">
-													<label for="firstName">Prénom</label> <input type="text"
+													<label for="firstName">* Prénom</label> <input type="text" required="required"
 														class="form-control" id="firstName" name="firstName"
 														th:value="${user.firstName}" />
 												</div>
 
 												<div class="col-xs-6">
-													<label for="lastName">Nom</label> <input type="text"
+													<label for="lastName">* Nom</label> <input type="text" required="required"
 														class="form-control" id="lastName" name="lastName"
 														th:value="${user.lastName}" />
 												</div>
@@ -107,9 +107,9 @@
 
 										<!-- Pour étincelles -->
 										<div class="form-group" th:if="(${user.category.name()} == 'ETINCELLE')">
-											<label for="promo_id">Promo</label><input type="text"
-												class="form-control" id="promo_id" name="promo_id"
-												th:value="${user.promo_id}" />
+											<label for="promo">Promo</label><input type="number"
+												class="form-control" id="promo" name="promo"
+												th:value="${user.promo}" />
 										</div>
 
 										<!-- Pour mentor.e.s et coachs -->

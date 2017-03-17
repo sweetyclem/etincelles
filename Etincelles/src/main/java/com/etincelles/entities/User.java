@@ -176,12 +176,12 @@ public class User implements UserDetails {
         this.job_title = job_title;
     }
 
-    public int getPromo_id() {
+    public int getPromo() {
         return promo;
     }
 
-    public void setPromo_id( int promo_id ) {
-        this.promo = promo_id;
+    public void setPromo( int promo ) {
+        this.promo = promo;
     }
 
     @Override

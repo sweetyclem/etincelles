@@ -33,7 +33,6 @@ public class EtincellesApplication implements CommandLineRunner {
         user1.setEmail( "janet@adams.com" );
         user1.setPassword( SecurityUtility.passwordEncoder().encode( "p" ) );
         user1.setCategory( Category.STAFF );
-        // test
 
         Set<UserRole> userRoles = new HashSet<>();
         Role role1 = new Role();
