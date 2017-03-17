@@ -46,7 +46,7 @@ public class User implements UserDetails {
     private boolean           enabled          = true;
     private String            organization;
     private String            job_title;
-    private String            promo_id;
+    private int               promo;
 
     @Enumerated( EnumType.STRING )
     private Category          category;
@@ -176,12 +176,12 @@ public class User implements UserDetails {
         this.job_title = job_title;
     }
 
-    public String getPromo_id() {
-        return promo_id;
+    public int getPromo_id() {
+        return promo;
     }
 
-    public void setPromo_id( String promo_id ) {
-        this.promo_id = promo_id;
+    public void setPromo_id( int promo_id ) {
+        this.promo = promo_id;
     }
 
     @Override

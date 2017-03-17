@@ -128,25 +128,25 @@
 										</div>
 
 										<!-- Pour étincelles -->
-										<!-- <div class="form-group">
+										<div class="form-group" th:if="(${user.category.name()} == 'ETINCELLE')">
 											<label for="promo_id">Promo</label><input type="text"
 												class="form-control" id="promo_id" name="promo_id"
 												th:value="${user.promo_id}" />
-										</div> -->
+										</div>
 
 										<!-- Pour mentor.e.s et coachs -->
-										<!-- <div class="form-group">
+										<div class="form-group">
 											<label for="organization">Entreprise</label><input type="text"
 												class="form-control" id="organization" name="organization"
 												th:value="${user.organization}" />
-										</div> -->
+										</div>
 
 										<!-- Pour mentor.e.s, coachs et staff -->
-										<!-- <div class="form-group">
+										<div class="form-group">
 											<label for="job_title">Poste</label><input type="text"
 												class="form-control" id="job_title" name="job_title"
 												th:value="${user.job_title}" />
-										</div> -->
+										</div>
 
 										<div class="form-group">
 											<label for="currentPassword">Mot de passe actuel</label><input
