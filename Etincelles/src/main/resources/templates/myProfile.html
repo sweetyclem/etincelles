@@ -103,8 +103,7 @@
 										</div>
 
 										<div class="form-group">
-											<div th:text="${user.category}"></div>
-											<label for="category">Catégorie</label>
+											<label for="category">Catégorie principale</label>
 											<!-- Etincelle
 												<input type="checkbox" name="category" th:value="${etincelle}" th:checked="(${user.category} == ${etincelle})" class="form-control"/>
 												Mentor.e
@@ -114,17 +113,17 @@
 												Staff
 												<input type="checkbox" name="category" th:value="${staff}" th:checked="(${user.category} == ${staff})" class="form-control" /> -->
 
-											<select th:value="${user.category}" id="category"
-												name="category" class="form-control">
-												<option value="" selected="selected" disabled="disabled">Choisir une catégorie</option>
+											<select id="category" name="category" class="form-control">
+												<option value="" selected="selected" disabled="disabled">Choisir
+													une catégorie</option>
 												<option th:value="${etincelle}"
-													th:selected="(${user.category} == ${etincelle})">Etincelle</option>
+													th:selected="(${user.category.name()} == 'ETINCELLE')">Etincelle</option>
 												<option th:value="${mentor}"
-													th:selected="(${user.category} == 'MENTOR')">Mentor.e</option>
+													th:selected="(${user.category.name()} == 'MENTOR')">Mentor.e</option>
 												<option th:value="${coach}"
-													th:selected="(${user.category} == ${coach})">Coach</option>
+													th:selected="(${user.category.name()} == 'COACH')">Coach</option>
 												<option th:value="${staff}"
-													th:selected="(${user.category} == ${staff})">Staff</option>
+													th:selected="(${user.category.name()} == 'STAFF')">Staff</option>
 											</select>
 										</div>
 
