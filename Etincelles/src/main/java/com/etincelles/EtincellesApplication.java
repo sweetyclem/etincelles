@@ -12,6 +12,7 @@ import com.etincelles.entities.User;
 import com.etincelles.entities.security.Role;
 import com.etincelles.entities.security.UserRole;
 import com.etincelles.enumeration.Category;
+import com.etincelles.enumeration.Type;
 import com.etincelles.service.UserService;
 import com.etincelles.utility.SecurityUtility;
 
@@ -40,5 +41,26 @@ public class EtincellesApplication implements CommandLineRunner {
         role1.setName( "ROLE_USER" );
         userRoles.add( new UserRole( user1, role1 ) );
         userService.createUser( user1, userRoles );
+
+        User user2 = new User();
+        user2.setFirstName( "Clem" );
+        user2.setLastName( "Pirlot" );
+        user2.setEmail( "contact@clementinepirlot.fr" );
+        user2.setPassword( SecurityUtility.passwordEncoder().encode( "p" ) );
+        user2.setCategory( Category.ETINCELLE );
+        user2.setCity( "Lyon" );
+        user2.setDescription( "Clémentine est développeuse" );
+        user2.setJob_title( "développeuse backend" );
+        user2.setOrganization( "Greta" );
+        user2.setPhone( "0761841201" );
+        user2.setPromo( 9 );
+        user2.setType( Type.CAREER );
+
+        Set<UserRole> user2Roles = new HashSet<>();
+        Role role2 = new Role();
+        role2.setRoleId( 1 );
+        role2.setName( "ROLE_USER" );
+        user2Roles.add( new UserRole( user2, role2 ) );
+        userService.createUser( user2, user2Roles );
     }
 }

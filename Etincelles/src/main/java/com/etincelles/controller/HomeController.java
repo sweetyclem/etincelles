@@ -260,6 +260,13 @@ public class HomeController {
         return "directory";
     }
 
+    @RequestMapping( "/userDetail" )
+    public String UserDetail( @RequestParam( "id" ) Long id, Model model ) {
+        User user = userService.findById( id );
+        model.addAttribute( "user", user );
+        return "userDetail";
+    }
+
     @RequestMapping( "/myProfile" )
     public String myProfile( Model model ) {
         // Get user from session

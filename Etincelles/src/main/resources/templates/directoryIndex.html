@@ -5,15 +5,42 @@
 </head>
 
 <body>
-<div th:replace="common/header :: navbar"/>
-
-<a href="/directory?type=careerParticipants">Etincelles Carrières</a>
-<a href="/directory?type=startupParticipants">Etincelles Startup</a>
-<a href="/directory?type=careerMentors">Mentor.e.s Carrières</a>
-<a href="/directory?type=startupMentors">Mentor.e.s Startup</a>
-<a href="/directory?type=coaches">Coachs</a>
-<a href="/directory?type=staff">Equipe Etincelle</a>
-
-<div th:replace="common/header :: body-bottom-scripts" />
+	<div th:replace="common/header :: navbar" />
+	<br />
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-2 col-xs-offset-4">
+				<button class="btn btn-default">
+					<a class="no-under" href="/directory?type=careerParticipants">Etincelles
+						Carrières</a>
+				</button>
+				<br />
+				<button class="btn btn-default">
+					<a class="no-under" href="/directory?type=startupParticipants">Etincelles
+						Startup</a>
+				</button>
+				<br />
+				<button class="btn btn-default">
+					<a class="no-under" href="/directory?type=careerMentors">Mentor.e.s
+						Carrières</a>
+				</button>
+				<br />
+				<button class="btn btn-default">
+					<a class="no-under" href="/directory?type=startupMentors">Mentor.e.s
+						Startup</a>
+				</button>
+				<br />
+				<button class="btn btn-default">
+					<a class="no-under" href="/directory?type=coaches">Coachs</a>
+				</button>
+				<br />
+				<button class="btn btn-default">
+					<a class="no-under" href="/directory?type=staff">Equipe
+						Etincelle</a>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div th:replace="common/header :: body-bottom-scripts" />
 </body>
 </html>
