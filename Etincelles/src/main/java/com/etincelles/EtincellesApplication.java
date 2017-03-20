@@ -34,7 +34,6 @@ public class EtincellesApplication implements CommandLineRunner {
         user1.setEmail( "janet@adams.com" );
         user1.setPassword( SecurityUtility.passwordEncoder().encode( "p" ) );
         user1.setCategory( Category.STAFF );
-
         Set<UserRole> userRoles = new HashSet<>();
         Role role1 = new Role();
         role1.setRoleId( 1 );
@@ -55,7 +54,9 @@ public class EtincellesApplication implements CommandLineRunner {
         user2.setPhone( "0761841201" );
         user2.setPromo( 9 );
         user2.setType( Type.CAREER );
-
+        user2.setFacebook( "anais.pirlotmares" );
+        user2.setLinkedin( "clementine-pirlot" );
+        user2.setTwitter( "sweetyclem" );
         Set<UserRole> user2Roles = new HashSet<>();
         Role role2 = new Role();
         role2.setRoleId( 1 );

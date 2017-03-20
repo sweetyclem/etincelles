@@ -48,6 +48,9 @@ public class User implements UserDetails {
     private String            organization;
     private String            job_title;
     private int               promo;
+    private String            twitter;
+    private String            facebook;
+    private String            linkedin;
 
     @Enumerated( EnumType.STRING )
     private Category          category;
@@ -58,6 +61,30 @@ public class User implements UserDetails {
     @OneToMany( mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     @JsonIgnore
     private Set<UserRole>     userRoles        = new HashSet<>();
+
+    public String getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter( String twitter ) {
+        this.twitter = twitter;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public void setFacebook( String facebook ) {
+        this.facebook = facebook;
+    }
+
+    public String getLinkedin() {
+        return linkedin;
+    }
+
+    public void setLinkedin( String linkedin ) {
+        this.linkedin = linkedin;
+    }
 
     public Type getType() {
         return type;
