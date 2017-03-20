@@ -104,7 +104,7 @@ public class HomeController {
         return "myAccount";
     }
 
-    @RequestMapping( value = "/newUser", method = RequestMethod.POST )
+    @RequestMapping( value = "/updateUser", method = RequestMethod.POST )
     public String newUserPost(
             HttpServletRequest request,
             @ModelAttribute( "email" ) String email, @RequestParam( value = "category" ) Category category,
