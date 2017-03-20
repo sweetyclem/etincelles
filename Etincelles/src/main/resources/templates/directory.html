@@ -20,7 +20,7 @@
 				</div>
 				<div class="info">
 					<div class="title">
-						<a class="no-under" th:href="@{/user/userDetail(id=${user.id})}"
+						<a class="no-under" th:href="@{/userDetail(id=${user.id})}"
 							th:text="${user.firstName + ' ' + user.lastName}"></a>
 					</div>
 					<div class="desc" th:text="${'Promo ' + user.promo}"></div>
