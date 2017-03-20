@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.etincelles.entities.security.Authority;
 import com.etincelles.entities.security.UserRole;
 import com.etincelles.enumeration.Category;
+import com.etincelles.enumeration.Type;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -51,9 +52,20 @@ public class User implements UserDetails {
     @Enumerated( EnumType.STRING )
     private Category          category;
 
+    @Enumerated( EnumType.STRING )
+    private Type              type;
+
     @OneToMany( mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     @JsonIgnore
     private Set<UserRole>     userRoles        = new HashSet<>();
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType( Type type ) {
+        this.type = type;
+    }
 
     public Category getCategory() {
         return category;

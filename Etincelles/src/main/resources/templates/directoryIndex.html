@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header">
+<meta charset="utf-8" />
+</head>
+
+<body>
+<div th:replace="common/header :: navbar"/>
+
+<a href="/directory?type=careerParticipants">Etincelles Carrières</a>
+<a href="/directory?type=startupParticipants">Etincelles Startup</a>
+<a href="/directory?type=careerMentors">Mentor.e.s Carrières</a>
+<a href="/directory?type=startupMentors">Mentor.e.s Startup</a>
+<a href="/directory?type=coaches">Coachs</a>
+<a href="/directory?type=staff">Equipe Etincelle</a>
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

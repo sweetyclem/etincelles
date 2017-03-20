@@ -17,13 +17,14 @@ public class MailConstructor {
     public SimpleMailMessage constructResetTokenEmail(
             String contextPath, Locale locale, String token, User user, String password ) {
 
-        String url = contextPath + "/newUser?token=" + token;
-        String message = "\n\nVeuillez cliquer sur le lien pour créer votre compte.\n Votre mot de passe est : \n"
-                + password;
+        String url = contextPath + "/updateUser?token=" + token;
+        String message = "Bonjour\nVeuillez cliquer sur le lien pour créer votre compte.\n";
+        String mess2 = "Votre mot de passe actuel est : \n" + password
+                + "\nPour des raisons de sécurité, vous devez changer ce mot de passe";
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo( user.getEmail() );
         email.setSubject( "Plateforme Etincelles- Créer un compte" );
-        email.setText( url + message );
+        email.setText( message + url + mess2 );
         email.setFrom( env.getProperty( "support.email" ) );
         return email;
 

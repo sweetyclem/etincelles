@@ -6,6 +6,7 @@ import java.util.Set;
 import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.User;
 import com.etincelles.entities.security.UserRole;
+import com.etincelles.enumeration.Category;
 
 public interface UserService {
     PasswordResetToken getPasswordResetToken( final String token );
@@ -19,4 +20,6 @@ public interface UserService {
     User save( User user );
 
     List<User> findAll();
+
+    List<User> findByCategory( Category category );
 }

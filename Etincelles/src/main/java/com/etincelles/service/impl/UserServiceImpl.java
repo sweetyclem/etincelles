@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.User;
 import com.etincelles.entities.security.UserRole;
+import com.etincelles.enumeration.Category;
 import com.etincelles.repository.PasswordResetTokenRepository;
 import com.etincelles.repository.RoleRepository;
 import com.etincelles.repository.UserRepository;
@@ -73,6 +74,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return (List<User>) userRepository.findAll();
+    }
+
+    @Override
+    public List<User> findByCategory( Category category ) {
+        return userRepository.findByCategory( category );
     }
 
 }

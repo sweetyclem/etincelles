@@ -3,7 +3,9 @@ package com.etincelles.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
@@ -30,6 +32,7 @@ import com.etincelles.entities.User;
 import com.etincelles.entities.security.Role;
 import com.etincelles.entities.security.UserRole;
 import com.etincelles.enumeration.Category;
+import com.etincelles.enumeration.Type;
 import com.etincelles.service.UserService;
 import com.etincelles.service.impl.UserSecurityService;
 import com.etincelles.utility.MailConstructor;
@@ -148,7 +151,7 @@ public class HomeController {
         return "myAccount";
     }
 
-    @RequestMapping( "/newUser" )
+    @RequestMapping( "/updateUser" )
     public String newUser( Locale locale, @RequestParam( "token" ) String token, Model model ) {
         PasswordResetToken passToken = userService.getPasswordResetToken( token );
 
@@ -160,7 +163,7 @@ public class HomeController {
 
         User user = passToken.getUser();
         String email = user.getEmail();
-        UserDetails userDetails = userSecurityService.loadUserByEmail( email );
+        UserDetails userDetails = userSecurityService.loadUserByUsername( email );
 
         Authentication authentication = new UsernamePasswordAuthenticationToken( userDetails, userDetails.getPassword(),
                 userDetails.getAuthorities() );
@@ -171,7 +174,7 @@ public class HomeController {
         return "myProfile";
     }
 
-    @RequestMapping( "/updateUserInfo" )
+    @RequestMapping( value = "/updateUserInfo", method = RequestMethod.POST )
     public String updateUserPost( @ModelAttribute( "user" ) User user, HttpServletRequest request ) {
         userService.save( user );
 
@@ -190,9 +193,78 @@ public class HomeController {
         return "redirect:index";
     }
 
+    @RequestMapping( "/directoryIndex" )
+    public String directoryIndex( Model model ) {
+        return "directoryIndex";
+    }
+
     @RequestMapping( "/directory" )
-    public String directory( Model model ) {
+    public String directory( Model model, @RequestParam( "type" ) String type ) {
+        List<User> userList;
+        switch ( type ) {
+        case "careerParticipants":
+            userList = userService.findByCategory( Category.ETINCELLE );
+            List<User> careerList = new ArrayList<>();
+            for ( User user : userList ) {
+                if ( user.getType() == Type.CAREER ) {
+                    careerList.add( user );
+                }
+            }
+            model.addAttribute( "userList", careerList );
+            break;
+        case "startupParticipants":
+            userList = userService.findByCategory( Category.ETINCELLE );
+            List<User> startupList = new ArrayList<>();
+            for ( User user : userList ) {
+                if ( user.getType() == Type.STARTUP ) {
+                    startupList.add( user );
+                }
+            }
+            model.addAttribute( "userList", startupList );
+            break;
+        case "careerMentors":
+            userList = userService.findByCategory( Category.MENTOR );
+            List<User> careerMentorList = new ArrayList<>();
+            for ( User user : userList ) {
+                if ( user.getType() == Type.CAREER ) {
+                    careerMentorList.add( user );
+                }
+            }
+            model.addAttribute( "userList", careerMentorList );
+            break;
+        case "startupMentors":
+            userList = userService.findByCategory( Category.MENTOR );
+            List<User> startupMentorList = new ArrayList<>();
+            for ( User user : userList ) {
+                if ( user.getType() == Type.STARTUP ) {
+                    startupMentorList.add( user );
+                }
+            }
+            model.addAttribute( "userList", startupMentorList );
+            break;
+
+        case "staff":
+            userList = userService.findByCategory( Category.STAFF );
+            model.addAttribute( "userList", userList );
+            break;
+        case "coaches":
+            userList = userService.findByCategory( Category.COACH );
+            model.addAttribute( "userList", userList );
+            break;
+
+        default:
+            break;
+        }
+        model.addAttribute( "career", Type.CAREER );
+        model.addAttribute( "startup", Type.STARTUP );
         return "directory";
+    }
+
+    @RequestMapping( "/myProfile" )
+    public String myProfile( Model model ) {
+        // Get user from session
+
+        return "myProfile";
     }
 
     @RequestMapping( "/calendar" )
