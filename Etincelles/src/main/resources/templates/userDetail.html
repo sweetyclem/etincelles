@@ -8,21 +8,81 @@
 	<div th:replace="common/header :: navbar"></div>
 
 	<main class="container">
-	<div class="row">
-		<div class="col-xs-12"><h2>
-				<span th:text="${user.firstName + ' ' + user.lastName}"></span>
-			</h2></div>
+	<div>
+		<ol class="breadcrumb">
+			<li><a th:href="@{/directoryIndex}"><i
+					class="fa fa-long-arrow-left" aria-hidden="true"></i>Retour à la
+					liste</a></li>
+		</ol>
+
 	</div>
-	<div class="row">		
-		<div class="col-xs-3">			
-			<img src="http://placekitten.com/230/230"
-						th:alt="${user.firstName + ' ' + user.lastName}"/>
-						<!-- th:src="${(user.picture != null and !#strings.isEmpty(user.picture)) ? user.picture : 'http://placekitten.com/250/250'}" -->
+
+	<div class="row">
+		<div class="col-xs-3">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<img src="http://placekitten.com/230/230"
+						th:alt="${user.firstName + ' ' + user.lastName}" />
+					<!-- <img th:src="@{/images/user/}+${user.id}+'.png'" class="img-responsive center-block" th:alt="${user.firstName + ' ' + user.lastName}" /> -->
+				</div>
+			</div>
 		</div>
-		
 		<div class="col-xs-9">
-			
+			<h3 th:text="${user.firstName + ' ' + user.lastName}"></h3>
+			<div class="bottom">
+						<a target="_blank" class="btn btn-twitter btn-sm"
+							th:href="@{https://twitter.com/} + ${user.twitter}"> <i
+							class="fa fa-twitter"></i>
+						</a> <a target="_blank" class="btn btn-facebook btn-sm"
+							rel="publisher"
+							th:href="@{https://facebook.com/public/} + ${user.facebook}">
+							<i class="fa fa-facebook"></i>
+						</a> <a target="_blank" class="btn btn-linkedin btn-sm"
+							rel="publisher"
+							th:href="@{https://linkedin.com/in/} + ${user.linkedin}"> <i
+							class="fa fa-linkedin"></i>
+						</a>
+					</div>
+			<div class="row">
+				<div class="col-xs-6">
+				<br/>
+					<p th:if="${user.category != null}">
+						<strong>Catégorie : </strong><span th:text="${user.category}"></span>
+					</p>
+					<p th:if="${user.type != null}">
+						<strong>Type : </strong><span th:text="${user.type}"></span>
+					</p>
+					<p th:if="${user.promo != 0}">
+						<strong>Promo : </strong><span th:text="${user.promo}"></span>
+					</p>
+					<p th:if="${user.city != null}">
+						<strong>Ville : </strong><span th:text="${user.city}"></span>
+					</p>
+					<p>
+						<strong>Email : </strong><span th:text="${user.email}"></span>
+					</p>
+					<p th:if="${user.phone != null}">
+						<strong>Téléphone : </strong><span th:text="${user.phone}"></span>
+					</p>
+
+				</div>
+				<div class="col-xs-6">
+				<br/>
+					<p th:if="${user.organization != null}">
+						<strong>Entreprise : </strong><span th:text="${user.organization}"></span>
+					</p>
+					<p th:if="${user.job_title != null}">
+						<strong>Poste : </strong><span th:text="${user.job_title}"></span>
+					</p>
+					<p th:if="${user.description != null}">
+						<strong>Description : </strong><span
+							th:utext="${user.description}"></span>
+					</p>					
+				</div>
+			</div>
 		</div>
+
+
 	</div>
 	</main>
 	<div th:replace="common/header :: body-bottom-scripts"></div>
