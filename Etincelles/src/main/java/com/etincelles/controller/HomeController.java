@@ -3,11 +3,10 @@ package com.etincelles.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.security.Principal;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,8 +28,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.User;
-import com.etincelles.entities.security.Role;
-import com.etincelles.entities.security.UserRole;
 import com.etincelles.enumeration.Category;
 import com.etincelles.enumeration.Type;
 import com.etincelles.service.UserService;
@@ -60,10 +57,6 @@ public class HomeController {
     @RequestMapping( "/login" )
     public String login( Model model ) {
         model.addAttribute( "classActiveLogin", true );
-        model.addAttribute( "coach", Category.COACH );
-        model.addAttribute( "etincelle", Category.ETINCELLE );
-        model.addAttribute( "staff", Category.STAFF );
-        model.addAttribute( "mentor", Category.MENTOR );
         return "myAccount";
     }
 
@@ -100,53 +93,6 @@ public class HomeController {
         mailSender.send( newEmail );
 
         model.addAttribute( "forgetPasswordEmailSent", "true" );
-
-        return "myAccount";
-    }
-
-    @RequestMapping( value = "/updateUser", method = RequestMethod.POST )
-    public String newUserPost(
-            HttpServletRequest request,
-            @ModelAttribute( "email" ) String email, @RequestParam( value = "category" ) Category category,
-            Model model )
-            throws Exception {
-        model.addAttribute( "classActiveNewAccount", true );
-        model.addAttribute( "email", email );
-
-        if ( userService.findByEmail( email ) != null ) {
-            model.addAttribute( "emailExists", true );
-
-            return "myAccount";
-        }
-
-        User user = new User();
-        user.setEmail( email );
-        user.setCategory( category );
-
-        String password = SecurityUtility.randomPassword();
-
-        String encryptedPassword = SecurityUtility.passwordEncoder().encode( password );
-        user.setPassword( encryptedPassword );
-
-        Role role = new Role();
-        role.setRoleId( 1 );
-        role.setName( "ROLE_USER" );
-
-        Set<UserRole> userRoles = new HashSet<>();
-        userRoles.add( new UserRole( user, role ) );
-        userService.createUser( user, userRoles );
-
-        String token = UUID.randomUUID().toString();
-        userService.createPasswordResetTokenForUser( user, token );
-
-        String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-
-        SimpleMailMessage mail = mailConstructor.constructResetTokenEmail( appUrl, request.getLocale(), token, user,
-                password );
-
-        mailSender.send( mail );
-
-        model.addAttribute( "emailSent", "true" );
 
         return "myAccount";
     }
@@ -268,8 +214,11 @@ public class HomeController {
     }
 
     @RequestMapping( "/myProfile" )
-    public String myProfile( Model model ) {
-        // Get user from session
+    public String myProfile( Model model, Principal principal ) {
+        User activeUser = (User) ( (Authentication) principal ).getPrincipal();
+        User user = userService.findByEmail( activeUser.getEmail() );
+        model.addAttribute( "user", user );
+        model.addAttribute( "classActiveEdit", true );
 
         return "myProfile";
     }

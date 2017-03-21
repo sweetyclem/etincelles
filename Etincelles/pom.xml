@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>Etincelles</name>
-	<description>frontend part for etincelles&#39; yearbook</description>
+	<description>frontend part for etincelles&#39; directory</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

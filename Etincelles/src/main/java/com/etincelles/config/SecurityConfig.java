@@ -36,7 +36,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/fonts/**",
             "/",
             "/myAccount",
-            "/updateUser",
             "/forgetPassword",
             "/login"
     };
@@ -44,9 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure( HttpSecurity http ) throws Exception {
         http
-                .authorizeRequests().
-                /* antMatchers("/**"). */
-                antMatchers( PUBLIC_MATCHERS ).permitAll().anyRequest().authenticated();
+                .authorizeRequests().antMatchers( PUBLIC_MATCHERS ).permitAll().anyRequest().authenticated();
 
         http
                 .csrf().disable().cors().disable()
