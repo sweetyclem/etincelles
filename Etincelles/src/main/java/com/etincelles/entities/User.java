@@ -131,6 +131,10 @@ public class User implements UserDetails {
         this.enabled = enabled;
     }
 
+    public boolean getEnabled() {
+        return enabled;
+    }
+
     public String getFirstName() {
         return firstName;
     }
