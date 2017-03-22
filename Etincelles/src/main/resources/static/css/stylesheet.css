@@ -533,7 +533,7 @@ input[type="checkbox"]{
 }
 
 .card.hovercard .cardheader {
-    background: url("http://lorempixel.com/850/280/nature/4/");
+    background: url("/images/texture.jpg");
     background-size: cover;
     height: 135px;
 }

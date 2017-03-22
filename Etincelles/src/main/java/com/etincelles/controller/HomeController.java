@@ -221,6 +221,9 @@ public class HomeController {
 
     @RequestMapping( "/directoryIndex" )
     public String directoryIndex( Model model ) {
+        List<User> userList;
+        userList = userService.findAll();
+        model.addAttribute( "userList", userList );
         return "directoryIndex";
     }
 

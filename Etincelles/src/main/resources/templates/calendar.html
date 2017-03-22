@@ -5,9 +5,18 @@
 </head>
 
 <body>
-<div th:replace="common/header :: navbar"/>
+	<div th:replace="common/header :: navbar" />
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<iframe
+					src="https://calendar.google.com/calendar/embed?title=Etincelles&amp;showTabs=0&amp;showCalendars=0&amp;height=600&amp;wkst=2&amp;hl=fr&amp;bgcolor=%2366ff99&amp;ctz=Europe%2FParis"
+					style="border-width: 0" width="800" height="600" frameborder="0"
+					scrolling="no"></iframe>
+			</div>
+		</div>
+	</div>
 
-
-<div th:replace="common/header :: body-bottom-scripts" />
+	<div th:replace="common/header :: body-bottom-scripts" />
 </body>
 </html>
