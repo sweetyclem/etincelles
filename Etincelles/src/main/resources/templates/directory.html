@@ -8,12 +8,13 @@
 	<div th:replace="common/header :: navbar"></div>
 
 	<main class="container">
-	<div class="row" data-th-each="user : ${userList}">
-		<div class="col-lg-3 col-sm-6">
+	<div class="row">
+		<div data-th-each="user : ${userList}" class="col-lg-3 col-sm-6">
 
 			<div class="card hovercard">
 				<div class="cardheader"></div>
-				<div class="avatar" th:with="pic=${'/images/user/' + user.id +'.png'}">
+				<div class="avatar"
+					th:with="pic=${'/images/user/' + user.id +'.png'}">
 					<img
 						th:src="${(user.hasPicture) ? pic : 'http://placekitten.com/350/320'}"
 						th:alt="${user.firstName + ' ' + user.lastName}" />

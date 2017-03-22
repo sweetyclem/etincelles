@@ -172,9 +172,7 @@ public class HomeController {
         String dbPassword = currentUser.getPassword();
 
         // verify current password
-        if ( passwordEncoder.matches( user.getPassword(), dbPassword ) ) {
-            currentUser.setPassword( passwordEncoder.encode( newPassword ) );
-        } else {
+        if ( !( passwordEncoder.matches( user.getPassword(), dbPassword ) ) ) {
             model.addAttribute( "incorrectPassword", true );
             return "myProfile";
         }
