@@ -8,7 +8,7 @@
 	<div th:replace="common/header :: navbar" />
 
 	<div class="container">
-		<div class="row" style="margin-bottom: -100px;">
+		<div class="row">
 			<div class="col-xs-8">
 				<h2 class="section-headline">
 					<h2 class="section-headline">
@@ -17,18 +17,31 @@
 				</h2>
 			</div>
 		</div>
-		<hr />
-		<!-- style="position: absolute; width: 100%; height: 6px; background-color: #333; z-index: -1; margin-top: -80px;"/>
-    <img class="img-responsive" src="#"
-         style="margin-top: -75px;" /> -->
 
-		<div class="row" style="margin-top: 60px;">
-			<div class="col-xs-9 col-xs-offset-3">
+		<hr />
+		<div class="row">
+			<div class="alert alert-danger" th:if="${incorrectPassword}">
+				<strong>Le mot de passe actuel est incorrect</strong>
+			</div>
+
+			<div class="alert alert-danger" th:if="${emailExists}">
+				<strong>Cette adresse email est déjà utilisée</strong>
+			</div>
+
+			<div class="alert alert-success" th:if="${updateSuccess}">
+				<strong>Informations mises à jour</strong>
+			</div>
+			<div class="bg-info" th:if="${updateUserInfo}">User info
+				updated.</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-10 col-xs-offset-1">
 
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs">
-					<li th:classappend="${classActiveEdit}? 'active'"><a
-						class="no-under" href="#tab-1" data-toggle="tab"><span>Modifier</span></a></li>
+					<li class="active"><a class="no-under" href="#tab-1"
+						data-toggle="tab"><span>Modifier</span></a></li>
 					<!-- <li th:classappend="${classActiveOrders}? 'active'"><a
                         href="#tab-2" data-toggle="tab"><span style="color: red;">Orders</span></a></li>
                 <li th:classappend="${classActiveBilling}? 'active'"><a
@@ -41,28 +54,12 @@
 				<div class="tab-content">
 
 					<!-- Edit user information -->
-					<div class="tab-pane fade" id="tab-1"
-						th:classappend="${classActiveEdit}? 'in active'">
+					<div class="tab-pane fade in active" id="tab-1">
 						<div class="panel-group">
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
 									style="background-color: #ededed; margin-top: 20px;">
 
-									<div class="alert alert-danger" th:if="${incorrectPassword}">
-										<strong>Le mot de passe est incorrect</strong>Veuillez entrer
-										à nouveau le mot de passe
-									</div>
-
-									<div class="alert alert-danger" th:if="${emailExists}">
-										<strong>Cette adresse email est déjà utilisée</strong>
-									</div>
-
-									<div class="alert alert-succss" th:if="${updateSuccess}">
-										<strong>Informations mises à jour</strong>
-									</div>
-
-									<div class="bg-info" th:if="${updateUserInfo}">User info
-										updated.</div>
 
 									<form th:action="@{/updateUserInfo}" method="post"
 										enctype="multipart/form-data">
@@ -70,9 +67,6 @@
 										<input type="hidden" name="id" th:value="${user.id}" /> <input
 											type="hidden" name="category" th:value="${user.category}" />
 										<input type="hidden" name="type" th:value="${user.type}" />
-
-										<div class="bg-info" th:if="${updateUserInfo}">Informations
-											mises à jour</div>
 
 										<div class="form-group">
 											<div class="row">
@@ -100,7 +94,7 @@
 										<div class="form-group">
 											<label for="city">* Ville</label><input type="text"
 												class="form-control" id="city" name="city"
-												th:value="${user.city}" />
+												required="required" th:value="${user.city}" />
 										</div>
 
 										<div class="form-group">

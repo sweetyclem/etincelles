@@ -63,5 +63,45 @@ public class EtincellesApplication implements CommandLineRunner {
         role2.setName( "ROLE_USER" );
         user2Roles.add( new UserRole( user2, role2 ) );
         userService.createUser( user2, user2Roles );
+
+        User user3 = new User();
+        user3.setFirstName( "Clémentine" );
+        user3.setLastName( "Pirlot" );
+        user3.setEmail( "sweetyclem+test@gmail.com" );
+        user3.setPassword( SecurityUtility.passwordEncoder().encode( "p" ) );
+        user3.setCategory( Category.ETINCELLE );
+        user3.setCity( "Lyon" );
+        user3.setDescription( "Clémentine est développeuse" );
+        user3.setJob_title( "développeuse" );
+        user3.setOrganization( "Greta" );
+        user3.setPhone( "0761841201" );
+        user3.setPromo( 9 );
+        user3.setType( Type.CAREER );
+        user3.setFacebook( "anais.pirlotmares" );
+        user3.setLinkedin( "clementine-pirlot" );
+        user3.setTwitter( "sweetyclem" );
+        Set<UserRole> user3Roles = new HashSet<>();
+        user3Roles.add( new UserRole( user3, role2 ) );
+        userService.createUser( user3, user3Roles );
+
+        User user4 = new User();
+        user4.setFirstName( "Clémentine" );
+        user4.setLastName( "Pirlot" );
+        user4.setEmail( "sweetyclem+test@gmail.com" );
+        user4.setPassword( SecurityUtility.passwordEncoder().encode( "p" ) );
+        user4.setCategory( Category.ETINCELLE );
+        user4.setCity( "Lyon" );
+        user4.setDescription( "Clémentine est développeuse" );
+        user4.setJob_title( "développeuse" );
+        user4.setOrganization( "Greta" );
+        user4.setPhone( "0761841201" );
+        user4.setPromo( 9 );
+        user4.setType( Type.CAREER );
+        user4.setFacebook( "anais.pirlotmares" );
+        user4.setLinkedin( "clementine-pirlot" );
+        user4.setTwitter( "sweetyclem" );
+        Set<UserRole> user4Roles = new HashSet<>();
+        user4Roles.add( new UserRole( user4, role2 ) );
+        userService.createUser( user4, user4Roles );
     }
 }

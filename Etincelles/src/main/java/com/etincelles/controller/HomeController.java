@@ -123,6 +123,15 @@ public class HomeController {
         return "myProfile";
     }
 
+    @RequestMapping( "/updateUserInfo" )
+    public String updateGet( Model model, Principal principal ) {
+        User activeUser = (User) ( (Authentication) principal ).getPrincipal();
+        User user = userService.findByEmail( activeUser.getEmail() );
+        model.addAttribute( "user", user );
+        model.addAttribute( "classActiveEdit", true );
+        return "myProfile";
+    }
+
     @RequestMapping( value = "/updateUserInfo", method = RequestMethod.POST )
     public String updateUserInfo( @ModelAttribute( "user" ) User user, HttpServletRequest request,
             @ModelAttribute( "newPassword" ) String newPassword, Model model ) throws Exception {
@@ -152,16 +161,26 @@ public class HomeController {
                         new FileOutputStream( new File( "src/main/resources/static/images/user/" + name ) ) );
                 stream.write( bytes );
                 stream.close();
+                user.setHasPicture( true );
             } catch ( Exception e ) {
                 System.out.println( "Erreur ligne 152" );
                 e.printStackTrace();
             }
         }
 
+        BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
+        String dbPassword = currentUser.getPassword();
+
+        // verify current password
+        if ( passwordEncoder.matches( user.getPassword(), dbPassword ) ) {
+            currentUser.setPassword( passwordEncoder.encode( newPassword ) );
+        } else {
+            model.addAttribute( "incorrectPassword", true );
+            return "myProfile";
+        }
+
         // update password
         if ( newPassword != null && !newPassword.isEmpty() && !newPassword.equals( "" ) ) {
-            BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
-            String dbPassword = currentUser.getPassword();
             if ( passwordEncoder.matches( user.getPassword(), dbPassword ) ) {
                 currentUser.setPassword( passwordEncoder.encode( newPassword ) );
             } else {

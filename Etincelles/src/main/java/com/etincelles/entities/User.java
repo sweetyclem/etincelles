@@ -51,6 +51,7 @@ public class User implements UserDetails {
     private String            twitter;
     private String            facebook;
     private String            linkedin;
+    private Boolean           hasPicture       = false;
 
     @Enumerated( EnumType.STRING )
     private Category          category;
@@ -61,6 +62,14 @@ public class User implements UserDetails {
     @OneToMany( mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     @JsonIgnore
     private Set<UserRole>     userRoles        = new HashSet<>();
+
+    public Boolean getHasPicture() {
+        return hasPicture;
+    }
+
+    public void setHasPicture( Boolean hasPicture ) {
+        this.hasPicture = hasPicture;
+    }
 
     public String getTwitter() {
         return twitter;
