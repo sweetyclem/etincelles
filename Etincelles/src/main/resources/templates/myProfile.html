@@ -47,12 +47,29 @@
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
 									style="background-color: #ededed; margin-top: 20px;">
+
+									<div class="alert alert-danger" th:if="${incorrectPassword}">
+										<strong>Le mot de passe est incorrect</strong>Veuillez entrer
+										à nouveau le mot de passe
+									</div>
+
+									<div class="alert alert-danger" th:if="${emailExists}">
+										<strong>Cette adresse email est déjà utilisée</strong>
+									</div>
+
+									<div class="alert alert-succss" th:if="${updateSuccess}">
+										<strong>Informations mises à jour</strong>
+									</div>
+
+									<div class="bg-info" th:if="${updateUserInfo}">User info
+										updated.</div>
+
 									<form th:action="@{/updateUserInfo}" method="post"
 										enctype="multipart/form-data">
-										
-										<input type="hidden" name="id" th:value="${user.id}" />
-										
-										<input type="hidden" name="category" th:value="${user.category}" />
+
+										<input type="hidden" name="id" th:value="${user.id}" /> <input
+											type="hidden" name="category" th:value="${user.category}" />
+										<input type="hidden" name="type" th:value="${user.type}" />
 
 										<div class="bg-info" th:if="${updateUserInfo}">Informations
 											mises à jour</div>
@@ -60,15 +77,15 @@
 										<div class="form-group">
 											<div class="row">
 												<div class="col-xs-6">
-													<label for="firstName">* Prénom</label> <input type="text" required="required"
-														class="form-control" id="firstName" name="firstName"
-														th:value="${user.firstName}" />
+													<label for="firstName">* Prénom</label> <input type="text"
+														required="required" class="form-control" id="firstName"
+														name="firstName" th:value="${user.firstName}" />
 												</div>
 
 												<div class="col-xs-6">
-													<label for="lastName">* Nom</label> <input type="text" required="required"
-														class="form-control" id="lastName" name="lastName"
-														th:value="${user.lastName}" />
+													<label for="lastName">* Nom</label> <input type="text"
+														required="required" class="form-control" id="lastName"
+														name="lastName" th:value="${user.lastName}" />
 												</div>
 											</div>
 										</div>
@@ -90,8 +107,8 @@
 											<label for="description">Description</label>
 											<!-- <p th:utext="${user.description}"></p> -->
 											<textarea class="form-control" id="description"
-												name="description" th:value="${user.description}"></textarea>
-												
+												name="description" th:utext="${user.description}"></textarea>
+
 										</div>
 
 										<div class="form-group">
@@ -108,7 +125,8 @@
 										</div>
 
 										<!-- Pour étincelles -->
-										<div class="form-group" th:if="(${user.category.name()} == 'ETINCELLE')">
+										<div class="form-group"
+											th:if="(${user.category.name()} == 'ETINCELLE')">
 											<label for="promo">Promo</label><input type="number"
 												class="form-control" id="promo" name="promo"
 												th:value="${user.promo}" />
@@ -116,9 +134,9 @@
 
 										<!-- Pour mentor.e.s et coachs -->
 										<div class="form-group">
-											<label for="organization">Entreprise</label><input type="text"
-												class="form-control" id="organization" name="organization"
-												th:value="${user.organization}" />
+											<label for="organization">Entreprise</label><input
+												type="text" class="form-control" id="organization"
+												name="organization" th:value="${user.organization}" />
 										</div>
 
 										<!-- Pour mentor.e.s, coachs et staff -->
@@ -127,32 +145,43 @@
 												class="form-control" id="job_title" name="job_title"
 												th:value="${user.job_title}" />
 										</div>
-										
+
 										<div class="form-group">
-											<label for="twitter">Compte twitter</label><input type="text" pattern="[^a-z]"
-												class="form-control" id="twitter" name="twitter" placeholder="Entrez le nom d'utilisateur uniquement"
+											<label for="twitter">Compte twitter</label><input type="text"
+												pattern="[a-z0-9]+$" class="form-control" id="twitter"
+												name="twitter"
+												placeholder="Entrez le nom d'utilisateur uniquement"
 												th:value="${user.twitter}" />
-												<p style="color: #828282; font-size: 0.9em">Par exemple pour https://twitter.com/SocialBuilder, entrez SocialBuilder</p>
+											<p style="color: #828282; font-size: 0.9em">Par exemple
+												pour https://twitter.com/SocialBuilder, entrez SocialBuilder</p>
 										</div>
-										
+
 										<div class="form-group">
-											<label for="facebook">Compte facebook</label><input type="text"
-												class="form-control" id="facebook" name="facebook" placeholder="Entrez le nom d'utilisateur uniquement"
+											<label for="facebook">Compte facebook</label><input
+												type="text" class="form-control" id="facebook"
+												name="facebook"
+												placeholder="Entrez le nom d'utilisateur uniquement"
 												th:value="${user.facebook}" />
-												<p style="color: #828282; font-size: 0.9em">Par exemple pour https://facebook.com/public/SocialBuilder, entrez SocialBuilder</p>
+											<p style="color: #828282; font-size: 0.9em">Par exemple
+												pour https://facebook.com/public/SocialBuilder, entrez
+												SocialBuilder</p>
 										</div>
-										
+
 										<div class="form-group">
 											<label for="linkedin">Linkedin</label><input type="text"
-												class="form-control" id="linkedin" name="linkedin" placeholder="Entrez le nom d'utilisateur uniquement"
+												class="form-control" id="linkedin" name="linkedin"
+												placeholder="Entrez le nom d'utilisateur uniquement"
 												th:value="${user.linkedin}" />
-												<p style="color: #828282; font-size: 0.9em">Par exemple pour https://linkedin.com/in/SocialBuilder, entrez SocialBuilder</p>
+											<p style="color: #828282; font-size: 0.9em">Par exemple
+												pour https://linkedin.com/in/SocialBuilder, entrez
+												SocialBuilder</p>
 										</div>
 
 										<div class="form-group">
 											<label for="currentPassword">Mot de passe actuel</label><input
-												type="text" class="form-control" id="currentPassword"
-												name="currentPassword" th:value="${currentPassword}" />
+												type="password" class="form-control" id="currentPassword"
+												name="password" th:value="${currentPassword}"
+												required="required" />
 										</div>
 										<p style="color: #828282">Entrez votre mot de passe actuel
 											pour mettre à jour l'email ou le mot de passe.</p>

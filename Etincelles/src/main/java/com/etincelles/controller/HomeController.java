@@ -3,6 +3,8 @@ package com.etincelles.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -121,22 +124,82 @@ public class HomeController {
     }
 
     @RequestMapping( value = "/updateUserInfo", method = RequestMethod.POST )
-    public String updateUserPost( @ModelAttribute( "user" ) User user, HttpServletRequest request ) {
-        userService.save( user );
+    public String updateUserInfo( @ModelAttribute( "user" ) User user, HttpServletRequest request,
+            @ModelAttribute( "newPassword" ) String newPassword, Model model ) throws Exception {
+
+        User currentUser = userService.findById( user.getId() );
+        if ( currentUser == null ) {
+            throw new Exception( "User not found" );
+        }
+
+        /* check email already exists */
+        if ( userService.findByEmail( user.getEmail() ) != null ) {
+            if ( userService.findByEmail( user.getEmail() ).getId() != currentUser.getId() ) {
+                model.addAttribute( "emailExists", true );
+                return "myProfile";
+            }
+        }
 
         MultipartFile picture = user.getPicture();
-
-        try {
-            byte[] bytes = picture.getBytes();
-            String name = user.getId() + ".png";
-            BufferedOutputStream stream = new BufferedOutputStream(
-                    new FileOutputStream( new File( "src/main/resources/static/images/user/" + name ) ) );
-            stream.write( bytes );
-            stream.close();
-        } catch ( Exception e ) {
-            e.printStackTrace();
+        if ( !( picture.isEmpty() ) ) {
+            try {
+                byte[] bytes = picture.getBytes();
+                String name = user.getId() + ".png";
+                if ( Files.exists( Paths.get( "src/main/resources/static/images/user/" + name ) ) ) {
+                    Files.delete( Paths.get( "src/main/resources/static/images/user/" + name ) );
+                }
+                BufferedOutputStream stream = new BufferedOutputStream(
+                        new FileOutputStream( new File( "src/main/resources/static/images/user/" + name ) ) );
+                stream.write( bytes );
+                stream.close();
+            } catch ( Exception e ) {
+                System.out.println( "Erreur ligne 152" );
+                e.printStackTrace();
+            }
         }
-        return "redirect:index";
+
+        // update password
+        if ( newPassword != null && !newPassword.isEmpty() && !newPassword.equals( "" ) ) {
+            BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
+            String dbPassword = currentUser.getPassword();
+            if ( passwordEncoder.matches( user.getPassword(), dbPassword ) ) {
+                currentUser.setPassword( passwordEncoder.encode( newPassword ) );
+            } else {
+                model.addAttribute( "incorrectPassword", true );
+                return "myProfile";
+            }
+        }
+
+        currentUser.setFirstName( user.getFirstName() );
+        currentUser.setLastName( user.getLastName() );
+        currentUser.setEmail( user.getEmail() );
+        currentUser.setCategory( user.getCategory() );
+        currentUser.setCity( user.getCity() );
+        currentUser.setDescription( user.getDescription() );
+        currentUser.setFacebook( user.getFacebook() );
+        currentUser.setTwitter( user.getTwitter() );
+        currentUser.setLinkedin( user.getLinkedin() );
+        currentUser.setPhone( user.getPhone() );
+        currentUser.setPromo( user.getPromo() );
+        currentUser.setType( user.getType() );
+        currentUser.setOrganization( user.getOrganization() );
+        currentUser.setJob_title( user.getJob_title() );
+
+        userService.save( currentUser );
+
+        model.addAttribute( "updateSuccess", true );
+        model.addAttribute( "user", currentUser );
+        model.addAttribute( "classActiveEdit", true );
+
+        UserDetails userDetails = userSecurityService.loadUserByUsername( currentUser.getEmail() );
+
+        Authentication authentication = new UsernamePasswordAuthenticationToken( userDetails, userDetails.getPassword(),
+                userDetails.getAuthorities() );
+
+        SecurityContextHolder.getContext().setAuthentication( authentication );
+
+        return "myProfile";
+
     }
 
     @RequestMapping( "/directoryIndex" )
@@ -219,7 +282,6 @@ public class HomeController {
         User user = userService.findByEmail( activeUser.getEmail() );
         model.addAttribute( "user", user );
         model.addAttribute( "classActiveEdit", true );
-
         return "myProfile";
     }
 
