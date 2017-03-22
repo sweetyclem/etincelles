@@ -229,7 +229,7 @@ public class HomeController {
                 users.add( user );
             }
         }
-        model.addAttribute( "users", userList );
+        model.addAttribute( "userList", users );
         return "directoryIndex";
     }
 
@@ -286,7 +286,7 @@ public class HomeController {
                     users.add( user );
                 }
             }
-            model.addAttribute( "users", userList );
+            model.addAttribute( "userList", users );
             break;
         case "coaches":
             userList = userService.findByCategory( Category.COACH );
@@ -296,7 +296,7 @@ public class HomeController {
                     users.add( user );
                 }
             }
-            model.addAttribute( "users", userList );
+            model.addAttribute( "userList", users );
             break;
 
         default:
