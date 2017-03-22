@@ -107,7 +107,7 @@ public class HomeController {
         if ( passToken == null ) {
             String message = "Invalid Token.";
             model.addAttribute( "message", message );
-            return "redirect:/badRequest";
+            return "redirect:/badRequestPage";
         }
 
         User user = passToken.getUser();
