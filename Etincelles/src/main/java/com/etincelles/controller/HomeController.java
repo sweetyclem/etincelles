@@ -161,7 +161,7 @@ public class HomeController {
                         new FileOutputStream( new File( "src/main/resources/static/images/user/" + name ) ) );
                 stream.write( bytes );
                 stream.close();
-                user.setHasPicture( true );
+                currentUser.setHasPicture( true );
             } catch ( Exception e ) {
                 System.out.println( "Erreur ligne 152" );
                 e.printStackTrace();

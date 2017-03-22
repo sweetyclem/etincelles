@@ -51,7 +51,7 @@ public class User implements UserDetails {
     private String            twitter;
     private String            facebook;
     private String            linkedin;
-    private Boolean           hasPicture       = false;
+    private boolean           hasPicture;
 
     @Enumerated( EnumType.STRING )
     private Category          category;
