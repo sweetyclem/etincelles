@@ -74,8 +74,8 @@ td a {
 /* Navbar */
 
 .navbar-default {
-    background-color: #c9d6d1;
-    border-color: #c9d6d1;
+    background-color: #18BC9C;
+    border-color: #18BC9C;
     color: #747a78;
 }
 .navbar-default .navbar-nav > li  {
@@ -88,7 +88,7 @@ td a {
 }
 
 .dropdown-menu > li > a {
-	color: black;
+	color: white;
 	text-decoration: none;
 }
 
@@ -140,15 +140,15 @@ td a {
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: black;
+    color: white;
     font-size: 19px;
-    background-color: #c9d6d1;
+    background-color: #18BC9C;
 }
 
 nav-link {
-    color: black;
+    color: white;
     font-size: 19px;
-    background-color: #c9d6d1;
+    background-color: #18BC9C;
 }
 
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
@@ -157,7 +157,7 @@ nav-link {
 }
 
 .navbar-default .navbar-toggle {
-	background-color: #c9d6d1;
+	background-color: #18BC9C;
     border-color: #aebab5;
 }
 

@@ -91,12 +91,21 @@
 										</div>
 										<p style="color: #828282"></p>
 																		
-										<div class="form-group" id="city">
+										<div th:if="${user.city != null}" class="form-group" id="city">
 											<label for="city">* Ville</label> <select name="city" id="citySelect"
 												class="form-control">
 												<option value="" selected="selected" disabled="disabled">Choisir une ville</option>
 												<option th:selected="(${user.city.name()}=='Paris')" th:value="${paris}">Paris</option>
 												<option th:selected="(${user.city.name()}=='Lyon')" th:value="${lyon}">Lyon</option>
+											</select>
+										</div>
+										
+										<div th:if="${user.city == null}" class="form-group" id="city">
+											<label for="city">* Ville</label> <select name="city" id="citySelect"
+												class="form-control">
+												<option value="" selected="selected" disabled="disabled">Choisir une ville</option>
+												<option th:value="${paris}">Paris</option>
+												<option th:value="${lyon}">Lyon</option>
 											</select>
 										</div>
 

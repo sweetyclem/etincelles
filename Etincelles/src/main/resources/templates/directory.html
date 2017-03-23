@@ -27,7 +27,7 @@
 		<div data-th-each="user : ${userList}" class="col-lg-3 col-sm-6">
 			<br />
 
-			<div class="card hovercard">
+			<a class="no-under" th:href="@{/userDetail(id=${user.id})}"><div class="card hovercard">
 				<div class="cardheader"></div>
 				<div class="avatar"
 					th:with="pic=${'/images/user/' + user.id +'.png'}">
@@ -36,9 +36,7 @@
 						th:alt="${user.firstName + ' ' + user.lastName}" />
 				</div>
 				<div class="info">
-					<div class="title">
-						<a class="no-under" th:href="@{/userDetail(id=${user.id})}"
-							th:text="${user.firstName + ' ' + user.lastName}"></a>
+					<div class="title" th:text="${user.firstName + ' ' + user.lastName}">
 					</div>
 					<div th:if="${user.promo}" class="desc"
 						th:text="${'Promo ' + user.promo}"></div>
@@ -56,7 +54,7 @@
 						class="fa fa-linkedin"></i>
 					</a>
 				</div>
-			</div>
+			</div></a>
 		</div>
 	</div>
 
