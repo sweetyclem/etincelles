@@ -24,4 +24,6 @@ public interface UserService {
     List<User> findAll();
 
     List<User> findByCategory( Category category );
+
+    public List<User> blurrySearch( String name );
 }

@@ -1,5 +1,6 @@
 package com.etincelles.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -84,6 +85,27 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findByCategory( Category category ) {
         return userRepository.findByCategory( category );
+    }
+
+    @Override
+    public List<User> blurrySearch( String name ) {
+        List<User> firstNameList = userRepository.findByfirstNameContaining( name );
+        List<User> lastNameList = userRepository.findBylastNameContaining( name );
+        List<User> activeUserList = new ArrayList<>();
+
+        for ( User user : firstNameList ) {
+            if ( user.getEnabled() ) {
+                activeUserList.add( user );
+            }
+        }
+
+        for ( User user : lastNameList ) {
+            if ( user.getEnabled() && !firstNameList.contains( user ) ) {
+                activeUserList.add( user );
+            }
+        }
+
+        return activeUserList;
     }
 
 }

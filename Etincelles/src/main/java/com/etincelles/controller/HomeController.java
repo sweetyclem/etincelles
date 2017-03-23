@@ -342,4 +342,22 @@ public class HomeController {
     public String news( Model model ) {
         return "news";
     }
+
+    @RequestMapping( "/searchUser" )
+    public String searchBook(
+            @ModelAttribute( "keyword" ) String keyword,
+            Principal principal, Model model ) {
+
+        List<User> userList = userService.blurrySearch( keyword );
+
+        if ( userList.isEmpty() ) {
+            model.addAttribute( "emptyList", true );
+            return "directoryIndex";
+        }
+
+        model.addAttribute( "userList", userList );
+
+        return "directoryIndex";
+    }
+
 }
