@@ -243,40 +243,40 @@ public class HomeController {
         List<User> userList;
         switch ( type ) {
         case "CareerParticipants":
-            userList = userService.findByCategory( Category.ETINCELLE );
+            userList = userService.findByCategory( Category.Etincelle );
             List<User> careerList = new ArrayList<>();
             for ( User user : userList ) {
-                if ( user.getType() == Type.CAREER && user.getEnabled() ) {
+                if ( user.getType() == Type.Carrière && user.getEnabled() ) {
                     careerList.add( user );
                 }
             }
             model.addAttribute( "userList", careerList );
             break;
         case "StartupParticipants":
-            userList = userService.findByCategory( Category.ETINCELLE );
+            userList = userService.findByCategory( Category.Etincelle );
             List<User> startupList = new ArrayList<>();
             for ( User user : userList ) {
-                if ( user.getType() == Type.STARTUP && user.getEnabled() ) {
+                if ( user.getType() == Type.Startup && user.getEnabled() ) {
                     startupList.add( user );
                 }
             }
             model.addAttribute( "userList", startupList );
             break;
         case "CareerMentors":
-            userList = userService.findByCategory( Category.MENTOR );
+            userList = userService.findByCategory( Category.Mentore );
             List<User> careerMentorList = new ArrayList<>();
             for ( User user : userList ) {
-                if ( user.getType() == Type.CAREER && user.getEnabled() ) {
+                if ( user.getType() == Type.Carrière && user.getEnabled() ) {
                     careerMentorList.add( user );
                 }
             }
             model.addAttribute( "userList", careerMentorList );
             break;
         case "StartupMentors":
-            userList = userService.findByCategory( Category.MENTOR );
+            userList = userService.findByCategory( Category.Mentore );
             List<User> startupMentorList = new ArrayList<>();
             for ( User user : userList ) {
-                if ( user.getType() == Type.STARTUP && user.getEnabled() ) {
+                if ( user.getType() == Type.Startup && user.getEnabled() ) {
                     startupMentorList.add( user );
                 }
             }
@@ -284,7 +284,7 @@ public class HomeController {
             break;
 
         case "Staff":
-            userList = userService.findByCategory( Category.STAFF );
+            userList = userService.findByCategory( Category.Staff );
             List<User> users = new ArrayList<>();
             for ( User user : userList ) {
                 if ( user.getEnabled() ) {
@@ -294,7 +294,7 @@ public class HomeController {
             model.addAttribute( "userList", users );
             break;
         case "Coaches":
-            userList = userService.findByCategory( Category.COACH );
+            userList = userService.findByCategory( Category.Coach );
             users = new ArrayList<>();
             for ( User user : userList ) {
                 if ( user.getEnabled() ) {

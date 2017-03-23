@@ -43,7 +43,16 @@
 					</div>
 					<div th:if="${user.promo}" class="desc"
 						th:text="${'Promo ' + user.promo}"></div>
-					<div class="desc" th:text="${user.city}"></div>
+						
+					<div th:if="${user.category != null}" class="desc" th:text="${user.category}"></div>
+					
+					<div th:if="${user.city != null}" class="desc" th:text="${user.city}"></div>
+					
+					<div> 
+					<span th:if="${user.job_title}" class="desc" th:text="${user.job_title}"></span>					
+					<span th:if="${!#strings.isEmpty(user.organization) and !#strings.isEmpty(user.job_title)}" class="desc" th:text="${', ' + user.organization}"></span>
+					<span th:if="${!#strings.isEmpty(user.organization) and #strings.isEmpty(user.job_title)}" class="desc" th:text="${user.organization}"></span>
+					</div>
 				</div>
 				<div class="bottom">
 					<a th:if="${user.twitter != null}" target="_blank" class="btn btn-twitter btn-sm"
