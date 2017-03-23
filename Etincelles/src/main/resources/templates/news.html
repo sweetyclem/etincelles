@@ -29,7 +29,7 @@
         <div data-th-each="message : ${messageList}" class="row">
             <div th:with="pic=${'/images/message/' + message.id +'.png'}" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-preview">
-                    <a th:href="@{/post(id=message.id)}">
+                    <a th:href="@{/post(id=${message.id})}">
                         <h2 class="post-title" th:utext="${message.title}"></h2>
                     </a>
                     <br/>

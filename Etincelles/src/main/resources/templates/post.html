@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header">
+<meta charset="utf-8" />
+</head>
+
+<body>
+	<div th:replace="common/header :: navbar"></div>
+
+	<main class="container">
+	<div>
+		<ol class="breadcrumb">
+			<li><a class="no-under" th:href="@{/directoryIndex}"><i
+					class="fa fa-long-arrow-left" aria-hidden="true"></i> Retour</a></li>
+		</ol>
+
+	</div>
+
+	<div class="row">
+		<div class="col-xs-3">
+			<div class="panel panel-default">
+				<div class="panel-body"th:with="pic=${'/images/user/' + user.id +'.png'}">
+					<img
+						th:src="${(user.hasPicture) ? pic : 'http://placekitten.com/350/320'}"
+						th:alt="${user.firstName + ' ' + user.lastName}" />
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-9">
+			<h3 th:text="${user.firstName + ' ' + user.lastName}"></h3>
+			<div class="bottom">
+						<a target="_blank" class="btn btn-twitter btn-sm"
+							th:href="@{https://twitter.com/} + ${user.twitter}"> <i
+							class="fa fa-twitter"></i>
+						</a> <a target="_blank" class="btn btn-facebook btn-sm"
+							rel="publisher"
+							th:href="@{https://facebook.com/public/} + ${user.facebook}">
+							<i class="fa fa-facebook"></i>
+						</a> <a target="_blank" class="btn btn-linkedin btn-sm"
+							rel="publisher"
+							th:href="@{https://linkedin.com/in/} + ${user.linkedin}"> <i
+							class="fa fa-linkedin"></i>
+						</a>
+					</div>
+			<div class="row">
+				<div class="col-xs-6">
+				<br/>
+					<p th:if="${user.category != null}">
+						<strong>Catégorie : </strong><span th:text="${#strings.capitalize(user.category)}"></span>
+					</p>
+					<p th:if="${user.type != null}">
+						<strong>Type : </strong><span th:text="${#strings.capitalize(user.type)}"></span>
+					</p>
+					<p th:if="${user.promo != 0}">
+						<strong>Promo : </strong><span th:text="${user.promo}"></span>
+					</p>
+					<p th:if="${user.city != null}">
+						<strong>Ville : </strong><span th:text="${user.city}"></span>
+					</p>
+					<p>
+						<strong>Email : </strong><span th:text="${user.email}"></span>
+					</p>
+					<p th:if="${user.phone != null}">
+						<strong>Téléphone : </strong><span th:text="${user.phone}"></span>
+					</p>
+
+				</div>
+				<div class="col-xs-6">
+				<br/>
+					<p th:if="${user.organization != null}">
+						<strong>Entreprise : </strong><span th:text="${#strings.capitalize(user.organization)}"></span>
+					</p>
+					<p th:if="${user.job_title != null}">
+						<strong>Poste : </strong><span th:text="${#strings.capitalize(user.job_title)}"></span>
+					</p>
+					<p th:if="${user.description != null}">
+						<strong>Description : </strong><span
+							th:utext="${user.description}"></span>
+					</p>					
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+	</main>
+	<div th:replace="common/header :: body-bottom-scripts"></div>
+</body>
+</html>

@@ -373,6 +373,13 @@ public class HomeController {
         return "news";
     }
 
+    @RequestMapping( "/post" )
+    public String post( Model model, @RequestParam( "id" ) Long id ) {
+        Message message = messageService.findById( id );
+        model.addAttribute( "message", message );
+        return "post";
+    }
+
     @RequestMapping( "/searchUser" )
     public String searchBook(
             @ModelAttribute( "keyword" ) String keyword,
