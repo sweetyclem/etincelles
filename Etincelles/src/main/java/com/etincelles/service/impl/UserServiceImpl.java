@@ -13,6 +13,7 @@ import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.User;
 import com.etincelles.entities.security.UserRole;
 import com.etincelles.enumeration.Category;
+import com.etincelles.enumeration.City;
 import com.etincelles.repository.PasswordResetTokenRepository;
 import com.etincelles.repository.RoleRepository;
 import com.etincelles.repository.UserRepository;
@@ -106,6 +107,11 @@ public class UserServiceImpl implements UserService {
         }
 
         return activeUserList;
+    }
+
+    @Override
+    public List<User> findByCity( City city ) {
+        return userRepository.findByCity( city );
     }
 
 }

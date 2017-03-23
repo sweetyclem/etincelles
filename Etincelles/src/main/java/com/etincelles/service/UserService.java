@@ -7,6 +7,7 @@ import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.User;
 import com.etincelles.entities.security.UserRole;
 import com.etincelles.enumeration.Category;
+import com.etincelles.enumeration.City;
 
 public interface UserService {
     PasswordResetToken getPasswordResetToken( final String token );
@@ -24,6 +25,8 @@ public interface UserService {
     List<User> findAll();
 
     List<User> findByCategory( Category category );
+
+    List<User> findByCity( City city );
 
     public List<User> blurrySearch( String name );
 }

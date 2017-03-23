@@ -12,6 +12,7 @@ import com.etincelles.entities.User;
 import com.etincelles.entities.security.Role;
 import com.etincelles.entities.security.UserRole;
 import com.etincelles.enumeration.Category;
+import com.etincelles.enumeration.City;
 import com.etincelles.enumeration.Type;
 import com.etincelles.service.UserService;
 import com.etincelles.utility.SecurityUtility;
@@ -29,8 +30,8 @@ public class EtincellesApplication implements CommandLineRunner {
     public void run( String... args ) throws Exception {
 
         User user1 = new User();
-        user1.setFirstName( "Janet" );
-        user1.setLastName( "Adams" );
+        user1.setFirstName( "Audrey" );
+        user1.setLastName( "Abitan" );
         user1.setEmail( "janet@adams.com" );
         user1.setPassword( SecurityUtility.passwordEncoder().encode( "p" ) );
         user1.setCategory( Category.STAFF );
@@ -42,12 +43,12 @@ public class EtincellesApplication implements CommandLineRunner {
         userService.createUser( user1, userRoles );
 
         User user2 = new User();
-        user2.setFirstName( "Clem" );
-        user2.setLastName( "Pirlot" );
+        user2.setFirstName( "Stéphanie" );
+        user2.setLastName( "Savin" );
         user2.setEmail( "contact@clementinepirlot.fr" );
         user2.setPassword( SecurityUtility.passwordEncoder().encode( "p" ) );
-        user2.setCategory( Category.ETINCELLE );
-        user2.setCity( "Lyon" );
+        user2.setCategory( Category.MENTOR );
+        user2.setCity( City.Lyon );
         user2.setDescription( "Clémentine est développeuse" );
         user2.setJob_title( "développeuse backend" );
         user2.setOrganization( "Greta" );
@@ -70,7 +71,7 @@ public class EtincellesApplication implements CommandLineRunner {
         user3.setEmail( "sweetyclem+test@gmail.com" );
         user3.setPassword( SecurityUtility.passwordEncoder().encode( "p" ) );
         user3.setCategory( Category.ETINCELLE );
-        user3.setCity( "Lyon" );
+        user3.setCity( City.Paris );
         user3.setDescription( "Clémentine est développeuse" );
         user3.setJob_title( "développeuse" );
         user3.setOrganization( "Greta" );
@@ -85,12 +86,12 @@ public class EtincellesApplication implements CommandLineRunner {
         userService.createUser( user3, user3Roles );
 
         User user4 = new User();
-        user4.setFirstName( "Clémentine" );
-        user4.setLastName( "Pirlot" );
+        user4.setFirstName( "Stéphanie" );
+        user4.setLastName( "Herr" );
         user4.setEmail( "sweetyclem+test@gmail.com" );
         user4.setPassword( SecurityUtility.passwordEncoder().encode( "p" ) );
         user4.setCategory( Category.ETINCELLE );
-        user4.setCity( "Lyon" );
+        user4.setCity( City.Lyon );
         user4.setDescription( "Clémentine est développeuse" );
         user4.setJob_title( "développeuse" );
         user4.setOrganization( "Greta" );

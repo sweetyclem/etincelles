@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.etincelles.entities.security.Authority;
 import com.etincelles.entities.security.UserRole;
 import com.etincelles.enumeration.Category;
+import com.etincelles.enumeration.City;
 import com.etincelles.enumeration.Type;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -39,7 +40,8 @@ public class User implements UserDetails {
     private String            email;
     @Column( columnDefinition = "text" )
     private String            description;
-    private String            city;
+    @Enumerated( EnumType.STRING )
+    private City              city;
     @Transient
     private MultipartFile     picture;
     private String            password;
@@ -167,11 +169,11 @@ public class User implements UserDetails {
         this.description = description;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity( String city ) {
+    public void setCity( City city ) {
         this.city = city;
     }
 

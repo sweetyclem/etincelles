@@ -9,33 +9,21 @@
 
 	<main class="container">
 	<div class="row">
-		<div class="col-xs-10 " style="display: inline">
-			<button class="btn btn-default">
-				<a class="no-under" href="/directory?type=careerParticipants">Etincelles
-					Carrières</a>
-			</button>
-			<button class="btn btn-default">
-				<a class="no-under" href="/directory?type=startupParticipants">Etincelles
-					Startup</a>
-			</button>
-			<button class="btn btn-default">
-				<a class="no-under" href="/directory?type=careerMentors">Mentor.e.s
-					Carrières</a>
-			</button>
-			<button class="btn btn-default">
-				<a class="no-under" href="/directory?type=startupMentors">Mentor.e.s
-					Startup</a>
-			</button>
-			<button class="btn btn-default">
-				<a class="no-under" href="/directory?type=coaches">Coachs</a>
-			</button>
-			<button class="btn btn-default">
-				<a class="no-under" href="/directory?type=staff">Equipe
-					Etincelle</a>
-			</button>
+	<div class="col-xs-2">
+				<h3><label for="searchCategories">Catégories</label></h3>
+				<div class="list-group" id="category">
+					<a th:href="@{/directoryIndex}" th:classappend="${activeAll}? 'active'" class="list-group-item no-under">Toutes</a>
+					<a th:href="@{/directory(type='CareerParticipants')}" th:classappend="${activeCareerParticipants}? 'active'" class="no-under list-group-item">Etincelles carrières</a>
+					<a th:href="@{/directory(type='StartupParticipants')}" th:classappend="${activeStartupParticipants}? 'active'" class="no-under list-group-item">Etincelles startup</a>
+					<a th:href="@{/directory(type='CareerMentors')}" th:classappend="${activeCareerMentors}? 'active'" class="no-under list-group-item">Mentor.e.s carrières</a>
+					<a th:href="@{/directory(type='StartupMentors')}" th:classappend="${activeStartupMentors}? 'active'" class="no-under list-group-item">Mentor.e.s startup</a>
+					<a th:href="@{/directory(type='Coaches')}" th:classappend="${activeCoaches}? 'active'" class="no-under list-group-item">Coachs</a>
+					<a th:href="@{/directory(type='Staff')}" th:classappend="${activeStaff}? 'active'" class="no-under list-group-item">Staff</a>
+					<a th:href="@{/directory(type='Paris')}" th:classappend="${activeParis}? 'active'" class="no-under list-group-item">Paris</a>
+					<a th:href="@{/directory(type='Lyon')}" th:classappend="${activeLyon}? 'active'" class="no-under list-group-item">Lyon</a>
+				</div>
 		</div>
-	</div>
-	<div class="row">
+		
 		<div data-th-each="user : ${userList}" class="col-lg-3 col-sm-6">
 			<br />
 

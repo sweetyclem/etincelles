@@ -90,11 +90,14 @@
 												th:value="${user.email}" />
 										</div>
 										<p style="color: #828282"></p>
-
-										<div class="form-group">
-											<label for="city">* Ville</label><input type="text"
-												class="form-control" id="city" name="city"
-												required="required" th:value="${user.city}" />
+																		
+										<div class="form-group" id="city">
+											<label for="city">* Ville</label> <select name="city" id="citySelect"
+												class="form-control">
+												<option value="" selected="selected" disabled="disabled">Choisir une ville</option>
+												<option th:selected="(${user.city.name()}=='Paris')" th:value="${paris}">Paris</option>
+												<option th:selected="(${user.city.name()}=='Lyon')" th:value="${lyon}">Lyon</option>
+											</select>
 										</div>
 
 										<div class="form-group">

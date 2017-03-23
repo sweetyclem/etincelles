@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.User;
 import com.etincelles.enumeration.Category;
+import com.etincelles.enumeration.City;
 import com.etincelles.enumeration.Type;
 import com.etincelles.service.UserService;
 import com.etincelles.service.impl.UserSecurityService;
@@ -120,6 +121,8 @@ public class HomeController {
 
         model.addAttribute( "classActiveEdit", true );
         model.addAttribute( "user", user );
+        model.addAttribute( "paris", City.Paris );
+        model.addAttribute( "lyon", City.Lyon );
         return "myProfile";
     }
 
@@ -235,9 +238,11 @@ public class HomeController {
 
     @RequestMapping( "/directory" )
     public String directory( Model model, @RequestParam( "type" ) String type ) {
+        String classActiveCategory = "active" + type;
+        model.addAttribute( classActiveCategory, true );
         List<User> userList;
         switch ( type ) {
-        case "careerParticipants":
+        case "CareerParticipants":
             userList = userService.findByCategory( Category.ETINCELLE );
             List<User> careerList = new ArrayList<>();
             for ( User user : userList ) {
@@ -247,7 +252,7 @@ public class HomeController {
             }
             model.addAttribute( "userList", careerList );
             break;
-        case "startupParticipants":
+        case "StartupParticipants":
             userList = userService.findByCategory( Category.ETINCELLE );
             List<User> startupList = new ArrayList<>();
             for ( User user : userList ) {
@@ -257,7 +262,7 @@ public class HomeController {
             }
             model.addAttribute( "userList", startupList );
             break;
-        case "careerMentors":
+        case "CareerMentors":
             userList = userService.findByCategory( Category.MENTOR );
             List<User> careerMentorList = new ArrayList<>();
             for ( User user : userList ) {
@@ -267,7 +272,7 @@ public class HomeController {
             }
             model.addAttribute( "userList", careerMentorList );
             break;
-        case "startupMentors":
+        case "StartupMentors":
             userList = userService.findByCategory( Category.MENTOR );
             List<User> startupMentorList = new ArrayList<>();
             for ( User user : userList ) {
@@ -278,7 +283,7 @@ public class HomeController {
             model.addAttribute( "userList", startupMentorList );
             break;
 
-        case "staff":
+        case "Staff":
             userList = userService.findByCategory( Category.STAFF );
             List<User> users = new ArrayList<>();
             for ( User user : userList ) {
@@ -288,7 +293,7 @@ public class HomeController {
             }
             model.addAttribute( "userList", users );
             break;
-        case "coaches":
+        case "Coaches":
             userList = userService.findByCategory( Category.COACH );
             users = new ArrayList<>();
             for ( User user : userList ) {
@@ -298,12 +303,33 @@ public class HomeController {
             }
             model.addAttribute( "userList", users );
             break;
-
+        case "Paris":
+            userList = userService.findByCity( City.Paris );
+            users = new ArrayList<>();
+            for ( User user : userList ) {
+                if ( user.getEnabled() ) {
+                    users.add( user );
+                }
+            }
+            model.addAttribute( "userList", users );
+            break;
+        case "Lyon":
+            userList = userService.findByCity( City.Lyon );
+            users = new ArrayList<>();
+            for ( User user : userList ) {
+                if ( user.getEnabled() ) {
+                    users.add( user );
+                }
+            }
+            model.addAttribute( "userList", users );
+            break;
         default:
             break;
         }
         model.addAttribute( "career", Type.CAREER );
         model.addAttribute( "startup", Type.STARTUP );
+        model.addAttribute( "paris", City.Paris );
+        model.addAttribute( "lyon", City.Lyon );
         return "directory";
     }
 
