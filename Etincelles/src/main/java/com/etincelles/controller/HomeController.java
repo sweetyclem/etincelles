@@ -166,7 +166,7 @@ public class HomeController {
                 stream.close();
                 currentUser.setHasPicture( true );
             } catch ( Exception e ) {
-                System.out.println( "Erreur ligne 152" );
+                System.out.println( "Erreur ligne 169" );
                 e.printStackTrace();
             }
         }
@@ -326,10 +326,6 @@ public class HomeController {
         default:
             break;
         }
-        model.addAttribute( "career", Type.CAREER );
-        model.addAttribute( "startup", Type.STARTUP );
-        model.addAttribute( "paris", City.Paris );
-        model.addAttribute( "lyon", City.Lyon );
         return "directory";
     }
 

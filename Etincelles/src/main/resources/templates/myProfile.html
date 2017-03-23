@@ -95,8 +95,8 @@
 											<label for="city">* Ville</label> <select name="city" id="citySelect"
 												class="form-control">
 												<option value="" selected="selected" disabled="disabled">Choisir une ville</option>
-												<option th:selected="(${user.city.name()}=='Paris')" th:value="${paris}">Paris</option>
-												<option th:selected="(${user.city.name()}=='Lyon')" th:value="${lyon}">Lyon</option>
+												<option th:selected="(${user.city.name()}=='Paris')" th:value="Paris">Paris</option>
+												<option th:selected="(${user.city.name()}=='Lyon')" th:value="Lyon">Lyon</option>
 											</select>
 										</div>
 										
@@ -104,8 +104,8 @@
 											<label for="city">* Ville</label> <select name="city" id="citySelect"
 												class="form-control">
 												<option value="" selected="selected" disabled="disabled">Choisir une ville</option>
-												<option th:value="${paris}">Paris</option>
-												<option th:value="${lyon}">Lyon</option>
+												<option th:value="Paris">Paris</option>
+												<option th:value="Lyon">Lyon</option>
 											</select>
 										</div>
 
@@ -132,7 +132,7 @@
 
 										<!-- Pour étincelles -->
 										<div class="form-group"
-											th:if="(${user.category.name()} == 'ETINCELLE')">
+											th:if="${user.category != null and user.category.name() == 'ETINCELLE'}">
 											<label for="promo">Promo</label><input type="number"
 												class="form-control" id="promo" name="promo"
 												th:value="${user.promo}" />
