@@ -42,4 +42,11 @@ public class MessageServiceImpl implements MessageService {
         return messageList;
     }
 
+    @Override
+    public Message createMessage( Message message ) {
+        Message localMessage = messageRepository.save( message );
+
+        return localMessage;
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.etincelles;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,12 +9,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.etincelles.entities.Message;
 import com.etincelles.entities.User;
 import com.etincelles.entities.security.Role;
 import com.etincelles.entities.security.UserRole;
 import com.etincelles.enumeration.Category;
 import com.etincelles.enumeration.City;
 import com.etincelles.enumeration.Type;
+import com.etincelles.service.MessageService;
 import com.etincelles.service.UserService;
 import com.etincelles.utility.SecurityUtility;
 
@@ -22,12 +25,22 @@ public class EtincellesApplication implements CommandLineRunner {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    MessageService      messageService;
+
     public static void main( String[] args ) {
         SpringApplication.run( EtincellesApplication.class, args );
     }
 
     @Override
     public void run( String... args ) throws Exception {
+
+        Message message = new Message();
+        message.setText(
+                "Playing with balls of wool chase red laser dot for favor packaging over toy, yet have my breakfast spaghetti yarn. Peer out window, chatter at birds, lure them to mouth hunt by meowing loudly at 5am next to human slave food dispenser yet shove bum in owner's face like camera lens yet sweet beast, but annoy owner until he gives you food say meow repeatedly until belly rubs, feels good scratch leg; meow for can opener to feed me. Stare at the wall, play with food and get confused by dust rub face on everything, or licks paws for eat from dog's food so sun bathe chirp at birds. Find something else more interesting step on your keyboard while you're gaming and then turn in a circle eat prawns daintily with a claw then lick paws clean wash down prawns with a lap of carnation milk then retire to the warmest spot on the couch to claw at the fabric before taking a catnap, but flee in terror at cucumber discovered on floor and brown cats with pink ears leave fur on owners clothes and pelt around the house and up and down stairs chasing phantoms. Swat at dog eats owners hair then claws head and meow to be let in sleep nap hide head under blanket so no one can see and step on your keyboard while you're gaming and then turn in a circle and has closed eyes but still sees you. Lick sellotape brown cats with pink ears for purr for wack the mini furry mouse flop over stares at human while pushing stuff off a table. Lick yarn hanging out of own butt intrigued by the shower sit by the fire sweet beast cat is love, cat is life. " );
+        message.setDate( new Date() );
+        message.setTitle( "Cat Ipsum" );
+        messageService.createMessage( message );
 
         User user1 = new User();
         user1.setFirstName( "Audrey" );
