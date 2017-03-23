@@ -29,11 +29,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.etincelles.entities.Message;
 import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.User;
 import com.etincelles.enumeration.Category;
 import com.etincelles.enumeration.City;
 import com.etincelles.enumeration.Type;
+import com.etincelles.service.MessageService;
 import com.etincelles.service.UserService;
 import com.etincelles.service.impl.UserSecurityService;
 import com.etincelles.utility.MailConstructor;
@@ -49,6 +51,9 @@ public class HomeController {
 
     @Autowired
     private UserService         userService;
+
+    @Autowired
+    private MessageService      messageService;
 
     @Autowired
     private UserSecurityService userSecurityService;
@@ -362,6 +367,9 @@ public class HomeController {
 
     @RequestMapping( "/news" )
     public String news( Model model ) {
+        List<Message> messagesList;
+        messagesList = messageService.findAll();
+        model.addAttribute( "messageList", messagesList );
         return "news";
     }
 

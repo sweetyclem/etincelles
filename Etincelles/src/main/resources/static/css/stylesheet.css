@@ -612,3 +612,19 @@ input[type="checkbox"]{
 .fa-twitter, .fa-facebook, .fa-linkedin {
 	color: white;
 }
+@media only screen and (max-width: 500px) {
+#calendarWidget {
+	height: 300px;
+}
+
+#updateForm {
+	padding: 0;
+	margin: 0;
+}
+
+.container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
+	margin: 0;
+
+	}
+	
+}

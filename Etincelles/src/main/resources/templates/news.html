@@ -2,13 +2,48 @@
 <html lang="fr" xmlns:th="http://www.w3.org/1000/xhtml">
 <head th:replace="common/header :: common-header">
 <meta charset="utf-8" />
+<link href="/css/clean-blog.css" rel="stylesheet"/>
 </head>
 
 <body>
 <div th:replace="common/header :: navbar"/>
 
-	
+	<!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header">
+        <div class="container" style="margin-top:0;" >
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Actualités</h1>
+                        <hr class="small"/>
+                        <span style="font-size: 2em" class="subheading">Retrouvez ici les dernières nouvelles de votre communauté</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-<div th:replace="common/header :: body-bottom-scripts" />
+    <!-- Main Content -->
+    <div class="container">
+        <div data-th-each="message : ${messageList}" class="row">
+            <div th:with="pic=${'/images/message/' + message.id +'.png'}" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-preview">
+                    <a th:href="@{/post(id=message.id)}">
+                        <h2 class="post-title" th:utext="${message.title}"></h2>
+                    </a>
+                    <br/>
+                    <img class="img-responsive" th:src="${(message.hasPicture) ? pic : 'http://placekitten.com/500/320'}" />
+                    <br/>
+                    <p th:utext="${#strings.abbreviate(message.text, 200)}" class="post-meta"></p>
+                </div>
+                <hr/>       
+               
+            </div>
+        </div>
+    </div>
+
+
+<div th:replace="common/header :: body-bottom-scripts"></div>
 </body>
 </html>
