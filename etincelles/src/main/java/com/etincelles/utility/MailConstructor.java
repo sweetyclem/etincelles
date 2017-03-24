@@ -21,6 +21,7 @@ public class MailConstructor {
         String message = "Bonjour\nVeuillez cliquer sur le lien pour créer votre compte.\n";
         String mess2 = "\nVotre mot de passe actuel est : \n" + password
                 + "\nPour des raisons de sécurité, vous devez changer ce mot de passe";
+
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo( user.getEmail() );
         email.setSubject( "Plateforme Etincelles- Créer un compte" );
