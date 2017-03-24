@@ -66,9 +66,9 @@
 					<div th:if="${user.city != null}" class="desc" th:text="${user.city}"></div>
 					
 					<div> 
-					<span th:if="${user.job_title}" class="desc" th:text="${user.job_title}"></span>					
+					<span th:if="${user.job_title != null and !#strings.isEmpty(user.job_title)}"  class="desc" th:text="${user.job_title}"></span>					
 					<span th:if="${!#strings.isEmpty(user.organization) and !#strings.isEmpty(user.job_title)}" class="desc" th:text="${', ' + user.organization}"></span>
-					<span th:if="${!#strings.isEmpty(user.organization) and #strings.isEmpty(user.job_title)}" class="desc" th:text="${user.organization}"></span>
+					<span th:if="${!#strings.isEmpty(user.organization) and (#strings.isEmpty(user.job_title) or user.job_title == null)}" class="desc" th:text="${user.organization}"></span>
 					</div>
 				</div>
 				<div class="bottom">

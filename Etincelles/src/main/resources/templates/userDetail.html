@@ -21,7 +21,7 @@
 	<!-- Team Section -->
     <section style="padding: 1em" id="team" class="bg-light-gray">
         <div class="container">
-        <div class="row">
+        <div class="row" th:with="pic=${'/images/user/' + user.id +'.png'}">
         	<div class="col-sm-4 col-sm-offset-4">
         		<img class="img-responsive img-circle"
 						th:src="${(user.hasPicture) ? pic : 'http://placekitten.com/600/600?image=14'}"
@@ -63,7 +63,7 @@
 					<p th:if="${user.promo > 0}">
 						<strong>Promo </strong><span th:text="${user.promo}"></span>
 					</p>
-					<p th:if="${user.city != null}">
+					<p th:if="${user.city != null and !#strings.isEmpty(user.city)}">
 						<strong></strong><span th:text="${user.city}"></span>
 					</p>
 					<p>
@@ -72,15 +72,15 @@
 					<p th:if="${user.phone != null}">
 						<strong></strong><span th:text="${user.phone}"></span>
 					</p>
-					<p th:if="${user.job_title != null}">
+					<p th:if="${user.job_title != null and !#strings.isEmpty(user.job_title)}">
 						<strong>Poste : </strong><span th:text="${#strings.capitalize(user.job_title)}"></span>
 					</p>
-					<p th:if="${user.organization != null}">
+					<p th:if="${user.organization != null and !#strings.isEmpty(user.organization)}">
 						<strong>Entreprise : </strong><span th:text="${#strings.capitalize(user.organization)}"></span>
 					</p>
 					<br/>
 					
-					<p th:if="${user.description != null}">
+					<p th:if="${user.description != null and !#strings.isEmpty(user.description)}">
 						<strong>Description : </strong><span th:utext="${user.description}"></span>
 					</p>					
                 </div>

@@ -54,9 +54,10 @@
 						th:alt="${user.firstName + ' ' + user.lastName}" />
 				</div>
 				<div class="info">
-					<div class="title" th:text="${user.firstName + ' ' + user.lastName}">
+					<div th:if="${user.firstName != null || user.lastName != null}" class="title" th:text="${user.firstName + ' ' + user.lastName}">
 					</div>
-					
+					<div th:if="${user.firstName == null || user.lastName == null}" class="title" th:text="${user.email}">
+					</div>
 					<div th:if="${user.promo > 0}" class="desc"
 						th:text="${'Promo ' + user.promo}"></div>
 					<div th:if="${user.category != null}" class="desc" th:text="${user.category}"></div>
@@ -64,17 +65,17 @@
 					<div th:if="${user.city != null}" class="desc" th:text="${user.city}"></div>				
 					
 					<div> 
-					<span th:if="${user.job_title}" class="desc" th:text="${user.job_title}"></span>					
+					<span th:if="${user.job_title != null and !#strings.isEmpty(user.job_title)}"  class="desc" th:text="${user.job_title}"></span>					
 					<span th:if="${!#strings.isEmpty(user.organization) and !#strings.isEmpty(user.job_title)}" class="desc" th:text="${', ' + user.organization}"></span>
-					<span th:if="${!#strings.isEmpty(user.organization) and #strings.isEmpty(user.job_title)}" class="desc" th:text="${user.organization}"></span>
-					</div>				
+					<span th:if="${!#strings.isEmpty(user.organization) and (#strings.isEmpty(user.job_title) or user.job_title == null)}" class="desc" th:text="${user.organization}"></span>
+					</div>
 					
 				</div>
 				<div class="bottom">
 					<a target="_blank" class="btn btn-twitter btn-sm"
-						th:href="@{https://twitter.com/} + ${user.twitter}"> <i
-						class="fa fa-twitter"></i>
-					</a> <a target="_blank" class="btn btn-facebook btn-sm" rel="publisher"
+						th:href="@{https://twitter.com/} + ${user.twitter}"><i
+						class="fa fa-twitter"></i></a>
+					<a target="_blank" class="btn btn-facebook btn-sm" rel="publisher"
 						th:href="@{https://facebook.com/public/} + ${user.facebook}">
 						<i class="fa fa-facebook"></i>
 					</a> <a target="_blank" class="btn btn-linkedin btn-sm" rel="publisher"
