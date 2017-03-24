@@ -6,7 +6,7 @@
 	<groupId>com.etincelles</groupId>
 	<artifactId>etincelles</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>Etincelles</name>
 	<description>frontend part for etincelles&#39; directory</description>

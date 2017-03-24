@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 import com.etincelles.entities.Message;
 import com.etincelles.entities.User;
@@ -21,12 +23,17 @@ import com.etincelles.service.UserService;
 import com.etincelles.utility.SecurityUtility;
 
 @SpringBootApplication
-public class EtincellesApplication implements CommandLineRunner {
+public class EtincellesApplication extends SpringBootServletInitializer implements CommandLineRunner {
     @Autowired
     private UserService userService;
 
     @Autowired
     MessageService      messageService;
+
+    @Override
+    protected SpringApplicationBuilder configure( SpringApplicationBuilder application ) {
+        return application.sources( EtincellesApplication.class );
+    }
 
     public static void main( String[] args ) {
         SpringApplication.run( EtincellesApplication.class, args );

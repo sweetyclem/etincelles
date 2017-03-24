@@ -544,7 +544,7 @@ input[type="checkbox"]{
 }
 
 .card.hovercard .cardheader {
-    background: url("/images/texture.jpg");
+    background: url('../images/texture.jpg');
     background-size: cover;
     height: 135px;
 }
