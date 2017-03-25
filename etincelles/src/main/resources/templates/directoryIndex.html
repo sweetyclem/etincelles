@@ -47,10 +47,12 @@
 
 			<a class="no-under" th:href="@{/userDetail(id=${user.id})}"><div class="card hovercard">
 				<div class="cardheader"></div>
-				<div class="avatar"
-					th:with="pic=${'/images/user/' + user.id +'.png'}">
-					<img
-						th:src="${(user.hasPicture) ? pic : 'http://placekitten.com/350/320'}"
+				<div class="avatar">
+					<img th:if="${user.hasPicture == false}"
+						src="http://placekitten.com/350/320"
+						th:alt="${user.firstName + ' ' + user.lastName}" />
+					<img th:if="${user.hasPicture}"
+						th:src="${'/images/user/'+ user.id +'.png'}"
 						th:alt="${user.firstName + ' ' + user.lastName}" />
 				</div>
 				<div class="info">
