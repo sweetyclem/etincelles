@@ -626,7 +626,12 @@ input[type="checkbox"]{
 	margin: 0;
 
 	}
-	
+}
+
+@media (min-width: 1450px) {
+.userCard {
+	width: 293px;
+}
 }
 
 .post-title {	
