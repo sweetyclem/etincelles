@@ -16,7 +16,6 @@ import com.etincelles.entities.security.UserRole;
 import com.etincelles.enumeration.Category;
 import com.etincelles.enumeration.City;
 import com.etincelles.enumeration.Type;
-import com.etincelles.service.MessageService;
 import com.etincelles.service.UserService;
 import com.etincelles.utility.SecurityUtility;
 
@@ -24,9 +23,6 @@ import com.etincelles.utility.SecurityUtility;
 public class EtincellesApplication extends SpringBootServletInitializer implements CommandLineRunner {
     @Autowired
     private UserService userService;
-
-    @Autowired
-    MessageService      messageService;
 
     @Override
     protected SpringApplicationBuilder configure( SpringApplicationBuilder application ) {

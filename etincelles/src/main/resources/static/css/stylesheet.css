@@ -628,7 +628,7 @@ input[type="checkbox"]{
 	}
 }
 
-@media (min-width: 1450px) {
+@media only screen and (min-width: 1450px) {
 .userCard {
 	width: 293px;
 }
