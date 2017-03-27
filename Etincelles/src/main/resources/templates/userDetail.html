@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header">
+<meta charset="utf-8" />
+<link href="/css/agency.css" rel="stylesheet"/>
+</head>
+
+<body>
+	<div th:replace="common/header :: navbar"></div>
+
+	<main class="container">
+	
+	<div>
+		<ol class="breadcrumb" style="background-color: white">
+			<li><a class="no-under" th:href="@{/directoryIndex}"><i
+					class="fa fa-long-arrow-left" aria-hidden="true"></i>   Retour à la
+					liste</a></li>
+		</ol>
+	</div>
+	
+	<!-- Team Section -->
+    <section style="padding: 1em" id="team" class="bg-light-gray">
+        <div class="container">
+        <div class="row" th:with="pic=${'/images/user/' + user.id +'.png'}">
+        	<div class="col-sm-4 col-sm-offset-4">
+        		<img class="img-responsive img-circle"
+						th:src="${(user.hasPicture) ? pic : 'http://placekitten.com/600/600?image=14'}"
+						th:alt="${user.firstName + ' ' + user.lastName}" />
+        	</div>
+        </div>
+            <div class="row">
+            <br/>
+                <div class="col-lg-12 text-center">
+                    <h2 th:if="${!#strings.isEmpty(user.lastName) and !#strings.isEmpty(user.firstName)}" class="section-heading" th:text="${user.firstName + ' ' + user.lastName}"></h2>
+                    <h3 th:if="${user.category != null}" class="section-subheading text-muted" th:text="${#strings.capitalize(user.category)}"></h3>
+                    <h3 th:if="${user.type != null}" class="section-subheading text-muted" th:text="${#strings.capitalize(user.type)}">></h3>
+                </div>
+            </div>
+            <div class="row">
+            
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <div class="team-member">
+                        <div class="bottom">
+						<a th:if="${user.twitter != null}" target="_blank" class="btn btn-twitter btn-sm"
+							th:href="@{https://twitter.com/} + ${user.twitter}"> <i
+							class="fa fa-twitter"></i>
+						</a> <a th:if="${user.facebook != null}" target="_blank" class="btn btn-facebook btn-sm"
+							rel="publisher"
+							th:href="@{https://facebook.com/public/} + ${user.facebook}">
+							<i class="fa fa-facebook"></i>
+						</a> <a th:if="${user.linkedin != null}" target="_blank" class="btn btn-linkedin btn-sm"
+							rel="publisher"
+							th:href="@{https://linkedin.com/in/} + ${user.linkedin}"> <i
+							class="fa fa-linkedin"></i>
+						</a>
+			</div>
+                    </div>
+                </div>                
+            </div>
+            <div class="row">
+            <br/>
+                <div class=" col-xs-12 col-lg-8 col-lg-offset-2 col-xs-offset-0 text-center">
+					<p th:if="${user.promo > 0}">
+						<strong>Promo </strong><span th:text="${user.promo}"></span>
+					</p>
+					<p th:if="${user.city != null and !#strings.isEmpty(user.city)}">
+						<strong></strong><span th:text="${user.city}"></span>
+					</p>
+					<p>
+						<strong></strong><span th:text="${user.email}"></span>
+					</p>
+					<p th:if="${user.phone != null}">
+						<strong></strong><span th:text="${user.phone}"></span>
+					</p>
+					<p th:if="${user.job_title != null and !#strings.isEmpty(user.job_title)}">
+						<strong>Poste : </strong><span th:text="${#strings.capitalize(user.job_title)}"></span>
+					</p>
+					<p th:if="${user.organization != null and !#strings.isEmpty(user.organization)}">
+						<strong>Entreprise : </strong><span th:text="${#strings.capitalize(user.organization)}"></span>
+					</p>
+					<br/>
+					
+					<p th:if="${user.description != null and !#strings.isEmpty(user.description)}">
+						<strong>Description : </strong><span th:utext="${user.description}"></span>
+					</p>					
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	</main>
+	<div th:replace="common/header :: body-bottom-scripts"></div>
+</body>
+</html>
