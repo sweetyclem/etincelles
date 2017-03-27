@@ -617,6 +617,10 @@ input[type="checkbox"]{
 	height: 300px;
 }
 
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+	margin: 0;
+}
+
 #updateForm {
 	padding: 0;
 	margin: 0;
