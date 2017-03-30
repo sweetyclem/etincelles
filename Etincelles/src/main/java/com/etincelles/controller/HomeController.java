@@ -16,6 +16,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -45,7 +46,7 @@ import com.etincelles.utility.MailConstructor;
 import com.etincelles.utility.SecurityUtility;
 
 @Controller
-public class HomeController {
+public class HomeController implements ErrorController {
     @Autowired
     private JavaMailSender      mailSender;
 
@@ -431,6 +432,16 @@ public class HomeController {
     @RequestMapping( "/directorySearch" )
     public String directorySearch() {
         return "redirect:/directory";
+    }
+
+    @RequestMapping( "/error" )
+    public String error() {
+        return "badRequestPage";
+    }
+
+    @Override
+    public String getErrorPath() {
+        return "/error";
     }
 
 }
