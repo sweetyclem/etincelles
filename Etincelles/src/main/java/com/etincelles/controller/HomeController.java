@@ -38,6 +38,7 @@ import com.etincelles.entities.Skill;
 import com.etincelles.entities.User;
 import com.etincelles.entities.UserSkill;
 import com.etincelles.repository.SkillRespository;
+import com.etincelles.repository.UserSkillRepository;
 import com.etincelles.service.CustomUserService;
 import com.etincelles.service.MessageService;
 import com.etincelles.service.UserService;
@@ -64,6 +65,9 @@ public class HomeController implements ErrorController {
 
     @Autowired
     private SkillRespository    skillRepo;
+
+    @Autowired
+    private UserSkillRepository userSkillRepo;
 
     @Autowired
     private UserSecurityService userSecurityService;
@@ -239,7 +243,13 @@ public class HomeController implements ErrorController {
                 model.addAttribute( "incorrectSkills", true );
                 return "myProfile";
             }
+            // Delete existing UserSkills and replace them with the new list
             for ( String skillString : skills ) {
+                for ( UserSkill userSkill : currentUser.getUserSkills() ) {
+                    customUserService
+                            .deleteUserSkill(
+                                    "DELETE FROM user_skill WHERE user_skill_id= " + userSkill.getUserSkillId() );
+                }
                 Skill skill = skillRepo.findByname( skillString );
                 userSkills.add( new UserSkill( user, skill ) );
             }

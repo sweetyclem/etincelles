@@ -108,8 +108,8 @@
 								th:if="${user.category != null and !#strings.equals(user.category,'Equipe')}"
 								class="desc" th:text="${user.category}"></div>
 
-							<div th:if="${user.sector != null}" class="desc"
-								th:text="${user.sector.name()}"></div>
+							<div th:if="${user.sector != null and !#strings.isEmpty(user.sector)}" class="desc"
+								th:text="${user.sector}"></div>
 
 							<div data-th-each="userSkill : ${user.userSkills}">
 								<div data-th-each="skill : ${userSkill.skill}">

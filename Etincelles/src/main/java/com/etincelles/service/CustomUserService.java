@@ -25,27 +25,13 @@ public class CustomUserService {
                 Long id = rs.getLong( "id" );
                 User user = new User();
                 user = userService.findById( id );
-
-                // user.setId( rs.getLong( "id" ) );
-                // user.setFirstName( rs.getString( "first_name" ) );
-                // user.setLastName( rs.getString( "last_name" ) );
-                // user.setEmail( rs.getString( "email" ) );
-                // user.setDescription( rs.getString( "description" ) );
-                // user.setCity( City.valueOf( rs.getString( "city" ) ) );
-                // user.setPassword( rs.getString( "password" ) );
-                // user.setEnabled( rs.getBoolean( "enabled" ) );
-                // user.setPromo( rs.getInt( "promo" ) );
-                // user.setTwitter( rs.getString( "twitter" ) );
-                // user.setFacebook( rs.getString( "facebook" ) );
-                // user.setLinkedin( rs.getString( "linkedin" ) );
-                // user.setHasPicture( rs.getBoolean( "has_picture" ) );
-                // user.setSector( Sector.valueOf( rs.getString( "sector" ) ) );
-                // user.setCategory( Category.valueOf( rs.getString( "category"
-                // ) ) );
-                // user.setType( Type.valueOf( rs.getString( "type" ) ) );
                 return user;
             }
 
         } );
+    }
+
+    public void deleteUserSkill( String query ) {
+        jdbcTemplate.execute( query );
     }
 }
