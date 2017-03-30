@@ -31,7 +31,7 @@ public class CustomUserService {
         } );
     }
 
-    public void deleteUserSkill( String query ) {
+    public void executeStringQuery( String query ) {
         jdbcTemplate.execute( query );
     }
 }

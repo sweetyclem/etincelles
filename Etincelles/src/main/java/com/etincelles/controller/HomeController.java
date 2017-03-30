@@ -38,7 +38,6 @@ import com.etincelles.entities.Skill;
 import com.etincelles.entities.User;
 import com.etincelles.entities.UserSkill;
 import com.etincelles.repository.SkillRespository;
-import com.etincelles.repository.UserSkillRepository;
 import com.etincelles.service.CustomUserService;
 import com.etincelles.service.MessageService;
 import com.etincelles.service.UserService;
@@ -65,9 +64,6 @@ public class HomeController implements ErrorController {
 
     @Autowired
     private SkillRespository    skillRepo;
-
-    @Autowired
-    private UserSkillRepository userSkillRepo;
 
     @Autowired
     private UserSecurityService userSecurityService;
@@ -247,10 +243,16 @@ public class HomeController implements ErrorController {
             for ( String skillString : skills ) {
                 for ( UserSkill userSkill : currentUser.getUserSkills() ) {
                     customUserService
-                            .deleteUserSkill(
+                            .executeStringQuery(
                                     "DELETE FROM user_skill WHERE user_skill_id= " + userSkill.getUserSkillId() );
                 }
+                // If skill does not exist, create it
                 Skill skill = skillRepo.findByname( skillString );
+                if ( skill == null ) {
+                    skill = new Skill();
+                    skill.setName( skillString );
+                    skillRepo.save( skill );
+                }
                 userSkills.add( new UserSkill( user, skill ) );
             }
         }

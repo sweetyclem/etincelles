@@ -39,16 +39,12 @@ public class EtincellesApplication extends SpringBootServletInitializer implemen
     public void run( String... args ) throws Exception {
 
         Skill skill = new Skill();
-        skill.setSkillId( 1 );
         skill.setName( "Design Thinking" );
         Skill skill2 = new Skill();
-        skill2.setSkillId( 2 );
         skill2.setName( "DevOps" );
         Skill skill3 = new Skill();
-        skill3.setSkillId( 3 );
         skill3.setName( "Lean Startup" );
         Skill skill4 = new Skill();
-        skill4.setSkillId( 4 );
         skill4.setName( "Méthode Agile" );
 
         User user1 = new User();

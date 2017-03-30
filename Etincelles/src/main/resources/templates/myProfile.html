@@ -112,16 +112,16 @@
 											</select>
 										</div>
 										
-										<div class="form-group" th:if="${user.userSkills == null and #sets.isEmpty(user.userSkills)}">
+										<div class="form-group" th:if="${skills == null}">
 										<label for="skills">Compétences (4 maximum)</label>
 											<div th:replace="common/skillSelect :: regularSkillSelect"></div>
 										</div>
 										
-										<div class="form-group" th:if="${user.userSkills != null and !#sets.isEmpty(user.userSkills)}">
+										<div class="form-group" th:if="${skills != null}">
 											<label for="skills">Compétences (4 maximum)</label>
 											<div th:replace="common/skillSelect :: userSkillSelect"></div>
-										</div>
-										
+										</div>									
+																				
 										<div class="form-group" th:if="${user.sector == null or (#strings.isEmpty(user.sector))}">
 										<label for="sector">Secteur</label>
 											<div th:replace="common/sectorSelect :: regularSectorSelect"></div>
