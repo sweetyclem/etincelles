@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+</head>
+<body>
+	<div th:fragment="regularSkillSelect">
+			<select name="skills" id="skillSelect"
+				class="selectpicker form-control" multiple="multiple"
+				title="Compétences">				
+				<optgroup label='Gestion de projets et méthodologies'>
+					<option value='Design Thinking'>Design Thinking</option>
+					<option value='DevOps'>DevOps</option>
+					<option value='Lean Startup'>Lean Startup</option>
+					<option value='86'>Méthode Agile</option>
+					<option value='87'>Product Owner</option>
+					<option value='88'>Scrum Master</option>
+				</optgroup>
+				<optgroup label='Développement'>
+					<option value='89'>Android</option>
+					<option value='90'>C++</option>
+					<option value='91'>HTML5</option>
+					<option value='92'>iOS</option>
+					<option value='93'>Java</option>
+					<option value='94'>Javascript</option>
+					<option value='95'>Linux</option>
+					<option value='96'>Open Source</option>
+					<option value='97'>PHP</option>
+					<option value='98'>Python</option>
+					<option value='99'>Ruby</option>
+					<option value='100'>Symfony</option>
+					<option value='101'>.NET</option>
+					<option value='102'>Langage C</option>
+					<option value='103'>CSS</option>
+					<option value='104'>Magento</option>
+					<option value='105'>Standard</option>
+					<option value='203'>Ruby</option>
+					<option value='204'>Software Engineering</option>
+				</optgroup>
+				<optgroup label='Communication, marketing et contenu'>
+					<option value='106'>Community management</option>
+					<option value='107'>Contenu éditorial</option>
+					<option value='108'>Cross-canal</option>
+					<option value='109'>Cross-media</option>
+					<option value='110'>Cross-platform</option>
+					<option value='111'>Digital PR</option>
+					<option value='112'>Digital Storytelling</option>
+					<option value='113'>Display</option>
+					<option value='114'>e-CRM</option>
+					<option value='115'>Loyalty</option>
+					<option value='116'>Medias</option>
+					<option value='117'>Planning stratégique</option>
+					<option value='118'>Régie mobile</option>
+					<option value='119'>Retargeting</option>
+					<option value='120'>SEO</option>
+					<option value='121'>SMO</option>
+					<option value='122'>Social Media</option>
+					<option value='123'>Social TV</option>
+					<option value='124'>Livre numérique</option>
+					<option value='125'>SEA</option>
+					<option value='126'>Affiliation</option>
+					<option value='127'>Web Analytics</option>
+					<option value='128'>ROI du marketing digital</option>
+					<option value='129'>Data Analytics</option>
+					<option value='130'>Communication de crise</option>
+					<option value='196'>E-réputation</option>
+					<option value='199'>Edition Numérique</option>
+					<option value='200'>A/B et multivariate testing</option>
+					<option value='201'>Growth Hacking</option>
+					<option value='202'>Acquisition</option>
+				</optgroup>
+				<optgroup label='Innovation, design et nouvelles technologies'>
+					<option value='131'>Big Data</option>
+					<option value='132'>Cloud Computing</option>
+					<option value='133'>Data Science</option>
+					<option value='134'>e-Santé</option>
+					<option value='135'>e-Education</option>
+					<option value='136'>Ergonomie</option>
+					<option value='137'>Formation/enseignement au numérique</option>
+					<option value='138'>Gaming</option>
+					<option value='139'>IHM</option>
+					<option value='140'>Low Tech</option>
+					<option value='141'>Management de l'innovation</option>
+					<option value='142'>Objets connectés</option>
+					<option value='143'>Open Data</option>
+					<option value='144'>Open Innovation</option>
+					<option value='145'>Robotique</option>
+					<option value='146'>Sharing Economy</option>
+					<option value='147'>UI Design</option>
+					<option value='148'>UX Design</option>
+					<option value='149'>Wearable Products</option>
+					<option value='150'>Web Design</option>
+					<option value='151'>Branding</option>
+					<option value='152'>Transformation Digitale</option>
+					<option value='153'>Semantic technologies</option>
+					<option value='154'>eBook</option>
+					<option value='155'>Accessibilité</option>
+					<option value='156'>Monnaie alternative</option>
+					<option value='192'>Data Design</option>
+					<option value='194'>Musique et numérique</option>
+					<option value='197'>Customer Experience Management</option>
+					<option value='198'>Responsive Design</option>
+					<option value='205'>Bitcoin</option>
+				</optgroup>
+				<optgroup label='Politique, business et investissement'>
+					<option value='157'>Business Model</option>
+					<option value='158'>Crowdfunding</option>
+					<option value='159'>E-Commerce</option>
+					<option value='160'>Entrepreneuriat</option>
+					<option value='161'>Juridique</option>
+					<option value='162'>M-Commerce</option>
+					<option value='163'>Mobile</option>
+					<option value='164'>Monétisation</option>
+					<option value='165'>Pitch</option>
+					<option value='166'>Start-up</option>
+					<option value='167'>Stratégie</option>
+					<option value='169'>Web-to-Store</option>
+					<option value='170'>Réglementation et législation</option>
+					<option value='171'>Politique</option>
+					<option value='172'>e-Environnement</option>
+					<option value='173'>Politique RH</option>
+					<option value='174'>e-Inclusion</option>
+					<option value='175'>Art numérique</option>
+					<option value='193'>Pratiques collaboratives</option>
+					<option value='168'>Venture Capital</option>
+				</optgroup>
+				<optgroup
+					label='Technique, Administration réseau, système et base de données'>
+					<option value='176'>Câbles</option>
+					<option value='177'>DBA</option>
+					<option value='178'>DNS</option>
+					<option value='179'>Hacker</option>
+					<option value='180'>Matériel et Data Center</option>
+					<option value='181'>Normalisation</option>
+					<option value='182'>Routage</option>
+					<option value='183'>Sécurité informatique</option>
+					<option value='184'>Unix</option>
+					<option value='185'>Windows</option>
+					<option value='186'>Cybercriminalité</option>
+					<option value='187'>Wordpress</option>
+					<option value='188'>Hacker</option>
+					<option value='189'>Audit</option>
+					<option value='190'>Future Networks</option>
+					<option value='191'>Réseaux sans fil</option>
+					<option value='195'>Réseaux mobiles</option>
+				</optgroup>
+			</select>
+	</div>
+	
+	
+	
+	<div th:fragment="userSkillSelect">		
+			<select  name="skills" id="skillSelect"
+				class="selectpicker form-control" multiple="multiple"
+				title="Compétences">
+				<optgroup label='Gestion de projets et méthodologies'>
+					<option th:selected="${#lists.contains(skills, 'Design Thinking')}" value='Design Thinking'>Design Thinking</option>
+					<option th:selected="${#lists.contains(skills, 'DevOps')}"  value='DevOps'>DevOps</option>
+					<option th:selected="${#lists.contains(skills, 'Lean Startup')}"  value='Lean Startup'>Lean Startup</option>
+					<option th:selected="${#lists.contains(skills, 'Méthode Agile')}"  value='Méthode Agile'>Méthode Agile</option>
+					<option value='87'>Product Owner</option>
+					<option value='88'>Scrum Master</option>
+				</optgroup>
+				<optgroup label='Développement'>
+					<option value='89'>Android</option>
+					<option value='90'>C++</option>
+					<option value='91'>HTML5</option>
+					<option value='92'>iOS</option>
+					<option value='93'>Java</option>
+					<option value='94'>Javascript</option>
+					<option value='95'>Linux</option>
+					<option value='96'>Open Source</option>
+					<option value='97'>PHP</option>
+					<option value='98'>Python</option>
+					<option value='99'>Ruby</option>
+					<option value='100'>Symfony</option>
+					<option value='101'>.NET</option>
+					<option value='102'>Langage C</option>
+					<option value='103'>CSS</option>
+					<option value='104'>Magento</option>
+					<option value='105'>Standard</option>
+					<option value='203'>Ruby</option>
+					<option value='204'>Software Engineering</option>
+				</optgroup>
+				<optgroup label='Communication, marketing et contenu'>
+					<option value='106'>Community management</option>
+					<option value='107'>Contenu éditorial</option>
+					<option value='108'>Cross-canal</option>
+					<option value='109'>Cross-media</option>
+					<option value='110'>Cross-platform</option>
+					<option value='111'>Digital PR</option>
+					<option value='112'>Digital Storytelling</option>
+					<option value='113'>Display</option>
+					<option value='114'>e-CRM</option>
+					<option value='115'>Loyalty</option>
+					<option value='116'>Medias</option>
+					<option value='117'>Planning stratégique</option>
+					<option value='118'>Régie mobile</option>
+					<option value='119'>Retargeting</option>
+					<option value='120'>SEO</option>
+					<option value='121'>SMO</option>
+					<option value='122'>Social Media</option>
+					<option value='123'>Social TV</option>
+					<option value='124'>Livre numérique</option>
+					<option value='125'>SEA</option>
+					<option value='126'>Affiliation</option>
+					<option value='127'>Web Analytics</option>
+					<option value='128'>ROI du marketing digital</option>
+					<option value='129'>Data Analytics</option>
+					<option value='130'>Communication de crise</option>
+					<option value='196'>E-réputation</option>
+					<option value='199'>Edition Numérique</option>
+					<option value='200'>A/B et multivariate testing</option>
+					<option value='201'>Growth Hacking</option>
+					<option value='202'>Acquisition</option>
+				</optgroup>
+				<optgroup label='Innovation, design et nouvelles technologies'>
+					<option value='131'>Big Data</option>
+					<option value='132'>Cloud Computing</option>
+					<option value='133'>Data Science</option>
+					<option value='134'>e-Santé</option>
+					<option value='135'>e-Education</option>
+					<option value='136'>Ergonomie</option>
+					<option value='137'>Formation/enseignement au numérique</option>
+					<option value='138'>Gaming</option>
+					<option value='139'>IHM</option>
+					<option value='140'>Low Tech</option>
+					<option value='141'>Management de l'innovation</option>
+					<option value='142'>Objets connectés</option>
+					<option value='143'>Open Data</option>
+					<option value='144'>Open Innovation</option>
+					<option value='145'>Robotique</option>
+					<option value='146'>Sharing Economy</option>
+					<option value='147'>UI Design</option>
+					<option value='148'>UX Design</option>
+					<option value='149'>Wearable Products</option>
+					<option value='150'>Web Design</option>
+					<option value='151'>Branding</option>
+					<option value='152'>Transformation Digitale</option>
+					<option value='153'>Semantic technologies</option>
+					<option value='154'>eBook</option>
+					<option value='155'>Accessibilité</option>
+					<option value='156'>Monnaie alternative</option>
+					<option value='192'>Data Design</option>
+					<option value='194'>Musique et numérique</option>
+					<option value='197'>Customer Experience Management</option>
+					<option value='198'>Responsive Design</option>
+					<option value='205'>Bitcoin</option>
+				</optgroup>
+				<optgroup label='Politique, business et investissement'>
+					<option value='157'>Business Model</option>
+					<option value='158'>Crowdfunding</option>
+					<option value='159'>E-Commerce</option>
+					<option value='160'>Entrepreneuriat</option>
+					<option value='161'>Juridique</option>
+					<option value='162'>M-Commerce</option>
+					<option value='163'>Mobile</option>
+					<option value='164'>Monétisation</option>
+					<option value='165'>Pitch</option>
+					<option value='166'>Start-up</option>
+					<option value='167'>Stratégie</option>
+					<option value='169'>Web-to-Store</option>
+					<option value='170'>Réglementation et législation</option>
+					<option value='171'>Politique</option>
+					<option value='172'>e-Environnement</option>
+					<option value='173'>Politique RH</option>
+					<option value='174'>e-Inclusion</option>
+					<option value='175'>Art numérique</option>
+					<option value='193'>Pratiques collaboratives</option>
+					<option value='168'>Venture Capital</option>
+				</optgroup>
+				<optgroup
+					label='Technique, Administration réseau, système et base de données'>
+					<option value='176'>Câbles</option>
+					<option value='177'>DBA</option>
+					<option value='178'>DNS</option>
+					<option value='179'>Hacker</option>
+					<option value='180'>Matériel et Data Center</option>
+					<option value='181'>Normalisation</option>
+					<option value='182'>Routage</option>
+					<option value='183'>Sécurité informatique</option>
+					<option value='184'>Unix</option>
+					<option value='185'>Windows</option>
+					<option value='186'>Cybercriminalité</option>
+					<option value='187'>Wordpress</option>
+					<option value='188'>Hacker</option>
+					<option value='189'>Audit</option>
+					<option value='190'>Future Networks</option>
+					<option value='191'>Réseaux sans fil</option>
+					<option value='195'>Réseaux mobiles</option>
+				</optgroup>
+			</select>
+	</div>
+
+
+</body>
+</html>

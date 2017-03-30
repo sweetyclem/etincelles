@@ -11,11 +11,13 @@ import org.springframework.stereotype.Service;
 
 import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.User;
+import com.etincelles.entities.UserSkill;
 import com.etincelles.entities.security.UserRole;
 import com.etincelles.enumeration.Category;
 import com.etincelles.enumeration.City;
 import com.etincelles.repository.PasswordResetTokenRepository;
 import com.etincelles.repository.RoleRepository;
+import com.etincelles.repository.SkillRespository;
 import com.etincelles.repository.UserRepository;
 import com.etincelles.service.UserService;
 
@@ -29,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RoleRepository               roleRepository;
+
+    @Autowired
+    private SkillRespository             skillRepository;
 
     @Autowired
     private PasswordResetTokenRepository passwordResetTokenRepository;
@@ -50,7 +55,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser( User user, Set<UserRole> userRoles ) {
+    public User createUser( User user, Set<UserRole> userRoles, Set<UserSkill> userSkills ) {
         User localUser = userRepository.findByEmail( user.getEmail() );
 
         if ( localUser != null ) {
@@ -59,8 +64,12 @@ public class UserServiceImpl implements UserService {
             for ( UserRole ur : userRoles ) {
                 roleRepository.save( ur.getRole() );
             }
+            for ( UserSkill userSkill : userSkills ) {
+                skillRepository.save( userSkill.getSkill() );
+            }
 
             user.getUserRoles().addAll( userRoles );
+            user.getUserSkills().addAll( userSkills );
 
             localUser = userRepository.save( user );
         }

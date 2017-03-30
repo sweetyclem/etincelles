@@ -38,13 +38,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/myAccount",
             "/forgetPassword",
             "/login",
-            "/updateUser"
+            "/updateUser",
+            "/directoryIndex",
+            "/directory",
+            "/directorySearch",
+            "/news",
+            "/badRequestPage",
+            "/post",
+            "/userDetail"
     };
 
     @Override
     protected void configure( HttpSecurity http ) throws Exception {
         http
-                .authorizeRequests().antMatchers( PUBLIC_MATCHERS ).permitAll().anyRequest().authenticated();
+                .authorizeRequests().antMatchers( PUBLIC_MATCHERS ).permitAll()
+                .and()
+                .authorizeRequests()
+                .antMatchers( "/calendar" ).authenticated();
 
         http
                 .csrf().disable().cors().disable()

@@ -23,6 +23,10 @@
 			<div class="alert alert-danger" th:if="${incorrectPassword}">
 				<strong>Le mot de passe actuel est incorrect</strong>
 			</div>
+			
+			<div class="alert alert-danger" th:if="${incorrectSkills}">
+				<strong>Vous devez sélectionner 4 compétences maximum</strong>
+			</div>
 
 			<div class="alert alert-danger" th:if="${emailExists}">
 				<strong>Cette adresse email est déjà utilisée</strong>
@@ -94,7 +98,6 @@
 										<div th:if="${user.city != null}" class="form-group" id="city">
 											<label for="city">* Ville</label> <select name="city" id="citySelect"
 												class="form-control">
-												<option value="" selected="selected" disabled="disabled">Choisir une ville</option>
 												<option th:selected="(${user.city.name()}=='Paris')" th:value="Paris">Paris</option>
 												<option th:selected="(${user.city.name()}=='Lyon')" th:value="Lyon">Lyon</option>
 											</select>
@@ -108,6 +111,26 @@
 												<option th:value="Lyon">Lyon</option>
 											</select>
 										</div>
+										
+										<div class="form-group" th:if="${user.userSkills == null and #sets.isEmpty(user.userSkills)}">
+										<label for="skills">Compétences (4 maximum)</label>
+											<div th:replace="common/skillSelect :: regularSkillSelect"></div>
+										</div>
+										
+										<div class="form-group" th:if="${user.userSkills != null and !#sets.isEmpty(user.userSkills)}">
+											<label for="skills">Compétences (4 maximum)</label>
+											<div th:replace="common/skillSelect :: userSkillSelect"></div>
+										</div>
+										
+										<div class="form-group" th:if="${user.sector == null and #strings.isEmpty(user.sector)}">
+										<label for="sector">Secteur</label>
+											<div th:replace="common/sectorSelect :: regularSectorSelect"></div>
+										</div>
+										
+										<div class="form-group" th:if="${user.sector != null and !(#strings.isEmpty(user.sector))}">
+											<label for="sector">Secteur</label>
+											<div th:replace="common/sectorSelect :: userSectorSelect"></div>
+										</div>
 
 										<div class="form-group">
 											<label for="description">Description</label>
@@ -115,13 +138,6 @@
 											<textarea class="form-control" id="description"
 												name="description" th:utext="${user.description}"></textarea>
 
-										</div>
-
-										<div class="form-group">
-											<label for="phone">Téléphone</label><input type="tel"
-												class="form-control" id="phone" name="phone"
-												pattern="[0-9]{10}" title="0612345678"
-												th:value="${user.phone}" />
 										</div>
 
 										<div class="form-group">
@@ -136,21 +152,7 @@
 											<label for="promo">Promo</label><input type="number"
 												class="form-control" id="promo" name="promo"
 												th:value="${user.promo}" />
-										</div>
-
-										<!-- Pour mentor.e.s et coachs -->
-										<div class="form-group">
-											<label for="organization">Entreprise</label><input
-												type="text" class="form-control" id="organization"
-												name="organization" th:value="${user.organization}" />
-										</div>
-
-										<!-- Pour mentor.e.s, coachs et staff -->
-										<div class="form-group">
-											<label for="job_title">Poste</label><input type="text"
-												class="form-control" id="job_title" name="job_title"
-												th:value="${user.job_title}" />
-										</div>
+										</div>										
 
 										<div class="form-group">
 											<label for="twitter">Compte twitter</label><input type="text"
@@ -224,5 +226,12 @@
 
 	<div th:replace="common/header :: body-bottom-scripts" />
 	<script th:src="@{/js/scripts.js}"></script>
+	<script type="text/javascript">
+    $(document).ready(function() {
+
+      
+      
+    });
+    </script>
 </body>
 </html>

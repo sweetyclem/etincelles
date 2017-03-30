@@ -88,16 +88,6 @@ td a {
 	text-decoration: none;
 }
 
-.dropdown-menu > li > a {
-	color: white;
-	text-decoration: none;
-	background-color: #18BC9C;
-}
-
-ul .dropdown-menu {
-	background-color: #18BC9C;
-}
-
 
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
 	color: black;
@@ -318,27 +308,27 @@ hr {
 
 /* Buttons */
 
-.btn-default {
+.btn-custom {
 	background-color: #00FAA0;
 	border-color: #07c480;
 }
 
-.btn-default:hover {
+.btn-custom:hover {
 	background-color: #07c480;
    	border-color: #07c480;
 }
 
-.btn-default:active {
+.btn-custom:active {
 	background-color: #07c480;
    	border-color: #07c480;
 }
 
-.btn-default:focus {
+.btn-custom:focus {
 	background-color: #07c480;
    	border-color: #07c480;
 }
 
-.btn-default:visited {
+.btn-custom:visited {
 	background-color: #07c480;
    	border-color: #07c480;
 }

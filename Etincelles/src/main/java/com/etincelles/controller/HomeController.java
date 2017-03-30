@@ -7,8 +7,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,10 +33,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.etincelles.entities.Message;
 import com.etincelles.entities.PasswordResetToken;
+import com.etincelles.entities.Skill;
 import com.etincelles.entities.User;
-import com.etincelles.enumeration.Category;
-import com.etincelles.enumeration.City;
-import com.etincelles.enumeration.Type;
+import com.etincelles.entities.UserSkill;
+import com.etincelles.repository.SkillRespository;
+import com.etincelles.service.CustomUserService;
 import com.etincelles.service.MessageService;
 import com.etincelles.service.UserService;
 import com.etincelles.service.impl.UserSecurityService;
@@ -54,6 +57,12 @@ public class HomeController {
 
     @Autowired
     private MessageService      messageService;
+
+    @Autowired
+    private CustomUserService   customUserService;
+
+    @Autowired
+    private SkillRespository    skillRepo;
 
     @Autowired
     private UserSecurityService userSecurityService;
@@ -124,10 +133,16 @@ public class HomeController {
                 userDetails.getAuthorities() );
         SecurityContextHolder.getContext().setAuthentication( authentication );
 
+        List<String> skills = new ArrayList<>();
+        for ( UserSkill userSkill : user.getUserSkills() ) {
+            skills.add( userSkill.getSkill().getName() );
+        }
+
+        if ( skills.size() != 0 ) {
+            model.addAttribute( "skills", skills );
+        }
         model.addAttribute( "classActiveEdit", true );
         model.addAttribute( "user", user );
-        model.addAttribute( "paris", City.Paris );
-        model.addAttribute( "lyon", City.Lyon );
         return "myProfile";
     }
 
@@ -135,6 +150,14 @@ public class HomeController {
     public String updateGet( Model model, Principal principal ) {
         User activeUser = (User) ( (Authentication) principal ).getPrincipal();
         User user = userService.findByEmail( activeUser.getEmail() );
+        List<String> skills = new ArrayList<>();
+        for ( UserSkill userSkill : user.getUserSkills() ) {
+            skills.add( userSkill.getSkill().getName() );
+        }
+
+        if ( skills.size() != 0 ) {
+            model.addAttribute( "skills", skills );
+        }
         model.addAttribute( "user", user );
         model.addAttribute( "classActiveEdit", true );
         return "myProfile";
@@ -198,17 +221,38 @@ public class HomeController {
         currentUser.setFirstName( user.getFirstName() );
         currentUser.setLastName( user.getLastName() );
         currentUser.setEmail( user.getEmail() );
-        currentUser.setCategory( user.getCategory() );
-        currentUser.setCity( user.getCity() );
         currentUser.setDescription( user.getDescription() );
+        currentUser.setCity( user.getCity() );
+        currentUser.setCategory( user.getCategory() );
         currentUser.setFacebook( user.getFacebook() );
         currentUser.setTwitter( user.getTwitter() );
         currentUser.setLinkedin( user.getLinkedin() );
-        currentUser.setPhone( user.getPhone() );
         currentUser.setPromo( user.getPromo() );
         currentUser.setType( user.getType() );
-        currentUser.setOrganization( user.getOrganization() );
-        currentUser.setJob_title( user.getJob_title() );
+        currentUser.setSector( user.getSector() );
+
+        Set<UserSkill> userSkills = new HashSet<>();
+        if ( request.getParameterMap().containsKey( "skills" ) ) {
+            String[] skills = request.getParameterMap().get( "skills" );
+            if ( skills.length > 4 ) {
+                model.addAttribute( "incorrectSkills", true );
+                return "myProfile";
+            }
+            for ( String skillString : skills ) {
+                Skill skill = skillRepo.findByname( skillString );
+                userSkills.add( new UserSkill( user, skill ) );
+            }
+        }
+        currentUser.setUserSkills( userSkills );
+
+        List<String> skills = new ArrayList<>();
+        for ( UserSkill userSkill : currentUser.getUserSkills() ) {
+            skills.add( userSkill.getSkill().getName() );
+        }
+
+        if ( skills.size() != 0 ) {
+            model.addAttribute( "skills", skills );
+        }
 
         userService.save( currentUser );
 
@@ -227,8 +271,8 @@ public class HomeController {
 
     }
 
-    @RequestMapping( "/directoryIndex" )
-    public String directoryIndex( Model model ) {
+    @RequestMapping( "/directory" )
+    public String directory( Model model ) {
         List<User> userList;
         userList = userService.findAll();
         List<User> users = new ArrayList<>();
@@ -238,99 +282,6 @@ public class HomeController {
             }
         }
         model.addAttribute( "userList", users );
-        return "directoryIndex";
-    }
-
-    @RequestMapping( "/directory" )
-    public String directory( Model model, @RequestParam( "type" ) String type ) {
-        String classActiveCategory = "active" + type;
-        model.addAttribute( classActiveCategory, true );
-        List<User> userList;
-        switch ( type ) {
-        case "CareerParticipants":
-            userList = userService.findByCategory( Category.Etincelle );
-            List<User> careerList = new ArrayList<>();
-            for ( User user : userList ) {
-                if ( user.getType() == Type.Carrière && user.getEnabled() ) {
-                    careerList.add( user );
-                }
-            }
-            model.addAttribute( "userList", careerList );
-            break;
-        case "StartupParticipants":
-            userList = userService.findByCategory( Category.Etincelle );
-            List<User> startupList = new ArrayList<>();
-            for ( User user : userList ) {
-                if ( user.getType() == Type.Startup && user.getEnabled() ) {
-                    startupList.add( user );
-                }
-            }
-            model.addAttribute( "userList", startupList );
-            break;
-        case "CareerMentors":
-            userList = userService.findByCategory( Category.Mentore );
-            List<User> careerMentorList = new ArrayList<>();
-            for ( User user : userList ) {
-                if ( user.getType() == Type.Carrière && user.getEnabled() ) {
-                    careerMentorList.add( user );
-                }
-            }
-            model.addAttribute( "userList", careerMentorList );
-            break;
-        case "StartupMentors":
-            userList = userService.findByCategory( Category.Mentore );
-            List<User> startupMentorList = new ArrayList<>();
-            for ( User user : userList ) {
-                if ( user.getType() == Type.Startup && user.getEnabled() ) {
-                    startupMentorList.add( user );
-                }
-            }
-            model.addAttribute( "userList", startupMentorList );
-            break;
-
-        case "Staff":
-            userList = userService.findByCategory( Category.Staff );
-            List<User> users = new ArrayList<>();
-            for ( User user : userList ) {
-                if ( user.getEnabled() ) {
-                    users.add( user );
-                }
-            }
-            model.addAttribute( "userList", users );
-            break;
-        case "Coaches":
-            userList = userService.findByCategory( Category.Coach );
-            users = new ArrayList<>();
-            for ( User user : userList ) {
-                if ( user.getEnabled() ) {
-                    users.add( user );
-                }
-            }
-            model.addAttribute( "userList", users );
-            break;
-        case "Paris":
-            userList = userService.findByCity( City.Paris );
-            users = new ArrayList<>();
-            for ( User user : userList ) {
-                if ( user.getEnabled() ) {
-                    users.add( user );
-                }
-            }
-            model.addAttribute( "userList", users );
-            break;
-        case "Lyon":
-            userList = userService.findByCity( City.Lyon );
-            users = new ArrayList<>();
-            for ( User user : userList ) {
-                if ( user.getEnabled() ) {
-                    users.add( user );
-                }
-            }
-            model.addAttribute( "userList", users );
-            break;
-        default:
-            break;
-        }
         return "directory";
     }
 
@@ -345,6 +296,14 @@ public class HomeController {
     public String myProfile( Model model, Principal principal ) {
         User activeUser = (User) ( (Authentication) principal ).getPrincipal();
         User user = userService.findByEmail( activeUser.getEmail() );
+        List<String> skills = new ArrayList<>();
+        for ( UserSkill userSkill : user.getUserSkills() ) {
+            skills.add( userSkill.getSkill().getName() );
+        }
+
+        if ( skills.size() != 0 ) {
+            model.addAttribute( "skills", skills );
+        }
         model.addAttribute( "user", user );
         model.addAttribute( "classActiveEdit", true );
         return "myProfile";
@@ -353,16 +312,6 @@ public class HomeController {
     @RequestMapping( "/calendar" )
     public String calendar( Model model ) {
         return "calendar";
-    }
-
-    @RequestMapping( "/faq" )
-    public String faq( Model model ) {
-        return "faq";
-    }
-
-    @RequestMapping( "/forum" )
-    public String forum( Model model ) {
-        return "forum";
     }
 
     @RequestMapping( "/news" )
@@ -389,12 +338,99 @@ public class HomeController {
 
         if ( userList.isEmpty() ) {
             model.addAttribute( "emptyList", true );
-            return "directoryIndex";
+            return "directory";
         }
 
         model.addAttribute( "userList", userList );
 
-        return "directoryIndex";
+        return "directory";
+    }
+
+    @RequestMapping( value = "/directorySearch", method = RequestMethod.POST )
+    public String directorySearchPost( Model model, HttpServletRequest request ) {
+
+        String queryString = "SELECT * from user, user_skill where";
+        String search = "Votre recherche :";
+        boolean needAnd = false;
+
+        if ( request.getParameterMap().containsKey( "skills" ) ) {
+            String[] skills = request.getParameterValues( "skills" );
+            queryString = "SELECT * from user, user_skill where user.id = user_skill.user_id and";
+            for ( int i = 0; i < skills.length; i++ ) {
+                search += " " + skills[i];
+                if ( i > 0 ) {
+                    queryString += " and ";
+                }
+                Skill skill = skillRepo.findByname( skills[i] );
+                queryString += " user_skill.skill_id = " + skill.getSkillId();
+                if ( needAnd == false ) {
+                    needAnd = true;
+                }
+            }
+        }
+
+        if ( request.getParameterMap().containsKey( "sectors" ) ) {
+            String[] sectors = request.getParameterValues( "sectors" );
+            if ( needAnd ) {
+                queryString += " and ";
+            }
+            for ( int i = 0; i < sectors.length; i++ ) {
+                search += " " + sectors[i];
+                if ( i > 0 ) {
+                    queryString += " and ";
+                }
+                queryString += " user.sector = " + "\'" + sectors[i] + "\'";
+                if ( needAnd == false ) {
+                    needAnd = true;
+                }
+            }
+        }
+
+        if ( request.getParameterMap().containsKey( "categories" ) ) {
+            String[] categories = request.getParameterValues( "categories" );
+            if ( needAnd ) {
+                queryString += " and ";
+            }
+            for ( int i = 0; i < categories.length; i++ ) {
+                search += " " + categories[i];
+                if ( i > 0 ) {
+                    queryString += " and ";
+                }
+                queryString += " user.category = " + "\'" + categories[i] + "\'";
+                if ( needAnd == false ) {
+                    needAnd = true;
+                }
+            }
+        }
+
+        if ( request.getParameterMap().containsKey( "cities" ) ) {
+            String[] cities = request.getParameterValues( "cities" );
+            if ( needAnd ) {
+                queryString += " and ";
+            }
+            for ( int i = 0; i < cities.length; i++ ) {
+                search += " " + cities[i];
+                if ( i > 0 ) {
+                    queryString += " and ";
+                }
+                queryString += " user.city = " + "\'" + cities[i] + "\'";
+                if ( needAnd == false ) {
+                    needAnd = true;
+                }
+            }
+        }
+
+        List<User> userList = null;
+        userList = customUserService.searchQuery( queryString );
+
+        model.addAttribute( "userList", userList );
+        model.addAttribute( "searchString", search );
+        return "directory";
+    }
+
+    @RequestMapping( "/directorySearch" )
+    public String directorySearch() {
+        return "redirect:/directory";
     }
 
 }
