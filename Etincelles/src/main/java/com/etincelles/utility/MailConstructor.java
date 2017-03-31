@@ -30,4 +30,14 @@ public class MailConstructor {
         return email;
 
     }
+
+    public SimpleMailMessage constructContactEmail( String name, String email, String text, String userEmail ) {
+
+        SimpleMailMessage contactEmail = new SimpleMailMessage();
+        contactEmail.setTo( userEmail );
+        contactEmail.setSubject( "Un message vous a été envoyé " + "par " + name + " depuis le site Etincelles" );
+        contactEmail.setText( text );
+        contactEmail.setFrom( email );
+        return contactEmail;
+    }
 }

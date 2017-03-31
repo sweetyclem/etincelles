@@ -456,4 +456,13 @@ public class HomeController implements ErrorController {
         return "/error";
     }
 
+    @RequestMapping( value = "/contact", method = RequestMethod.POST )
+    public String contact( Model model, @RequestParam( "name" ) String name, @RequestParam( "email" ) String email,
+            @RequestParam( "content" ) String text, @RequestParam( "userEmail" ) String userEmail ) {
+        SimpleMailMessage newEmail = mailConstructor.constructContactEmail( name, email, text, userEmail );
+        mailSender.send( newEmail );
+        model.addAttribute( "emailSent", true );
+        return "confirmSend";
+    }
+
 }
