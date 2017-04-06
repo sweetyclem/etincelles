@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.w3.org/1000/xhtml">
 <head>
-<div th:replace="common/header :: common-header">
-</div>
+<div th:replace="common/header :: common-header"></div>
 <meta charset="utf-8" />
-<link th:href="@{/css/contact.css}" rel="stylesheet"/>
+<link th:href="@{/css/contact.css}" rel="stylesheet" />
 </head>
 
 <body>
@@ -25,16 +24,15 @@
 			<div class="row" th:with="pic=${'/images/user/' + user.id +'.png'}">
 				<div class="col-md-7 col-xs-12" style="background-color: #F9F9F9;">
 					<div class="row">
-						<div class="col-sm-4 col-xs-6 col-xs-offset-3 col-sm-offset-0">
+						<div class="col-xs-4 col-xs-offset-4">
 							<img class="img-responsive img-circle"
 								th:src="${(user.hasPicture) ? pic : 'http://placekitten.com/600/600?image=14'}"
-								th:alt="${user.firstName + ' ' + user.lastName}" />
-							<div class="hidden-xs">
-								<br/><br/><br/><br/>
-							</div>								
+								th:alt="${user.firstName + ' ' + user.lastName}" />							
 
 						</div>
-						<div class="col-sm-8 col-xs-12 text-center">
+						</div>
+				<div class="row">
+						<div class="col-xs-12 text-center">
 						<br/>
 							<h2
 								th:if="${!#strings.isEmpty(user.lastName) and !#strings.isEmpty(user.firstName)}"
@@ -54,20 +52,6 @@
 
 								
 							</div>
-				<div class="col-sm-4 col-sm-offset-4">
-					<img class="img-responsive img-circle"
-						th:src="${(user.hasPicture) ? pic : 'http://placekitten.com/600/600?image=14'}"
-						th:alt="${user.firstName + ' ' + user.lastName}" />
-				</div>
-			</div>
-			<div class="row">
-				<br />
-				<div class="col-lg-12 text-center">
-					<h2
-						th:if="${!#strings.isEmpty(user.lastName) and !#strings.isEmpty(user.firstName)}"
-						class="section-heading"
-						th:text="${user.firstName + ' ' + user.lastName}"></h2>
-					<div class="row">
 
 						<p th:if="${user.promo > 0}">
 							Promo <span th:text="${user.promo}"></span>
@@ -110,7 +94,6 @@
 						</p>
 					</div>
 				</div>
-
 				<div class="col-md-5 col-xs-12 text-center">
 					<form id="contact" th:action="@{/contact}" method="post">
 						<h3>Contact</h3>
@@ -146,77 +129,6 @@
 		<div class="container2">
 			<div class="row"></div>
 		</div>
-			</div>
-<br/>
-					<h3
-						th:if="${user.category != null and #strings.equals(user.category,'Equipe')}"
-						class="section-subheading text-muted"
-						th:text="${#strings.capitalize('Equipe social builder')}"></h3>
-
-					<h3
-						th:if="${user.category != null and !#strings.equals(user.category,'Equipe')}"
-						class="section-subheading text-muted"
-						th:text="${#strings.capitalize(user.category)}"></h3>
-
-					<h3 th:if="${user.type != null}"
-						class="section-subheading text-muted"
-						th:text="${#strings.capitalize(user.type)}">></h3>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div
-					class=" col-xs-12 col-lg-8 col-lg-offset-2 col-xs-offset-0 text-center">
-					<p th:if="${user.promo > 0}">
-						<strong>Promo </strong><span th:text="${user.promo}"></span>
-					</p>
-					<p th:if="${user.city != null and !#strings.isEmpty(user.city)}">
-						<strong></strong><span th:text="${user.city}"></span>
-					</p>
-					<div data-th-each="userSkill : ${user.userSkills}">
-						<div data-th-each="skill : ${userSkill.skill}">
-							<div th:if="${skill != null and !#strings.isEmpty(skill)}"
-								class="desc" th:text="${'#' + skill.name}"></div>
-						</div>
-					</div>
-
-					<br />
-
-					<p
-						th:if="${user.description != null and !#strings.isEmpty(user.description)}">
-						<strong>Description : </strong><span
-							th:utext="${user.description}"></span>
-					</p>				
-				</div>
-			</div>
-		</div>
-		
-		<div class="container2">
-						<form id="contact" th:action="@{/contact}" method="post">
-							<h3>Contact</h3>
-							<input type="hidden" name="userEmail" th:value="${user.email}"/>
-							<fieldset>
-								<input placeholder="Prénom et nom" type="text" tabindex="1" required="required"
-									autofocus="autofocus" name="name" />
-							</fieldset>
-							<fieldset>
-								<input placeholder="Adresse email" type="email" name="email"
-									tabindex="2" required="required"/>
-							</fieldset>
-							<fieldset>
-								<input placeholder="Confirmez l'email" type="email"
-									tabindex="3" required="required"/>
-							</fieldset>
-							<fieldset>
-								<textarea placeholder="Votre message" tabindex="4" name="content"
-									required="required"></textarea>
-							</fieldset>
-							<fieldset>
-								<button name="submit" type="submit" id="contact-submit"
-									data-submit="...Sending">Envoyer</button>
-							</fieldset>
-						</form>
-					</div>
 	</section>
 
 	</main>
