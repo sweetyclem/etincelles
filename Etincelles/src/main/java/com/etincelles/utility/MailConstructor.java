@@ -38,6 +38,8 @@ public class MailConstructor {
         contactEmail.setSubject( "Un message vous a été envoyé " + "par " + name + " depuis le site Etincelles" );
         contactEmail.setText( "Repondez à cette adresse : " + email + "\n" + text );
         contactEmail.setFrom( env.getProperty( "support.email" ) );
+        contactEmail.setText( text );
+        contactEmail.setFrom( email );
         return contactEmail;
     }
 }
