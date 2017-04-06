@@ -135,7 +135,7 @@
 										<div class="form-group">
 											<label for="description">Description</label>
 											<!-- <p th:utext="${user.description}"></p> -->
-											<textarea class="form-control" id="description"
+											<textarea class="form-control editme" id="description"
 												name="description" th:utext="${user.description}"></textarea>
 
 										</div>
@@ -226,12 +226,5 @@
 
 	<div th:replace="common/header :: body-bottom-scripts" />
 	<script th:src="@{/js/scripts.js}"></script>
-	<script type="text/javascript">
-    $(document).ready(function() {
-
-      
-      
-    });
-    </script>
 </body>
 </html>

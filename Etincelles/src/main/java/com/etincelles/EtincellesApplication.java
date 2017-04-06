@@ -50,7 +50,7 @@ public class EtincellesApplication extends SpringBootServletInitializer implemen
         User user1 = new User();
         user1.setFirstName( "Audrey" );
         user1.setLastName( "Abitan" );
-        user1.setEmail( "janet@adams.com" );
+        user1.setEmail( "staffetincelles@gmail.com" );
         user1.setPassword( SecurityUtility.passwordEncoder().encode( "p" ) );
         user1.setCategory( Category.Equipe );
         Set<UserRole> userRoles = new HashSet<>();
@@ -107,7 +107,7 @@ public class EtincellesApplication extends SpringBootServletInitializer implemen
         User user4 = new User();
         user4.setFirstName( "Stéphanie" );
         user4.setLastName( "Herr" );
-        user4.setEmail( "sweetyclem+test@gmail.com" );
+        user4.setEmail( "sweetyclem+test2@gmail.com" );
         user4.setPassword( SecurityUtility.passwordEncoder().encode( "p" ) );
         user4.setCategory( Category.Etincelle );
         user4.setCity( City.Lyon );

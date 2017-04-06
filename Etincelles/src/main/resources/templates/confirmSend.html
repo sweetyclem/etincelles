@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header">
+<meta charset="utf-8" />
+</head>
+
+<body>
+	<div th:replace="common/header :: navbar" />
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+			<br/><br/>
+				<p th:if="${emailSent}">Votre email a bien été envoyé</p>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

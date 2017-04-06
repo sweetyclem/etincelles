@@ -19,25 +19,51 @@
 			<form accept-charset="UTF-8" action="/directorySearch"
 				id="searchform" method="post">
 				<div class="col-xs-10 col-sm-2" style="line-height: 30px">
-					<div th:replace="common/skillSelect :: regularSkillSelect"/>
+					<select name="skills" id="skillSelect"
+				class="selectpicker form-control" multiple="multiple"
+				title="Compétences">
+					<option data-th-each="skill : ${skillList}" th:value="${skill}" th:text="${skill}"></option>
+				</select>
 				</div>
 
 				<div class="col-xs-10 col-sm-2">
-					<select style="line-height: 30px" name="sectors"
-						class="selectpicker form-control" multiple="multiple"
-						title="Secteur">
-						<option value='Gestion de projets et méthodologies'>Gestion
-							de projets et méthodologies</option>
-						<option value='Développement'>Développement</option>
-						<option value='Communication, marketing et contenu'>Communication,
-							marketing et contenu</option>
-						<option value='Innovation, design et nouvelles technologies'>Innovation,
-							design et nouvelles technologies</option>
-						<option value='Politique, business et investissement'>Politique,
-							business et investissement</option>
+					<select id="sector" title="Secteur" name="sectors"
+						 class="selectpicker form-control" multiple="multiple">
+						<option value='Agroalimentaire '>Agroalimentaire</option>
+						<option value='Artisanat / Culture / Spectacle'>Artisanat
+							/ Culture / Spectacle</option>
+						<option value='Banque / Finance / Assurance'>Banque /
+							Finance / Assurance</option>
+						<option value='BTP / Matériaux de construction'>BTP /
+							Matériaux de construction</option>
+						<option value='Chimie / Parachimie'>Chimie / Parachimie</option>
+						<option value='Commerce / Négoce / Distribution / E-commerce'>Commerce
+							/ Négoce / Distribution / E-commerce</option>
+						<option value='Droit'>Droit</option>
 						<option
-							value='Technique, Administration réseau, système et base de données'>Technique,
-							Administration réseau, système et base de données</option>
+							value='Economie sociale et solidaire / Développement durable'>Economie
+							sociale et solidaire / Développement durable</option>
+						<option value='Édition / Communication / Multimédia / Audiovisuel'>Édition
+							/ Communication / Multimédia / Audiovisuel</option>
+						<option value='Électronique / Électricité'>Électronique /
+							Électricité</option>
+						<option value='Enseignement / Formation'>Enseignement /
+							Formation</option>
+						<option value='Études et conseils / Services aux entreprises'>Études
+							et conseils / Services aux entreprises</option>
+						<option value='Fonction publique'>Fonction publique</option>
+						<option value='Hôtellerie / Restauration / Tourisme'>Hôtellerie
+							/ Restauration / Tourisme</option>
+						<option value='Informatique / Télécoms'>Informatique /
+							Télécoms</option>
+						<option value='Industrie / Machines et équipements'>Industrie
+							/ Machines et équipements</option>
+						<option value='Santé / Industrie pharmaceutique'>Santé /
+							Industrie pharmaceutique</option>
+						<option value='Services à la personne'>Services à la
+							personne</option>
+						<option value='Transports / Logistique'>Transports /
+							Logistique</option>
 					</select>
 				</div>
 
@@ -47,7 +73,7 @@
 						<option th:value="Etincelle">Etincelle</option>
 						<option th:value="Mentore">Mentor.e</option>
 						<option th:value="Coach">Coach</option>
-						<option th:value="Staff">Staff</option>
+						<option th:value="Equipe">Equipe Social Builder</option>
 					</select>
 				</div>
 
@@ -60,26 +86,33 @@
 					</select>
 				</div>
 
-				<div class="col-xs-2 col-sm-1 submit">
+				<div class="col-xs-3 col-xs-offset-3 col-sm-offset-0 col-sm-1 submit">
 					<input class="btn btn-default" name='submit' type='submit'
 						value='Valider' />
 
 				</div>
-				<div class="col-xs-2 col-sm-1 submit">
+				<div class="col-xs-4 col-sm-1 submit">
 					<a class="btn btn-default no-under" th:href="@{/directory}"
 						role="button">Réinitialiser</a>
 				</div>
 			</form>
 
 		</div>
-		
+
 		<div class="row" th:if="${searchString}">
 			<div class="col-xs-12">
-			<br/>
-				<p style="font-size: 1em" th:text="${searchString}"></p>
+				<br />
+				<p style="font-size: 1em" th:text="${searchString}"></p>				
 			</div>
 		</div>
 		
+		<div class="row" th:if="${listEmpty}">
+			<div class="col-xs-12">
+				<br />
+				<p>Aucun résultat</p>
+			</div>
+		</div>
+
 		<div class="row">
 			<div data-th-each="user : ${userList}"
 				class="userCard col-xs-10 col-xs-offset-1 col-sm-offset-0 col-lg-3 col-sm-3">
@@ -108,8 +141,9 @@
 								th:if="${user.category != null and !#strings.equals(user.category,'Equipe')}"
 								class="desc" th:text="${user.category}"></div>
 
-							<div th:if="${user.sector != null and !#strings.isEmpty(user.sector)}" class="desc"
-								th:text="${user.sector}"></div>
+							<div
+								th:if="${user.sector != null and !#strings.isEmpty(user.sector)}"
+								class="desc" th:text="${user.sector}"></div>
 
 							<div data-th-each="userSkill : ${user.userSkills}">
 								<div data-th-each="skill : ${userSkill.skill}">
@@ -117,6 +151,9 @@
 										class="desc" th:text="${'#' + skill.name}"></div>
 								</div>
 							</div>
+							<a style="background-color: #80AA03"
+								class="btn btn-default no-under btn-xs"
+								th:href="@{/userDetail(id=${user.id})}" role="button">Contacter</a>
 
 						</div>
 						<div class="bottom">

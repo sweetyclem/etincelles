@@ -25,7 +25,7 @@
 
 <!-- Bootstrap select -->
 <link rel="stylesheet"
-	th:href="@{/bootstrap-select-1.12.2/dist/css/bootstrap-select.min.css}" />
+	th:href="@{css/bootstrap-select-1.12.2/dist/css/bootstrap-select.min.css}" />
 
 
 <!-- Custom Fonts -->
@@ -61,6 +61,7 @@
 						<li><a th:href="@{/directory}">Annuaire</a></li>
 						<li><a th:href="@{/news}">Actualités</a></li>
 						<li><a class="nav-link" th:href="@{/calendar}">Agenda</a></li>
+						<li><a th:href="@{/aboutUs}">Qui sommes nous</a></li>
 						<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
 							aria-expanded="false">Plus<span class="caret"></span></a>
@@ -101,7 +102,7 @@
 			th:src="@{//cloud.tinymce.com/stable/tinymce.min.js?apiKey=d6rar2ljmc8152k8qm6ly45tc0v1nllxqtmpmg4994clxkeo}"></script>
 		<script>
 			tinymce.init({
-				selector : 'textarea'
+				selector : 'textarea.editme'
 			});
 		</script>
 		<!-- Plugin JavaScript -->

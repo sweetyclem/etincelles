@@ -47,4 +47,40 @@ $(function () {
 		}
 		});
 	
+	$("#email1").keyup(function() {
+		var email1 = $("#email1").val();
+		var email2 = $("#email2").val();
+		
+		if(email1 == "" && email2 =="") {
+			$("#checkemailMatch").html("");
+			$("#contact-submit").prop('disabled', false);
+		} else {
+			if(email1 != email2) {
+				$("#checkemailMatch").html("Les emails ne correspondent pas");
+				$("#contact-submit").prop('disabled', true);
+			} else {
+				$("#checkemailMatch").html("Les emails correspondent");
+				$("#contact-submit").prop('disabled', false);
+			}
+		}
+		});
+		
+		$("#email2").keyup(function() {
+			var email1 = $("#email1").val();
+			var email2 = $("#email2").val();
+			
+			if(email1 == "" && email2 =="") {
+				$("#checkemailMatch").html("");
+				$("#contact-submit").prop('disabled', false);
+			} else {
+				if(email1 != email2) {
+					$("#checkemailMatch").html("Les emails ne correspondent pas");
+					$("#contact-submit").prop('disabled', true);
+				} else {
+					$("#checkemailMatch").html("Les emails correspondent");
+					$("#contact-submit").prop('disabled', false);
+				}
+			}
+			});
+	
 	});

@@ -294,6 +294,15 @@ public class HomeController implements ErrorController {
                 users.add( user );
             }
         }
+
+        List<Skill> skills = (List<Skill>) skillRepo.findAll();
+        List<String> skillList = new ArrayList<>();
+        for ( Skill skill : skills ) {
+            skillList.add( skill.getName() );
+        }
+
+        model.addAttribute( "skillList", skillList );
+        model.addAttribute( "directory", true );
         model.addAttribute( "userList", users );
         return "directory";
     }
@@ -351,11 +360,20 @@ public class HomeController implements ErrorController {
 
         if ( userList.isEmpty() ) {
             model.addAttribute( "emptyList", true );
+            model.addAttribute( "directory", true );
             return "directory";
         }
 
-        model.addAttribute( "userList", userList );
+        List<Skill> skills = (List<Skill>) skillRepo.findAll();
+        List<String> skillList = new ArrayList<>();
+        for ( Skill skill : skills ) {
+            skillList.add( skill.getName() );
+        }
 
+        model.addAttribute( "skillList", skillList );
+
+        model.addAttribute( "userList", userList );
+        model.addAttribute( "directory", true );
         return "directory";
     }
 
@@ -364,80 +382,94 @@ public class HomeController implements ErrorController {
 
         String queryString = "SELECT * from user, user_skill where";
         String search = "Votre recherche :";
-        boolean needAnd = false;
+        boolean needOr = false;
+        boolean empty = true;
 
         if ( request.getParameterMap().containsKey( "skills" ) ) {
             String[] skills = request.getParameterValues( "skills" );
-            queryString = "SELECT * from user, user_skill where user.id = user_skill.user_id and";
+            queryString = "SELECT distinct id from user, user_skill where user.id = user_skill.user_id and";
             for ( int i = 0; i < skills.length; i++ ) {
                 search += " " + skills[i];
                 if ( i > 0 ) {
-                    queryString += " and ";
+                    queryString += " or ";
                 }
                 Skill skill = skillRepo.findByname( skills[i] );
                 queryString += " user_skill.skill_id = " + skill.getSkillId();
-                if ( needAnd == false ) {
-                    needAnd = true;
+                if ( needOr == false ) {
+                    needOr = true;
                 }
             }
         }
 
         if ( request.getParameterMap().containsKey( "sectors" ) ) {
             String[] sectors = request.getParameterValues( "sectors" );
-            if ( needAnd ) {
-                queryString += " and ";
+            if ( needOr ) {
+                queryString += " or ";
             }
             for ( int i = 0; i < sectors.length; i++ ) {
                 search += " " + sectors[i];
                 if ( i > 0 ) {
-                    queryString += " and ";
+                    queryString += " or ";
                 }
                 queryString += " user.sector = " + "\'" + sectors[i] + "\'";
-                if ( needAnd == false ) {
-                    needAnd = true;
+                if ( needOr == false ) {
+                    needOr = true;
                 }
             }
         }
 
         if ( request.getParameterMap().containsKey( "categories" ) ) {
             String[] categories = request.getParameterValues( "categories" );
-            if ( needAnd ) {
-                queryString += " and ";
+            if ( needOr ) {
+                queryString += " or ";
             }
             for ( int i = 0; i < categories.length; i++ ) {
                 search += " " + categories[i];
                 if ( i > 0 ) {
-                    queryString += " and ";
+                    queryString += " or ";
                 }
                 queryString += " user.category = " + "\'" + categories[i] + "\'";
-                if ( needAnd == false ) {
-                    needAnd = true;
+                if ( needOr == false ) {
+                    needOr = true;
                 }
             }
         }
 
         if ( request.getParameterMap().containsKey( "cities" ) ) {
             String[] cities = request.getParameterValues( "cities" );
-            if ( needAnd ) {
-                queryString += " and ";
+            if ( needOr ) {
+                queryString += " or ";
             }
             for ( int i = 0; i < cities.length; i++ ) {
                 search += " " + cities[i];
                 if ( i > 0 ) {
-                    queryString += " and ";
+                    queryString += " or ";
                 }
                 queryString += " user.city = " + "\'" + cities[i] + "\'";
-                if ( needAnd == false ) {
-                    needAnd = true;
+                if ( needOr == false ) {
+                    needOr = true;
                 }
             }
         }
+        System.out.println( queryString );
 
         List<User> userList = null;
         userList = customUserService.searchQuery( queryString );
+        if ( !userList.isEmpty() ) {
+            empty = false;
+        }
 
+        List<Skill> skills = (List<Skill>) skillRepo.findAll();
+        List<String> skillList = new ArrayList<>();
+        for ( Skill skill : skills ) {
+            skillList.add( skill.getName() );
+        }
+
+        model.addAttribute( "skillList", skillList );
+        model.addAttribute( "listEmpty", empty );
         model.addAttribute( "userList", userList );
         model.addAttribute( "searchString", search );
+        model.addAttribute( "directory", true );
         return "directory";
     }
 
@@ -454,6 +486,20 @@ public class HomeController implements ErrorController {
     @Override
     public String getErrorPath() {
         return "/error";
+    }
+
+    @RequestMapping( value = "/contact", method = RequestMethod.POST )
+    public String contact( Model model, @RequestParam( "name" ) String name, @RequestParam( "email" ) String email,
+            @RequestParam( "content" ) String text, @RequestParam( "userEmail" ) String userEmail ) {
+        SimpleMailMessage newEmail = mailConstructor.constructContactEmail( name, email, text, userEmail );
+        mailSender.send( newEmail );
+        model.addAttribute( "emailSent", true );
+        return "confirmSend";
+    }
+
+    @RequestMapping( "/aboutUs" )
+    public String aboutUs() {
+        return "aboutUs";
     }
 
 }
