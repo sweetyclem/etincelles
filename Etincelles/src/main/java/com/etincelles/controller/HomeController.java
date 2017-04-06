@@ -380,7 +380,7 @@ public class HomeController implements ErrorController {
     @RequestMapping( value = "/directorySearch", method = RequestMethod.POST )
     public String directorySearchPost( Model model, HttpServletRequest request ) {
 
-        String queryString = "SELECT * from user, user_skill where";
+        String queryString = "SELECT distinct id from user, user_skill where";
         String search = "Votre recherche :";
         boolean needOr = false;
         boolean empty = true;
