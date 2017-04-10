@@ -14,7 +14,7 @@
 				th:with="pic=${'/images/message/' + message.id +'.png'}">
 				<div style="text-align: left; margin-left: -4em"
 					class="col-xs-12 col-sm-4">
-					<ol class="breadcrumb" style="background-color: #18BC9C;">
+					<ol class="breadcrumb" style="background-color: #00CEC1;">
 						<li><a class="no-under" th:href="@{/news}"><i
 								class="fa fa-long-arrow-left" aria-hidden="true"></i> Retour</a></li>
 					</ol>
@@ -22,13 +22,12 @@
 			</div>
 			<div class="row" style="width: 100%; margin: 0">
 				<div class="col-sm-4 col-sm-offset-4">
-					<img class="img-responsive img-circle"
+					<!-- <img class="img-responsive img-circle"
 						th:if="${message.hasPicture == false}"
-						src="http://placekitten.com/600/600?image=14" /> 
-					<img
-						style="width: 400px; height: 400px" class="img-responsive img-circle"
+						src="http://placekitten.com/600/600?image=14" />  -->
+					<img class="img-responsive"
 						th:if="${message.hasPicture}"
-						th:src="${'https://etincellesadmin.herokuapp.com/images/message/'+ message.id +'.png'}" />
+						th:src="${'/images/message/'+ message.id +'.png'}" />
 				</div>
 			</div>
 

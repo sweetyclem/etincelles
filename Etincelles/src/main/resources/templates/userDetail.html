@@ -24,13 +24,13 @@
 			<div class="row" th:with="pic=${'/images/user/' + user.id +'.png'}">
 				<div class="col-md-7 col-xs-12" style="background-color: #F9F9F9;">
 					<div class="row">
-						<div class="col-xs-4 col-xs-offset-4">
-							<img class="img-responsive img-circle"
-								th:src="${(user.hasPicture) ? pic : 'http://placekitten.com/600/600?image=14'}"
-								th:alt="${user.firstName + ' ' + user.lastName}" />							
+						<div class="col-md-6 col-md-offset-3 profilePic">
+							<img class="img-responsive img-circle center-block"
+								th:src="${(user.hasPicture) ? pic : '/images/flower.jpeg'}"
+								th:alt="${user.firstName + ' ' + user.lastName}" />						
 
 						</div>
-						</div>
+					</div>
 				<div class="row">
 						<div class="col-xs-12 text-center">
 						<br/>
@@ -79,7 +79,7 @@
 						</div>
 						<div data-th-each="userSkill : ${user.userSkills}">
 							<div data-th-each="skill : ${userSkill.skill}">
-								<div th:if="${skill != null and !#strings.isEmpty(skill)}"
+								<div style="font-size: 1.5em" th:if="${skill != null and !#strings.isEmpty(skill)}"
 									class="desc" th:text="${'#' + skill.name}"></div>
 							</div>
 						</div>

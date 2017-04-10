@@ -1,5 +1,5 @@
 package com.etincelles.enumeration;
 
 public enum Category {
-    Etincelle, Mentore, Coach, Equipe, BoosterMarketing;
+    Etincelle, Mentore, Coach, Equipe;
 }

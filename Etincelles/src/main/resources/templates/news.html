@@ -32,10 +32,10 @@
 				class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					<div class="row">
 					<div class="col-sm-4">
-					<img class="img-responsive img-circle" th:if="${message.hasPicture == false}"
-						src="http://placekitten.com/600/600?image=12"/>
-						<img class="img-responsive img-circle" th:if="${message.hasPicture}"
-						th:src="${'https://etincellesadmin.herokuapp.com/images/message/'+message.id+'.png'}"/>
+					<!-- <img class="img-responsive img-circle" th:if="${message.hasPicture == false}"
+						src="http://placekitten.com/600/600?image=12"/> -->
+						<img class="img-responsive" th:if="${message.hasPicture}"
+						th:src="${'/images/message/'+message.id+'.png'}"/>
 						
 					</div>
 					<br />

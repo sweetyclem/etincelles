@@ -186,16 +186,16 @@ public class HomeController implements ErrorController {
             try {
                 byte[] bytes = picture.getBytes();
                 String name = user.getId() + ".png";
-                if ( Files.exists( Paths.get( "src/main/resources/static/images/user/" + name ) ) ) {
-                    Files.delete( Paths.get( "src/main/resources/static/images/user/" + name ) );
+                if ( Files.exists( Paths.get( "/home/clem/etincelles/images/user/" + name ) ) ) {
+                    Files.delete( Paths.get( "/home/clem/etincelles/images/user/" + name ) );
                 }
                 BufferedOutputStream stream = new BufferedOutputStream(
-                        new FileOutputStream( new File( "src/main/resources/static/images/user/" + name ) ) );
+                        new FileOutputStream( new File( "/home/clem/etincelles/images/user/" + name ) ) );
                 stream.write( bytes );
                 stream.close();
                 currentUser.setHasPicture( true );
             } catch ( Exception e ) {
-                System.out.println( "Erreur ligne 169" );
+                System.out.println( "Erreur ligne 198" );
                 e.printStackTrace();
             }
         }

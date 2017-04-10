@@ -39,6 +39,7 @@
 					<option value='Wordpress'>Wordpress</option>
 				</optgroup>
 				<optgroup label='Communication, marketing et contenu'>
+					<option value='Data marketing'>Data marketing</option>
 					<option value='Community management'>Community management</option>
 					<option value='Contenu éditorial'>Contenu éditorial</option>
 					<option value='Cross-canal'>Cross-canal</option>
@@ -104,6 +105,7 @@
 					<option value='Bitcoin'>Bitcoin</option>
 				</optgroup>
 				<optgroup label='Politique, business et investissement'>
+					<option value='Digital business development'>Digital business development</option>
 					<option value='Business Model'>Business Model</option>
 					<option value='Crowdfunding'>Crowdfunding</option>
 					<option value='E-Commerce'>E-Commerce</option>
@@ -205,6 +207,8 @@
 					value='Wordpress'>Wordpress</option>
 				</optgroup>
 				<optgroup label='Communication, marketing et contenu'>
+					<option th:selected="${#lists.contains(skills, 'Data marketing')}"
+					value='Data marketing'>Data marketing</option>
 					<option th:selected="${#lists.contains(skills, 'Community management')}"
 					value='Community management'>Community management</option>
 					<option th:selected="${#lists.contains(skills, 'Contenu éditorial')}"
@@ -331,6 +335,8 @@
 					value='Bitcoin'>Bitcoin</option>
 				</optgroup>
 				<optgroup label='Politique, business et investissement'>
+					<option th:selected="${#lists.contains(skills, 'Digital business development')}"
+					value='Digital business development'>Digital business development</option>
 					<option th:selected="${#lists.contains(skills, 'Business Model')}"
 					value='Business Model'>Business Model</option>
 					<option th:selected="${#lists.contains(skills, 'Crowdfunding')}"
