@@ -29,41 +29,7 @@
 				<div class="col-xs-10 col-sm-2">
 					<select id="sector" title="Secteur" name="sectors"
 						 class="selectpicker form-control" multiple="multiple">
-						<option value='Agroalimentaire '>Agroalimentaire</option>
-						<option value='Artisanat / Culture / Spectacle'>Artisanat
-							/ Culture / Spectacle</option>
-						<option value='Banque / Finance / Assurance'>Banque /
-							Finance / Assurance</option>
-						<option value='BTP / Matériaux de construction'>BTP /
-							Matériaux de construction</option>
-						<option value='Chimie / Parachimie'>Chimie / Parachimie</option>
-						<option value='Commerce / Négoce / Distribution / E-commerce'>Commerce
-							/ Négoce / Distribution / E-commerce</option>
-						<option value='Droit'>Droit</option>
-						<option
-							value='Economie sociale et solidaire / Développement durable'>Economie
-							sociale et solidaire / Développement durable</option>
-						<option value='Édition / Communication / Multimédia / Audiovisuel'>Édition
-							/ Communication / Multimédia / Audiovisuel</option>
-						<option value='Électronique / Électricité'>Électronique /
-							Électricité</option>
-						<option value='Enseignement / Formation'>Enseignement /
-							Formation</option>
-						<option value='Études et conseils / Services aux entreprises'>Études
-							et conseils / Services aux entreprises</option>
-						<option value='Fonction publique'>Fonction publique</option>
-						<option value='Hôtellerie / Restauration / Tourisme'>Hôtellerie
-							/ Restauration / Tourisme</option>
-						<option value='Informatique / Télécoms'>Informatique /
-							Télécoms</option>
-						<option value='Industrie / Machines et équipements'>Industrie
-							/ Machines et équipements</option>
-						<option value='Santé / Industrie pharmaceutique'>Santé /
-							Industrie pharmaceutique</option>
-						<option value='Services à la personne'>Services à la
-							personne</option>
-						<option value='Transports / Logistique'>Transports /
-							Logistique</option>
+						<option data-th-each="sector : ${sectors}" th:value="${sector}" th:text="${sector}"></option>				
 					</select>
 				</div>
 

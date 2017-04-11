@@ -304,6 +304,14 @@ public class HomeController implements ErrorController {
             skillList.add( skill.getName() );
         }
 
+        List<String> sectors = new ArrayList<>();
+        for ( User user : userList ) {
+            if ( user.getSector() != null && !user.getSector().isEmpty() ) {
+                sectors.add( user.getSector() );
+            }
+        }
+
+        model.addAttribute( "sectors", sectors );
         model.addAttribute( "skillList", skillList );
         model.addAttribute( "directory", true );
         model.addAttribute( "userList", users );
