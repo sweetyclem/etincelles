@@ -94,7 +94,7 @@
 						</p>
 					</div>
 				</div>
-				<div class="col-md-5 col-xs-12 text-center">
+				<div th:if="${!user.noContact}" class="col-md-5 col-xs-12 text-center">
 					<form id="contact" th:action="@{/contact}" method="post">
 						<h3>Contact</h3>
 						<input type="hidden" name="userEmail" th:value="${user.email}" />

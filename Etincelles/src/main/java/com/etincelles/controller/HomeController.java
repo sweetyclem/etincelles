@@ -218,6 +218,9 @@ public class HomeController implements ErrorController {
                 return "myProfile";
             }
         }
+        if ( user.isNoContact() ) {
+            currentUser.setNoContact( user.isNoContact() );
+        }
 
         currentUser.setFirstName( user.getFirstName() );
         currentUser.setLastName( user.getLastName() );
