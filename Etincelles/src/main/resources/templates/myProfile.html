@@ -20,8 +20,8 @@
 
 		<hr />
 		<div class="row">
-			<div class="alert alert-danger" th:if="${incorrectPassword}">
-				<strong>Le mot de passe actuel est incorrect</strong>
+			<div class="alert alert-danger" th:if="${uploadError}">
+				<strong>Le fichier est trop volumieux, maximum 50Mo</strong>
 			</div>
 			
 			<div class="alert alert-danger" th:if="${incorrectSkills}">

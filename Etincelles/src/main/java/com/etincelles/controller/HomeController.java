@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.etincelles.entities.Message;
 import com.etincelles.entities.PasswordResetToken;
@@ -185,6 +186,7 @@ public class HomeController implements ErrorController {
         if ( !( picture.isEmpty() ) ) {
             try {
                 byte[] bytes = picture.getBytes();
+
                 String name = user.getId() + ".png";
                 if ( Files.exists( Paths.get( "/home/clem/etincelles/images/user/" + name ) ) ) {
                     Files.delete( Paths.get( "/home/clem/etincelles/images/user/" + name ) );
@@ -497,6 +499,12 @@ public class HomeController implements ErrorController {
     @Override
     public String getErrorPath() {
         return "/error";
+    }
+
+    @RequestMapping( "uploadError" )
+    public String onUploadError( HttpServletRequest request, RedirectAttributes redirectAttributes ) {
+        redirectAttributes.addAttribute( "uploadError", true );
+        return "redirect:/myProfile";
     }
 
     @RequestMapping( value = "/contact", method = RequestMethod.POST )
