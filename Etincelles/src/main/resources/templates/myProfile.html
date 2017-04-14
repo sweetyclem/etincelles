@@ -189,30 +189,26 @@
 											<input th:checked="${user.noContact}" type="checkbox" value="true" name="noContact"/>Je ne souhaite pas qu'on puisse me contacter
 										</div>
 
-										<div class="form-group">
+										<!-- <div class="form-group">
 											<label for="currentPassword">Mot de passe actuel</label><input
 												type="password" class="form-control" id="currentPassword"
 												name="password" th:value="${currentPassword}"
 												required="required" />
 												<p style="color: #828282 ; font-size: 0.9em">Entrez votre mot de passe actuel
 											pour mettre à jour l'email ou le mot de passe.</p>
-										</div>										
+										</div>	 -->									
 
 										<br/>
 										<div class="form-group">
+										<div style="font-size: 1.2em">Changer de mot de passe</div><br/>
 											<label for="txtNewPassword">Nouveau mot de passe</label>&nbsp;<span
 												id="checkPasswordMatch" style="color: red;"></span> <input
 												type="password" class="form-control" id="txtNewPassword"
 												name="newPassword" />
-										</div>
-
-										<div class="form-group">
 											<label for="txtConfirmPassword">Confirmer mot de
 												passe</label><input type="password" class="form-control"
 												id="txtConfirmPassword" />
-										</div>
-										<p style="color: #828282; font-size: 1em">Entrez à nouveau le mot de
-											passe.</p>
+										</div>										
 										<br />
 										<button id="updateUserInfoButton" type="submit" class="btn btn-primary">Valider</button>
 									</form>
