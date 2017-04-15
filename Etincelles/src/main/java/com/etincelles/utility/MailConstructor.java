@@ -36,8 +36,9 @@ public class MailConstructor {
         SimpleMailMessage contactEmail = new SimpleMailMessage();
         contactEmail.setTo( userEmail );
         contactEmail.setSubject( "Un message vous a été envoyé " + "par " + name + " depuis le site Etincelles" );
-        contactEmail.setText( "Ne pas répondre directement,répondez à cette adresse : " + email + "\n" + text );
-        contactEmail.setFrom( env.getProperty( "support.email" ) );
+        // contactEmail.setText( "Ne pas répondre directement,répondez à cette
+        // adresse : " + email + "\n" + text );
+        // contactEmail.setFrom( env.getProperty( "support.email" ) );
         contactEmail.setText( text );
         contactEmail.setFrom( email );
         return contactEmail;

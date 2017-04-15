@@ -156,6 +156,7 @@
 				class="selectpicker form-control" multiple="multiple"
 				title="Compétences">
 				<optgroup label='Gestion de projets et méthodologies'>
+					<option th:selected="${#lists.contains(skills, 'Gestion de projets')}" value='Gestion de projets'>Gestion de projets</option>
 					<option th:selected="${#lists.contains(skills, 'Design Thinking')}" value='Design Thinking'>Design Thinking</option>
 					<option th:selected="${#lists.contains(skills, 'DevOps')}"  value='DevOps'>DevOps</option>
 					<option th:selected="${#lists.contains(skills, 'Lean Startup')}"  value='Lean Startup'>Lean Startup</option>

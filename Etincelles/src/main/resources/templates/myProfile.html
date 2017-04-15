@@ -89,7 +89,7 @@
 										</div>
 
 										<div class="form-group">
-											<label for="email">* Email</label><input type="text"
+											<label for="email">* Email</label><input type="text" required="required"
 												class="form-control" id="email" name="email"
 												th:value="${user.email}" />
 										</div>
@@ -97,7 +97,7 @@
 																		
 										<div th:if="${user.city != null}" class="form-group" id="city">
 											<label for="city">* Ville</label> <select name="city" id="citySelect"
-												class="form-control">
+												class="form-control" required="required">
 												<option th:selected="(${user.city.name()}=='Paris')" th:value="Paris">Paris</option>
 												<option th:selected="(${user.city.name()}=='Lyon')" th:value="Lyon">Lyon</option>
 											</select>
@@ -105,7 +105,7 @@
 										
 										<div th:if="${user.city == null}" class="form-group" id="city">
 											<label for="city">* Ville</label> <select name="city" id="citySelect"
-												class="form-control">
+												class="form-control" required="required">
 												<option value="" selected="selected" disabled="disabled">Choisir une ville</option>
 												<option th:value="Paris">Paris</option>
 												<option th:value="Lyon">Lyon</option>
@@ -155,34 +155,32 @@
 										</div>										
 
 										<div class="form-group">
-											<label for="twitter">Compte twitter</label><input type="text"
-												pattern="[a-z0-9]+$" class="form-control" id="twitter"
+											<label for="twitter">Compte twitter</label><input type="url"
+												class="form-control" id="twitter"
 												name="twitter"
-												placeholder="Entrez le nom d'utilisateur uniquement"
+												placeholder="url complète"
 												th:value="${user.twitter}" />
 											<p style="color: #828282; font-size: 0.9em">Par exemple
-												pour https://twitter.com/SocialBuilder, entrez SocialBuilder</p>
+												https://twitter.com/SocialBuilder</p>
 										</div>
 
 										<div class="form-group">
 											<label for="facebook">Compte facebook</label><input
-												type="text" class="form-control" id="facebook"
+												type="url" class="form-control" id="facebook"
 												name="facebook"
-												placeholder="Entrez le nom d'utilisateur uniquement"
+												placeholder="url complète"
 												th:value="${user.facebook}" />
 											<p style="color: #828282; font-size: 0.9em">Par exemple
-												pour https://facebook.com/public/SocialBuilder, entrez
-												SocialBuilder</p>
+												 https://facebook.com/public/SocialBuilder</p>
 										</div>
 
 										<div class="form-group">
-											<label for="linkedin">Linkedin</label><input type="text"
+											<label for="linkedin">Linkedin</label><input type="url"
 												class="form-control" id="linkedin" name="linkedin"
-												placeholder="Entrez le nom d'utilisateur uniquement"
+												placeholder="url complète"
 												th:value="${user.linkedin}" />
 											<p style="color: #828282; font-size: 0.9em">Par exemple
-												pour https://linkedin.com/in/SocialBuilder, entrez
-												SocialBuilder</p>
+												https://linkedin.com/in/SocialBuilder</p>
 										</div>
 										
 										<div class="form-group">

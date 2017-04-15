@@ -22,7 +22,7 @@
 	<section style="padding: 1em" id="team">
 		<div class="container" style="width: 100%">
 			<div class="row" th:with="pic=${'/images/user/' + user.id +'.png'}">
-				<div class="col-md-7 col-xs-12" style="background-color: #F9F9F9;">
+				<div class="col-md-7 col-xs-12" style="background-color: #F9F9F9; min-height:431px">
 					<div class="row">
 						<div class="col-md-6 col-md-offset-3 profilePic">
 							<img class="img-responsive img-circle center-block"
@@ -33,11 +33,29 @@
 					</div>
 				<div class="row">
 						<div class="col-xs-12 text-center">
-						<br/>
+						<br/>							
+							<div class="bottom">
 							<h2
 								th:if="${!#strings.isEmpty(user.lastName) and !#strings.isEmpty(user.firstName)}"
 								class="section-heading"
 								th:text="${user.firstName + ' ' + user.lastName}"></h2>
+							<a
+									th:if="${user.twitter != null and !#strings.isEmpty(user.twitter)}"
+									target="_blank" class="btn btn-twitter btn-sm"
+									th:href="@{user.twitter}"> <i
+									class="fa fa-twitter"></i>
+								</a> <a
+									th:if="${user.facebook != null and !#strings.isEmpty(user.facebook)}"
+									target="_blank" class="btn btn-facebook btn-sm" rel="publisher"
+									th:href="@{user.facebook}">
+									<i class="fa fa-facebook"></i>
+								</a> <a
+									th:if="${user.linkedin != null  and !#strings.isEmpty(user.linkedin)}"
+									target="_blank" class="btn btn-linkedin btn-sm" rel="publisher"
+									th:href="${user.linkedin}"> <i
+									class="fa fa-linkedin"></i>
+								</a>
+						</div>
 
 							<div class="team-member">
 								<p> 
@@ -58,25 +76,9 @@
 						</p>
 						<p th:if="${user.city != null and !#strings.isEmpty(user.city)}">
 							<strong></strong><span th:text="${user.city}"></span>
-						</p>
-						<div class="bottom">
-							<a
-								th:if="${user.twitter != null and !#strings.isEmpty(user.twitter)}"
-								target="_blank" class="btn btn-twitter btn-sm"
-								th:href="@{https://twitter.com/} + ${user.twitter}"> <i
-								class="fa fa-twitter"></i>
-							</a> <a
-								th:if="${user.facebook != null and !#strings.isEmpty(user.facebook)}"
-								target="_blank" class="btn btn-facebook btn-sm" rel="publisher"
-								th:href="@{https://facebook.com/public/} + ${user.facebook}">
-								<i class="fa fa-facebook"></i>
-							</a> <a
-								th:if="${user.linkedin != null and !#strings.isEmpty(user.linkedin)}"
-								target="_blank" class="btn btn-linkedin btn-sm" rel="publisher"
-								th:href="@{https://linkedin.com/in/} + ${user.linkedin}"> <i
-								class="fa fa-linkedin"></i>
-							</a>
-						</div>
+						</p>						
+						<p th:if="${user.sector != null and !#strings.isEmpty(user.sector)}">
+						<span th:text="${user.sector}"></span></p>
 						<div data-th-each="userSkill : ${user.userSkills}">
 							<div data-th-each="skill : ${userSkill.skill}">
 								<div style="font-size: 1.5em" th:if="${skill != null and !#strings.isEmpty(skill)}"
@@ -86,10 +88,10 @@
 
 					</div>
 					</div>
-					<div class="row text-center">
+					<div class="row text-justify">
 					<br/>					
 						<p th:if="${user.description != null and !#strings.isEmpty(user.description)}">
-							<strong>Description : </strong><span
+							<!-- <strong>Description : </strong> --><span
 								th:utext="${user.description}"></span>
 						</p>
 					</div>
@@ -100,7 +102,7 @@
 						<input type="hidden" name="userEmail" th:value="${user.email}" />
 						<fieldset>
 							<input placeholder="Prénom et nom" type="text" tabindex="1"
-								required="required" autofocus="autofocus" name="name" />
+								required="required" name="name" />
 						</fieldset>
 						<span id="checkemailMatch"></span>
 						<fieldset>
