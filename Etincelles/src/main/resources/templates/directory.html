@@ -23,6 +23,8 @@
 					style="line-height: 30px">
 					<div th:replace="common/skillSelect :: directorySkillSelect"></div>
 				</div>
+				
+				<p class="col-xs-1 col-sm-1" style="height: 34px; width: 20px; padding-left: 0; padding-right: 0; color: gray;" th:text="et"></p>
 
 				<div class="col-xs-10 col-sm-2">
 					<select id="sector" title="Secteur" name="sectors"
@@ -31,6 +33,8 @@
 							th:text="${sector}"></option>
 					</select>
 				</div>
+				
+				<p class="col-xs-1 col-sm-1" style="height: 34px; width: 20px; padding-left: 0; padding-right: 0; color: gray;" th:text="et"></p>
 
 				<div class="col-xs-10 col-sm-2">
 					<select id="category" title="Catégorie" name="categories"
@@ -41,6 +45,8 @@
 						<option th:selected="${searchList  != null and #lists.contains(searchList, 'Equipe')}" th:value="Equipe">Equipe Social Builder</option>
 					</select>
 				</div>
+				
+				<p class="col-xs-1 col-sm-1" style="height: 34px; width: 20px; padding-left: 0; padding-right: 0; color: gray;" th:text="et"></p>
 
 				<div class="col-xs-10 col-sm-2">
 					<select style="line-height: 30px" name="cities"
@@ -50,7 +56,7 @@
 						<option th:selected="${searchList  != null and #lists.contains(searchList, 'Lyon')}" th:value="Lyon">Lyon</option>
 					</select>
 				</div>
-
+				
 				<div
 					class="col-xs-3 col-xs-offset-3 col-sm-offset-0 col-sm-1 submit">
 					<input class="btn btn-default" name='submit' type='submit'
@@ -68,8 +74,9 @@
 		<div class="row" th:if="${searchList}">
 			<div class="col-xs-12">
 				<br />
-				<p>Votre recherche : </p>
+				<p>Votre recherche :
 				<span th:each="param, iterStat : ${searchList}" th:text="!${iterStat.last} ? ${param} + ',': ${param}" style="font-size: 1em"></span>
+				</p>
 			</div>
 		</div>
 
@@ -132,7 +139,7 @@
 						</div>
 						<div
 							style="position: absolute; bottom: 0; width: 100%; height: 50px;">
-							<a th:if="${!user.noContact}"
+							<a th:if="${!user.noContact}" target="_blank"
 								style="background-color: #80AA03; padding: 0.4em"
 								class="btn btn-default no-under btn-xs"
 								th:href="@{/userDetail#contact(id=${user.id})}" role="button">Contacter</a>
