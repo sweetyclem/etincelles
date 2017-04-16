@@ -7,7 +7,7 @@
 	<div th:fragment="regularSkillSelect">
 			<select name="skills" id="skillSelect"
 				class="selectpicker form-control" multiple="multiple"
-				title="Compétences">				
+				title="Compétences" data-max-options="4">				
 				<optgroup label='Gestion de projets et méthodologies'>
 				<option value='Gestion de projets'>Gestion de projets</option>
 					<option value='Design Thinking'>Design Thinking</option>
@@ -18,8 +18,7 @@
 					<option value='Scrum Master'>Scrum Master</option>
 				</optgroup>
 				<optgroup label='Développement'>
-					<option value='Android'>Android</option>
-					<option value='C++'>C++</option>
+					<option value='Android'>Android</option>					
 					<option value='HTML5'>HTML5</option>
 					<option value='iOs'>iOS</option>
 					<option value='Java'>Java</option>
@@ -32,6 +31,8 @@
 					<option value='Symfony'>Symfony</option>
 					<option value='.NET'>.NET</option>
 					<option value='Langage C'>Langage C</option>
+					<option value='C++'>C++</option>
+					<option value='C#'>C#</option>
 					<option value='CSS'>CSS</option>
 					<option value='Magento'>Magento</option>
 					<option value='Standard'>Standard</option>
@@ -154,7 +155,7 @@
 	<div th:fragment="userSkillSelect">		
 			<select  name="skills" id="skillSelect"
 				class="selectpicker form-control" multiple="multiple"
-				title="Compétences">
+				title="Compétences" data-max-options="4">
 				<optgroup label='Gestion de projets et méthodologies'>
 					<option th:selected="${#lists.contains(skills, 'Gestion de projets')}" value='Gestion de projets'>Gestion de projets</option>
 					<option th:selected="${#lists.contains(skills, 'Design Thinking')}" value='Design Thinking'>Design Thinking</option>
@@ -168,9 +169,7 @@
 				</optgroup>
 				<optgroup label='Développement'>
 					<option th:selected="${#lists.contains(skills, 'Android')}"
-					value='Android'>Android</option>
-					<option th:selected="${#lists.contains(skills, 'C++')}"
-					value='C++'>C++</option>
+					value='Android'>Android</option>					
 					<option th:selected="${#lists.contains(skills, 'HTML5')}"
 					value='HTML5'>HTML5</option>
 					<option th:selected="${#lists.contains(skills, 'iOS')}"
@@ -195,6 +194,10 @@
 					value='.NET'>.NET</option>
 					<option th:selected="${#lists.contains(skills, 'Langage C')}"
 					value='Langage C'>Langage C</option>
+					<option th:selected="${#lists.contains(skills, 'C++')}"
+					value='C++'>C++</option>
+					<option th:selected="${#lists.contains(skills, 'C#')}"
+					value='C#'>C#</option>
 					<option th:selected="${#lists.contains(skills, 'CSS')}"
 					value='CSS'>CSS</option>
 					<option th:selected="${#lists.contains(skills, 'Magento')}"
@@ -411,6 +414,273 @@
 					<option th:selected="${#lists.contains(skills, 'Réseaux sans fil')}"
 					value='Réseaux sans fil'>Réseaux sans fil</option>
 					<option th:selected="${#lists.contains(skills, 'Réseaux mobiles')}"
+					value='Réseaux mobiles'>Réseaux mobiles</option>
+				</optgroup>
+			</select>
+	</div>
+
+<div th:fragment="directorySkillSelect">		
+			<select  name="skills" id="skillSelect"
+				class="selectpicker form-control" multiple="multiple"
+				title="Compétences">
+				<optgroup label='Gestion de projets et méthodologies'>
+					<option th:if="${#lists.contains(skillList, 'Gestion de projets')}" value='Gestion de projets'>Gestion de projets</option>
+					<option th:if="${#lists.contains(skillList, 'Design Thinking')}" value='Design Thinking'>Design Thinking</option>
+					<option th:if="${#lists.contains(skillList, 'DevOps')}"  value='DevOps'>DevOps</option>
+					<option th:if="${#lists.contains(skillList, 'Lean Startup')}"  value='Lean Startup'>Lean Startup</option>
+					<option th:if="${#lists.contains(skillList, 'Méthode Agile')}"  value='Méthode Agile'>Méthode Agile</option>
+					<option th:if="${#lists.contains(skillList, 'Product Owner')}"
+					value='Product Owner'>Product Owner</option>
+					<option th:if="${#lists.contains(skillList, 'Scrum Master')}"
+					value='Scrum Master'>Scrum Master</option>
+				</optgroup>
+				<optgroup label='Développement'>
+					<option th:if="${#lists.contains(skillList, 'Android')}"
+					value='Android'>Android</option>					
+					<option th:if="${#lists.contains(skillList, 'HTML5')}"
+					value='HTML5'>HTML5</option>
+					<option th:if="${#lists.contains(skillList, 'iOS')}"
+					value='iOs'>iOS</option>
+					<option th:if="${#lists.contains(skillList, 'Java')}"
+					value='Java'>Java</option>
+					<option th:if="${#lists.contains(skillList, 'Javascript')}"
+					value='Javascript'>Javascript</option>
+					<option th:if="${#lists.contains(skillList, 'Linux')}"
+					value='Linux'>Linux</option>
+					<option th:if="${#lists.contains(skillList, 'Open Source')}"
+					value='Open Source'>Open Source</option>
+					<option th:if="${#lists.contains(skillList, 'PHP')}"
+					value='PHP'>PHP</option>
+					<option th:if="${#lists.contains(skillList, 'Python')}"
+					value='Python'>Python</option>
+					<option th:if="${#lists.contains(skillList, 'Ruby')}"
+					value='Ruby'>Ruby</option>
+					<option th:if="${#lists.contains(skillList, 'Symfony')}"
+					value='Symfony'>Symfony</option>
+					<option th:if="${#lists.contains(skillList, '.NET')}"
+					value='.NET'>.NET</option>
+					<option th:if="${#lists.contains(skillList, 'Langage C')}"
+					value='Langage C'>Langage C</option>
+					<option th:if="${#lists.contains(skillList, 'C++')}"
+					value='C++'>C++</option>
+					<option th:if="${#lists.contains(skillList, 'C#')}"
+					value='C#'>C#</option>
+					<option th:if="${#lists.contains(skillList, 'CSS')}"
+					value='CSS'>CSS</option>
+					<option th:if="${#lists.contains(skillList, 'Magento')}"
+					value='Magento'>Magento</option>
+					<option th:if="${#lists.contains(skillList, 'Standard')}"
+					value='Standard'>Standard</option>
+					<option th:if="${#lists.contains(skillList, 'Ruby')}"
+					value='Ruby'>Ruby</option>
+					<option th:if="${#lists.contains(skillList, 'Software Engineering')}"
+					value='Software Engineering'>Software Engineering</option>
+					<option th:if="${#lists.contains(skillList, 'Wordpress')}"
+					value='Wordpress'>Wordpress</option>
+				</optgroup>
+				<optgroup label='Communication, marketing et contenu'>
+					<option th:if="${#lists.contains(skillList, 'Data marketing')}"
+					value='Data marketing'>Data marketing</option>
+					<option th:if="${#lists.contains(skillList, 'Community management')}"
+					value='Community management'>Community management</option>
+					<option th:if="${#lists.contains(skillList, 'Contenu éditorial')}"
+					value='Contenu éditorial'>Contenu éditorial</option>
+					<option th:if="${#lists.contains(skillList, 'Cross-canal')}"
+					value='Cross-canal'>Cross-canal</option>
+					<option th:if="${#lists.contains(skillList, 'Cross-media')}"
+					value='Cross-media'>Cross-media</option>
+					<option th:if="${#lists.contains(skillList, 'Cross-platform')}"
+					value='Cross-platform'>Cross-platform</option>
+					<option th:if="${#lists.contains(skillList, 'Digital PR')}"
+					value='Digital PR'>Digital PR</option>
+					<option th:if="${#lists.contains(skillList, 'Digital Storytelling')}"
+					value='Digital Storytelling'>Digital Storytelling</option>
+					<option th:if="${#lists.contains(skillList, 'Display')}"
+					value='Display'>Display</option>
+					<option th:if="${#lists.contains(skillList, 'e-CRM')}"
+					value='e-CRM'>e-CRM</option>
+					<option th:if="${#lists.contains(skillList, 'Loyalty')}"
+					value='Loyalty'>Loyalty</option>
+					<option th:if="${#lists.contains(skillList, 'Medias')}"
+					value='Medias'>Medias</option>
+					<option th:if="${#lists.contains(skillList, 'Planning stratégique')}"
+					value='Planning stratégique'>Planning stratégique</option>
+					<option th:if="${#lists.contains(skillList, 'Régie mobile')}"
+					value='Régie mobile'>Régie mobile</option>
+					<option th:if="${#lists.contains(skillList, 'Retargeting')}"
+					value='Retargeting'>Retargeting</option>
+					<option th:if="${#lists.contains(skillList, 'SEO')}"
+					value='SEO'>SEO</option>
+					<option th:if="${#lists.contains(skillList, 'SMO')}"
+					value='SMO'>SMO</option>
+					<option th:if="${#lists.contains(skillList, 'Social Media')}"
+					value='Social Media'>Social Media</option>
+					<option th:if="${#lists.contains(skillList, 'Social TV')}"
+					value='Social TV'>Social TV</option>
+					<option th:if="${#lists.contains(skillList, 'Livre numérique')}"
+					value='Livre numérique'>Livre numérique</option>
+					<option th:if="${#lists.contains(skillList, 'SEA')}"
+					value='SEA'>SEA</option>
+					<option th:if="${#lists.contains(skillList, 'Affiliation')}"
+					value='Affiliation'>Affiliation</option>
+					<option th:if="${#lists.contains(skillList, 'Web Analytics')}"
+					value='Web Analytics'>Web Analytics</option>
+					<option th:if="${#lists.contains(skillList, 'ROI du marketing digital')}"
+					value='ROI du marketing digital'>ROI du marketing digital</option>
+					<option th:if="${#lists.contains(skillList, 'Data Analytics')}"
+					value='Data Analytics'>Data Analytics</option>
+					<option th:if="${#lists.contains(skillList, 'Communication de crise')}"
+					value='Communication de crise'>Communication de crise</option>
+					<option th:if="${#lists.contains(skillList, 'E-réputation')}"
+					value='E-réputation'>E-réputation</option>
+					<option th:if="${#lists.contains(skillList, 'Edition Numérique')}"
+					value='Edition Numérique'>Edition Numérique</option>
+					<option th:if="${#lists.contains(skillList, 'A/B et multivariate testing')}"
+					value='A/B et multivariate testing'>A/B et multivariate testing</option>
+					<option th:if="${#lists.contains(skillList, 'Growth Hacking')}"
+					value='Growth Hacking'>Growth Hacking</option>
+					<option th:if="${#lists.contains(skillList, 'Acquisition')}"
+					value='Acquisition'>Acquisition</option>
+				</optgroup>
+				<optgroup label='Innovation, design et nouvelles technologies'>
+					<option th:if="${#lists.contains(skillList, 'Big Data')}"
+					value='Big Data'>Big Data</option>
+					<option th:if="${#lists.contains(skillList, 'Cloud Computing')}"
+					value='Cloud Computing'>Cloud Computing</option>
+					<option th:if="${#lists.contains(skillList, 'Data Science')}"
+					value='Data Science'>Data Science</option>
+					<option th:if="${#lists.contains(skillList, 'e-Santé')}"
+					value='e-Santé'>e-Santé</option>
+					<option th:if="${#lists.contains(skillList, 'e-Education')}"
+					value='e-Education'>e-Education</option>
+					<option th:if="${#lists.contains(skillList, 'Ergonomie')}"
+					value='Ergonomie'>Ergonomie</option>
+					<option th:if="${#lists.contains(skillList, 'Formation/enseignement au numérique')}"
+					value='Formation/enseignement au numérique'>Formation/enseignement au numérique</option>
+					<option th:if="${#lists.contains(skillList, 'Gaming')}"
+					value='Gaming'>Gaming</option>
+					<option th:if="${#lists.contains(skillList, 'IHM')}"
+					value='IHM'>IHM</option>
+					<option th:if="${#lists.contains(skillList, 'Low Tech')}"
+					value='Low Tech'>Low Tech</option>
+					<option th:if="${#lists.contains(skillList, 'Management de l&rsquo;innovation')}"
+					value="Management de l&rsquo;innovation">Management de l'innovation</option>
+					<option th:if="${#lists.contains(skillList, 'Objets connectés')}"
+					value='Objets connectés'>Objets connectés</option>
+					<option	th:if="${#lists.contains(skillList, 'Open Data')}"
+					value='Open Data'>Open Data</option>
+					<option th:if="${#lists.contains(skillList, 'Open Innovation')}"
+					value='Open Innovation'>Open Innovation</option>
+					<option th:if="${#lists.contains(skillList, 'Robotique')}"
+					value='Robotique'>Robotique</option>
+					<option th:if="${#lists.contains(skillList, 'Sharing Economy')}"
+					value='Sharing Economy'>Sharing Economy</option>
+					<option th:if="${#lists.contains(skillList, 'UI Design')}"
+					value='UI Design'>UI Design</option>
+					<option th:if="${#lists.contains(skillList, 'UX Design')}"
+					value='UX Design'>UX Design</option>
+					<option th:if="${#lists.contains(skillList, 'Wearable Products')}"
+					value='Wearable Products'>Wearable Products</option>
+					<option th:if="${#lists.contains(skillList, 'Web Design')}"
+					value='Web Design'>Web Design</option>
+					<option th:if="${#lists.contains(skillList, 'Branding')}"
+					value='Branding'>Branding</option>
+					<option th:if="${#lists.contains(skillList, 'Transformation Digitale')}"
+					value='Transformation Digitale'>Transformation Digitale</option>
+					<option th:if="${#lists.contains(skillList, 'Semantic technologies')}"
+					value='Semantic technologies'>Semantic technologies</option>
+					<option th:if="${#lists.contains(skillList, 'eBook')}"
+					value='eBook'>eBook</option>
+					<option th:if="${#lists.contains(skillList, 'Accessibilité')}"
+					value='Accessibilité'>Accessibilité</option>
+					<option th:if="${#lists.contains(skillList, 'Monnaie alternative')}"
+					value='Monnaie alternative'>Monnaie alternative</option>
+					<option th:if="${#lists.contains(skillList, 'Data Design')}"
+					value='Data Design'>Data Design</option>
+					<option th:if="${#lists.contains(skillList, 'Musique et numérique')}"
+					value='Musique et numérique'>Musique et numérique</option>
+					<option th:if="${#lists.contains(skillList, 'Customer Experience Management')}"
+					value='Customer Experience Management'>Customer Experience Management</option>
+					<option th:if="${#lists.contains(skillList, 'Responsive Design')}"
+					value='Responsive Design'>Responsive Design</option>
+					<option th:if="${#lists.contains(skillList, 'Bitcoin')}"
+					value='Bitcoin'>Bitcoin</option>
+				</optgroup>
+				<optgroup label='Politique, business et investissement'>
+					<option th:if="${#lists.contains(skillList, 'Digital business development')}"
+					value='Digital business development'>Digital business development</option>
+					<option th:if="${#lists.contains(skillList, 'Business Model')}"
+					value='Business Model'>Business Model</option>
+					<option th:if="${#lists.contains(skillList, 'Crowdfunding')}"
+					value='Crowdfunding'>Crowdfunding</option>
+					<option th:if="${#lists.contains(skillList, 'E-Commerce')}"
+					value='E-Commerce'>E-Commerce</option>
+					<option th:if="${#lists.contains(skillList, 'Entrepreneuriat')}"
+					value='Entrepreneuriat'>Entrepreneuriat</option>
+					<option th:if="${#lists.contains(skillList, 'Juridique')}"
+					value='Juridique'>Juridique</option>
+					<option th:if="${#lists.contains(skillList, 'M-Commerce')}"
+					value='M-Commerce'>M-Commerce</option>
+					<option th:if="${#lists.contains(skillList, 'Mobile')}"
+					value='Mobile'>Mobile</option>
+					<option th:if="${#lists.contains(skillList, 'Monétisation')}"
+					value='Monétisation'>Monétisation</option>
+					<option th:if="${#lists.contains(skillList, 'Pitch')}"
+					value='Pitch'>Pitch</option>
+					<option th:if="${#lists.contains(skillList, 'Start-up')}"
+					value='Start-up'>Start-up</option>
+					<option th:if="${#lists.contains(skillList, 'Stratégie')}"
+					value='Stratégie'>Stratégie</option>
+					<option th:if="${#lists.contains(skillList, 'Web-to-Store')}"
+					value='Web-to-Store'>Web-to-Store</option>
+					<option th:if="${#lists.contains(skillList, 'Réglementation et législation')}"
+					value='Réglementation et législation'>Réglementation et législation</option>
+					<option th:if="${#lists.contains(skillList, 'Politique')}"
+					value='Politique'>Politique</option>
+					<option th:if="${#lists.contains(skillList, 'e-Environnement')}"
+					value='e-Environnement'>e-Environnement</option>
+					<option th:if="${#lists.contains(skillList, 'Politique RH')}"
+					value='Politique RH'>Politique RH</option>
+					<option th:if="${#lists.contains(skillList, 'e-Inclusion')}"
+					value='e-Inclusion'>e-Inclusion</option>
+					<option th:if="${#lists.contains(skillList, 'Art numérique')}"
+					value='Art numérique'>Art numérique</option>
+					<option th:if="${#lists.contains(skillList, 'Pratiques collaboratives')}"
+					value='Pratiques collaboratives'>Pratiques collaboratives</option>
+					<option th:if="${#lists.contains(skillList, 'Venture Capital')}"
+					value='Venture Capital'>Venture Capital</option>
+				</optgroup>
+				<optgroup
+					label='Technique, Administration réseau, système et base de données'>
+					<option th:if="${#lists.contains(skillList, 'Câbles')}"
+					value='Câbles'>Câbles</option>
+					<option th:if="${#lists.contains(skillList, 'DBA')}"
+					value='DBA'>DBA</option>
+					<option th:if="${#lists.contains(skillList, 'DNS')}"
+					value='DNS'>DNS</option>
+					<option th:if="${#lists.contains(skillList, 'Hacker')}"
+					value='Hacker'>Hacker</option>
+					<option th:if="${#lists.contains(skillList, 'Matériel et Data Center')}"
+					value='Matériel et Data Center'>Matériel et Data Center</option>
+					<option th:if="${#lists.contains(skillList, 'Normalisation')}"
+					value='Normalisation'>Normalisation</option>
+					<option th:if="${#lists.contains(skillList, 'Routage')}"
+					value='Routage'>Routage</option>
+					<option th:if="${#lists.contains(skillList, 'Sécurité informatique')}"
+					value='Sécurité informatique'>Sécurité informatique</option>
+					<option th:if="${#lists.contains(skillList, 'Unix')}"
+					value='Unix'>Unix</option>
+					<option th:if="${#lists.contains(skillList, 'Windows')}"
+					value='Windows'>Windows</option>
+					<option th:if="${#lists.contains(skillList, 'Cybercriminalité')}"
+					value='Cybercriminalité'>Cybercriminalité</option>
+					<option th:if="${#lists.contains(skillList, 'Audit')}"
+					value='Audit'>Audit</option>
+					<option th:if="${#lists.contains(skillList, 'Future Networks')}"
+					value='Future Networks'>Future Networks</option>
+					<option th:if="${#lists.contains(skillList, 'Réseaux sans fil')}"
+					value='Réseaux sans fil'>Réseaux sans fil</option>
+					<option th:if="${#lists.contains(skillList, 'Réseaux mobiles')}"
 					value='Réseaux mobiles'>Réseaux mobiles</option>
 				</optgroup>
 			</select>

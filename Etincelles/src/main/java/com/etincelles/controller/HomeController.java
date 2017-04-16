@@ -220,10 +220,8 @@ public class HomeController implements ErrorController {
                 return "myProfile";
             }
         }
-        if ( user.isNoContact() ) {
-            currentUser.setNoContact( user.isNoContact() );
-        }
 
+        currentUser.setNoContact( user.isNoContact() );
         currentUser.setFirstName( user.getFirstName() );
         currentUser.setLastName( user.getLastName() );
         currentUser.setEmail( user.getEmail() );
@@ -478,6 +476,14 @@ public class HomeController implements ErrorController {
             skillList.add( skill.getName() );
         }
 
+        List<String> sectors = new ArrayList<>();
+        for ( User user : userList ) {
+            if ( user.getSector() != null && !user.getSector().isEmpty() ) {
+                sectors.add( user.getSector() );
+            }
+        }
+
+        model.addAttribute( "sectors", sectors );
         model.addAttribute( "skillList", skillList );
         model.addAttribute( "listEmpty", empty );
         model.addAttribute( "userList", userList );
