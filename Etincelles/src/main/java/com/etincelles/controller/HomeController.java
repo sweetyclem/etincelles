@@ -298,10 +298,11 @@ public class HomeController implements ErrorController {
             }
         }
 
-        List<Skill> skills = (List<Skill>) skillRepo.findAll();
         List<String> skillList = new ArrayList<>();
-        for ( Skill skill : skills ) {
-            skillList.add( skill.getName() );
+        for ( User user : users ) {
+            for ( UserSkill uSkill : user.getUserSkills() ) {
+                skillList.add( uSkill.getSkill().getName() );
+            }
         }
 
         List<String> sectors = new ArrayList<>();
@@ -386,7 +387,7 @@ public class HomeController implements ErrorController {
     public String directorySearchPost( Model model, HttpServletRequest request, HttpSession session ) {
 
         String queryString = "SELECT distinct id from etincelles.user where";
-        String search = "Votre recherche :";
+        List<String> search = new ArrayList<>();
         boolean needAnd = false;
         boolean empty = true;
 
@@ -395,7 +396,7 @@ public class HomeController implements ErrorController {
             queryString = "SELECT distinct id from etincelles.user, etincelles.user_skill where user.id = user_skill.user_id and";
             String skillIds = "";
             for ( int i = 0; i < skills.length; i++ ) {
-                search += " " + skills[i];
+                search.add( skills[i] );
                 Skill skill = skillRepo.findByname( skills[i] );
                 skillIds += skill.getSkillId();
                 if ( i != skills.length - 1 ) {
@@ -415,7 +416,7 @@ public class HomeController implements ErrorController {
             }
             String sectorString = "";
             for ( int i = 0; i < sectors.length; i++ ) {
-                search += " " + sectors[i];
+                search.add( sectors[i] );
                 sectorString += "'" + sectors[i] + "'";
                 if ( i != sectors.length - 1 ) {
                     sectorString += ",";
@@ -434,7 +435,7 @@ public class HomeController implements ErrorController {
             }
             String categoryString = "";
             for ( int i = 0; i < categories.length; i++ ) {
-                search += " " + categories[i];
+                search.add( categories[i] );
                 categoryString += "'" + categories[i] + "'";
                 if ( i != categories.length - 1 ) {
                     categoryString += ",";
@@ -453,7 +454,7 @@ public class HomeController implements ErrorController {
             }
             String cityString = "";
             for ( int i = 0; i < cities.length; i++ ) {
-                search += " " + cities[i];
+                search.add( cities[i] );
                 cityString += "'" + cities[i] + "'";
                 if ( i != cities.length - 1 ) {
                     cityString += ",";
@@ -469,18 +470,12 @@ public class HomeController implements ErrorController {
             empty = false;
         }
 
-        List<Skill> skills = (List<Skill>) skillRepo.findAll();
-        List<String> skillList = new ArrayList<>();
-        for ( Skill skill : skills ) {
-            skillList.add( skill.getName() );
-        }
-
         model.addAttribute( "query", queryString );
         model.addAttribute( "sectors", session.getAttribute( "sectors" ) );
-        model.addAttribute( "skillList", skillList );
+        model.addAttribute( "skillList", session.getAttribute( "skillList" ) );
         model.addAttribute( "listEmpty", empty );
         model.addAttribute( "userList", userList );
-        model.addAttribute( "searchString", search );
+        model.addAttribute( "searchList", search );
         model.addAttribute( "directory", true );
         return "directory";
     }
