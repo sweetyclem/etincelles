@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorController;
@@ -156,7 +157,6 @@ public class HomeController implements ErrorController {
         for ( UserSkill userSkill : user.getUserSkills() ) {
             skills.add( userSkill.getSkill().getName() );
         }
-
         if ( skills.size() != 0 ) {
             model.addAttribute( "skills", skills );
         }
@@ -288,7 +288,7 @@ public class HomeController implements ErrorController {
     }
 
     @RequestMapping( "/directory" )
-    public String directory( Model model ) {
+    public String directory( Model model, HttpSession session ) {
         List<User> userList;
         userList = userService.findAll();
         List<User> users = new ArrayList<>();
@@ -310,8 +310,9 @@ public class HomeController implements ErrorController {
                 sectors.add( user.getSector() );
             }
         }
-
+        session.setAttribute( "sectors", sectors );
         model.addAttribute( "sectors", sectors );
+        session.setAttribute( "skillList", skillList );
         model.addAttribute( "skillList", skillList );
         model.addAttribute( "directory", true );
         model.addAttribute( "userList", users );
@@ -364,7 +365,7 @@ public class HomeController implements ErrorController {
 
     @RequestMapping( "/searchUser" )
     public String searchBook(
-            @ModelAttribute( "keyword" ) String keyword,
+            @ModelAttribute( "keyword" ) String keyword, HttpSession session,
             Principal principal, Model model ) {
 
         List<User> userList = userService.blurrySearch( keyword );
@@ -375,92 +376,90 @@ public class HomeController implements ErrorController {
             return "directory";
         }
 
-        List<Skill> skills = (List<Skill>) skillRepo.findAll();
-        List<String> skillList = new ArrayList<>();
-        for ( Skill skill : skills ) {
-            skillList.add( skill.getName() );
-        }
-
-        model.addAttribute( "skillList", skillList );
-
+        model.addAttribute( "skillList", session.getAttribute( "skillList" ) );
         model.addAttribute( "userList", userList );
         model.addAttribute( "directory", true );
         return "directory";
     }
 
     @RequestMapping( value = "/directorySearch", method = RequestMethod.POST )
-    public String directorySearchPost( Model model, HttpServletRequest request ) {
+    public String directorySearchPost( Model model, HttpServletRequest request, HttpSession session ) {
 
-        String queryString = "SELECT distinct id from user, user_skill where";
+        String queryString = "SELECT distinct id from etincelles.user where";
         String search = "Votre recherche :";
-        boolean needOr = false;
+        boolean needAnd = false;
         boolean empty = true;
 
         if ( request.getParameterMap().containsKey( "skills" ) ) {
             String[] skills = request.getParameterValues( "skills" );
-            queryString = "SELECT distinct id from user, user_skill where user.id = user_skill.user_id and";
+            queryString = "SELECT distinct id from etincelles.user, etincelles.user_skill where user.id = user_skill.user_id and";
+            String skillIds = "";
             for ( int i = 0; i < skills.length; i++ ) {
                 search += " " + skills[i];
-                if ( i > 0 ) {
-                    queryString += " or ";
-                }
                 Skill skill = skillRepo.findByname( skills[i] );
-                queryString += " user_skill.skill_id = " + skill.getSkillId();
-                if ( needOr == false ) {
-                    needOr = true;
+                skillIds += skill.getSkillId();
+                if ( i != skills.length - 1 ) {
+                    skillIds += ",";
                 }
             }
+            if ( needAnd == false ) {
+                needAnd = true;
+            }
+            queryString += " user_skill.skill_id in (" + skillIds + ")";
         }
 
         if ( request.getParameterMap().containsKey( "sectors" ) ) {
             String[] sectors = request.getParameterValues( "sectors" );
-            if ( needOr ) {
-                queryString += " or ";
+            if ( needAnd ) {
+                queryString += " and ";
             }
+            String sectorString = "";
             for ( int i = 0; i < sectors.length; i++ ) {
                 search += " " + sectors[i];
-                if ( i > 0 ) {
-                    queryString += " or ";
-                }
-                queryString += " user.sector = " + "\'" + sectors[i] + "\'";
-                if ( needOr == false ) {
-                    needOr = true;
+                sectorString += "'" + sectors[i] + "'";
+                if ( i != sectors.length - 1 ) {
+                    sectorString += ",";
                 }
             }
+            if ( needAnd == false ) {
+                needAnd = true;
+            }
+            queryString += " user.sector in (" + sectorString + ")";
         }
 
         if ( request.getParameterMap().containsKey( "categories" ) ) {
             String[] categories = request.getParameterValues( "categories" );
-            if ( needOr ) {
-                queryString += " or ";
+            if ( needAnd ) {
+                queryString += " and ";
             }
+            String categoryString = "";
             for ( int i = 0; i < categories.length; i++ ) {
                 search += " " + categories[i];
-                if ( i > 0 ) {
-                    queryString += " or ";
-                }
-                queryString += " user.category = " + "\'" + categories[i] + "\'";
-                if ( needOr == false ) {
-                    needOr = true;
+                categoryString += "'" + categories[i] + "'";
+                if ( i != categories.length - 1 ) {
+                    categoryString += ",";
                 }
             }
+            if ( needAnd == false ) {
+                needAnd = true;
+            }
+            queryString += " user.category in (" + categoryString + ")";
         }
 
         if ( request.getParameterMap().containsKey( "cities" ) ) {
             String[] cities = request.getParameterValues( "cities" );
-            if ( needOr ) {
-                queryString += " or ";
+            if ( needAnd ) {
+                queryString += " and ";
             }
+            String cityString = "";
             for ( int i = 0; i < cities.length; i++ ) {
                 search += " " + cities[i];
-                if ( i > 0 ) {
-                    queryString += " or ";
-                }
-                queryString += " user.city = " + "\'" + cities[i] + "\'";
-                if ( needOr == false ) {
-                    needOr = true;
+                cityString += "'" + cities[i] + "'";
+                if ( i != cities.length - 1 ) {
+                    cityString += ",";
                 }
             }
+            queryString += " user.city in (" + cityString + ")";
         }
         System.out.println( queryString );
 
@@ -476,14 +475,8 @@ public class HomeController implements ErrorController {
             skillList.add( skill.getName() );
         }
 
-        List<String> sectors = new ArrayList<>();
-        for ( User user : userList ) {
-            if ( user.getSector() != null && !user.getSector().isEmpty() ) {
-                sectors.add( user.getSector() );
-            }
-        }
-
-        model.addAttribute( "sectors", sectors );
+        model.addAttribute( "query", queryString );
+        model.addAttribute( "sectors", session.getAttribute( "sectors" ) );
         model.addAttribute( "skillList", skillList );
         model.addAttribute( "listEmpty", empty );
         model.addAttribute( "userList", userList );

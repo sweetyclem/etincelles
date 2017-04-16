@@ -74,11 +74,8 @@
 						<p th:if="${user.promo > 0}">
 							Promo <span th:text="${user.promo}"></span>
 						</p>
-						<p th:if="${user.city != null and !#strings.isEmpty(user.city)}">
-							<strong></strong><span th:text="${user.city}"></span>
-						</p>						
-						<p th:if="${user.sector != null and !#strings.isEmpty(user.sector)}">
-						<span th:text="${user.sector}"></span></p>
+						<p th:if="${user.city != null and !#strings.isEmpty(user.city)}" th:text="${user.city}"></p>						
+						<p th:if="${user.sector != null and !#strings.isEmpty(user.sector)}" th:text="${user.sector}"></p>
 						<div data-th-each="userSkill : ${user.userSkills}">
 							<div data-th-each="skill : ${userSkill.skill}">
 								<div style="font-size: 1.5em" th:if="${skill != null and !#strings.isEmpty(skill)}"
@@ -88,15 +85,11 @@
 
 					</div>
 					</div>
-					<div class="row text-justify">
-					<br/>					
-						<p th:if="${user.description != null and !#strings.isEmpty(user.description)}">
-							<!-- <strong>Description : </strong> --><span
-								th:utext="${user.description}"></span>
-						</p>
+					<div class="row text-justify">				
+						<p th:if="${user.description != null and !#strings.isEmpty(user.description)}" th:utext="${user.description}"></p>
 					</div>
 				</div>
-				<div th:if="${!user.noContact}" class="col-md-5 col-xs-12 text-center">
+				<div th:if="${!user.noContact}" class="col-md-5 col-xs-12 text-center" style="background: #F9F9F9;">
 					<form id="contact" th:action="@{/contact}" method="post">
 						<h3>Contact</h3>
 						<input type="hidden" name="userEmail" th:value="${user.email}" />

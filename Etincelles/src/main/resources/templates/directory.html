@@ -18,6 +18,7 @@
 		<div class="row">
 			<form accept-charset="UTF-8" action="/directorySearch"
 				id="searchform" method="post" class="form-inline">
+				<input type="hidden" name="sectorList" th:value="${sectors}" />
 				<div class="col-xs-10 col-sm-2 form-group"
 					style="line-height: 30px">
 					<div th:replace="common/skillSelect :: directorySkillSelect"></div>
