@@ -85,9 +85,11 @@
 
 					</div>
 					</div>
-					<div class="row text-justify">				
+					<div class="row text-justify">
+						<div class="col-xs-12 col-sm-10 col-sm-offset-1">	
 						<p th:if="${user.description != null and !#strings.isEmpty(user.description)}" th:utext="${user.description}"></p>
 					</div>
+					</div>	
 				</div>
 				<div th:if="${!user.noContact}" class="col-md-5 col-xs-12 text-center" style="background: #F9F9F9;">
 					<form id="contact" th:action="@{/contact}" method="post">
