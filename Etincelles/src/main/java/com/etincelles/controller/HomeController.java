@@ -312,7 +312,7 @@ public class HomeController implements ErrorController {
 
         List<String> sectors = new ArrayList<>();
         for ( User user : userList ) {
-            if ( user.getSector() != null && !user.getSector().isEmpty() ) {
+            if ( user.getSector() != null && !user.getSector().isEmpty() && !sectors.contains( user.getSector() ) ) {
                 sectors.add( user.getSector() );
             }
         }
