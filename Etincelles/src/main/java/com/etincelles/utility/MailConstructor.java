@@ -17,14 +17,14 @@ public class MailConstructor {
     public SimpleMailMessage constructResetTokenEmail(
             String contextPath, Locale locale, String token, User user, String password ) {
 
+        String message = "Bonjour\n\nVeuillez cliquer sur le lien pour accéder a votre compte.\n";
         String url = contextPath + "/updateUser?token=" + token;
-        String message = "Bonjour\nVeuillez cliquer sur le lien pour créer votre compte.\n";
-        String mess2 = "\nVotre mot de passe actuel est : \n" + password
-                + "\nPour des raisons de sécurité, vous devez changer ce mot de passe";
+        String mess2 = "\n\nVotre nouveau mot de passe est : \n" + password
+                + "\n\nPour des raisons de sécurité, nous vous conseillons de changer ce mot de passe";
 
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo( user.getEmail() );
-        email.setSubject( "Plateforme Etincelles- Créer un compte" );
+        email.setSubject( "Plateforme Etincelles- Mot de passe oublié" );
         email.setText( message + url + mess2 );
         email.setFrom( env.getProperty( "support.email" ) );
         return email;
@@ -36,11 +36,10 @@ public class MailConstructor {
         SimpleMailMessage contactEmail = new SimpleMailMessage();
         contactEmail.setTo( userEmail );
         contactEmail.setSubject( "Un message vous a été envoyé " + "par " + name + " depuis le site Etincelles" );
-        // contactEmail.setText( "Ne pas répondre directement,répondez à cette
-        // adresse : " + email + "\n" + text );
-        // contactEmail.setFrom( env.getProperty( "support.email" ) );
-        contactEmail.setText( text );
-        contactEmail.setFrom( email );
+        contactEmail.setText(
+                "Pour répondre à ce message, merci de contacter la personne à cette adresse : " + email
+                        + "\nContenu du message : \n\n" + text );
+        contactEmail.setFrom( env.getProperty( "support.email" ) );
         return contactEmail;
     }
 }

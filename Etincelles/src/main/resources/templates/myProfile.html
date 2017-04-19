@@ -154,7 +154,7 @@
 										<div class="form-group"
 											th:if="(${user.category != null and user.category.name() == 'Etincelle'})">
 											<label for="promo">* Promo</label><input type="number" required="required"
-												class="form-control" id="promo" name="promo"
+												class="form-control" id="promo" name="promo" min="1"
 												th:value="${user.promo != 0 ? user.promo : null}" />
 										</div>		
 
