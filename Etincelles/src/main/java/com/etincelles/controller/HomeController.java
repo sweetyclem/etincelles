@@ -210,20 +210,9 @@ public class HomeController implements ErrorController {
         BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
         String dbPassword = currentUser.getPassword();
 
-        /*
-         * // verify current password if ( !( passwordEncoder.matches(
-         * user.getPassword(), dbPassword ) ) ) { model.addAttribute(
-         * "incorrectPassword", true ); return "myProfile"; }
-         */
-
         // update password
         if ( newPassword != null && !newPassword.isEmpty() && !newPassword.equals( "" ) ) {
-            if ( passwordEncoder.matches( user.getPassword(), dbPassword ) ) {
-                currentUser.setPassword( passwordEncoder.encode( newPassword ) );
-            } else {
-                model.addAttribute( "incorrectPassword", true );
-                return "myProfile";
-            }
+            currentUser.setPassword( passwordEncoder.encode( newPassword ) );
         }
 
         currentUser.setNoContact( user.isNoContact() );
