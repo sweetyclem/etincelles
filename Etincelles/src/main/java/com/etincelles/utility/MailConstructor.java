@@ -14,13 +14,12 @@ public class MailConstructor {
     @Autowired
     private Environment env;
 
-    public SimpleMailMessage constructResetTokenEmail(
-            String contextPath, Locale locale, String token, User user, String password ) {
+    public SimpleMailMessage constructResetPasswordEmail( Locale locale, User user, String password ) {
 
-        String message = "Bonjour\n\nVeuillez cliquer sur le lien pour accéder a votre compte.\n";
-        String url = contextPath + "/updateUser?token=" + token;
+        String message = "Bonjour,\n\nVeuillez cliquer sur le lien pour accéder a votre compte.\n";
+        String url = "https://etincelles.co/login";
         String mess2 = "\n\nVotre nouveau mot de passe est : \n" + password
-                + "\n\nPour des raisons de sécurité, nous vous conseillons de changer ce mot de passe";
+                + "\n\nPour des raisons de sécurité, nous vous conseillons de changer ce mot de passe.\n\nCordialement,\n\nL'équipe Etincelles";
 
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo( user.getEmail() );

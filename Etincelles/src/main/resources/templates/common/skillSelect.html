@@ -421,261 +421,261 @@
 				class="selectpicker form-control" multiple="multiple"
 				title="Compétences">
 				<optgroup label='Gestion de projets et méthodologies'>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Gestion de projets')}" th:if="${#lists.contains(skillList, 'Gestion de projets')}" value='Gestion de projets'>Gestion de projets</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Design Thinking')}" th:if="${#lists.contains(skillList, 'Design Thinking')}" value='Design Thinking'>Design Thinking</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'DevOps')}" th:if="${#lists.contains(skillList, 'DevOps')}"  value='DevOps'>DevOps</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Lean Startup')}" th:if="${#lists.contains(skillList, 'Lean Startup')}"  value='Lean Startup'>Lean Startup</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Méthode Agile')}" th:if="${#lists.contains(skillList, 'Méthode Agile')}"  value='Méthode Agile'>Méthode Agile</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Product Owner')}" th:if="${#lists.contains(skillList, 'Product Owner')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Gestion de projets')}" th:if="${skillList != null and #lists.contains(skillList, 'Gestion de projets')}" value='Gestion de projets'>Gestion de projets</option>
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Design Thinking')}" th:if="${skillList != null and #lists.contains(skillList, 'Design Thinking')}" value='Design Thinking'>Design Thinking</option>
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'DevOps')}" th:if="${skillList != null and #lists.contains(skillList, 'DevOps')}"  value='DevOps'>DevOps</option>
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Lean Startup')}" th:if="${skillList != null and #lists.contains(skillList, 'Lean Startup')}"  value='Lean Startup'>Lean Startup</option>
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Méthode Agile')}" th:if="${skillList != null and #lists.contains(skillList, 'Méthode Agile')}"  value='Méthode Agile'>Méthode Agile</option>
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Product Owner')}" th:if="${skillList != null and #lists.contains(skillList, 'Product Owner')}"
 					value='Product Owner'>Product Owner</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Scrum Master')}" th:if="${#lists.contains(skillList, 'Scrum Master')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Scrum Master')}" th:if="${skillList != null and #lists.contains(skillList, 'Scrum Master')}"
 					value='Scrum Master'>Scrum Master</option>
 				</optgroup>
 				<optgroup label='Développement'>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Android')}" th:if="${#lists.contains(skillList, 'Android')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Android')}" th:if="${skillList != null and #lists.contains(skillList, 'Android')}"
 					value='Android'>Android</option>					
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'HTML5')}" th:if="${#lists.contains(skillList, 'HTML5')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'HTML5')}" th:if="${skillList != null and #lists.contains(skillList, 'HTML5')}"
 					value='HTML5'>HTML5</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'iOS')}" th:if="${#lists.contains(skillList, 'iOS')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'iOS')}" th:if="${skillList != null and #lists.contains(skillList, 'iOS')}"
 					value='iOs'>iOS</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Java')}" th:if="${#lists.contains(skillList, 'Java')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Java')}" th:if="${skillList != null and #lists.contains(skillList, 'Java')}"
 					value='Java'>Java</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Javascript')}" th:if="${#lists.contains(skillList, 'Javascript')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Javascript')}" th:if="${skillList != null and #lists.contains(skillList, 'Javascript')}"
 					value='Javascript'>Javascript</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Linux')}" th:if="${#lists.contains(skillList, 'Linux')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Linux')}" th:if="${skillList != null and #lists.contains(skillList, 'Linux')}"
 					value='Linux'>Linux</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Open Source')}" th:if="${#lists.contains(skillList, 'Open Source')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Open Source')}" th:if="${skillList != null and #lists.contains(skillList, 'Open Source')}"
 					value='Open Source'>Open Source</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'PHP')}" th:if="${#lists.contains(skillList, 'PHP')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'PHP')}" th:if="${skillList != null and #lists.contains(skillList, 'PHP')}"
 					value='PHP'>PHP</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Python')}" th:if="${#lists.contains(skillList, 'Python')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Python')}" th:if="${skillList != null and #lists.contains(skillList, 'Python')}"
 					value='Python'>Python</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Ruby')}" th:if="${#lists.contains(skillList, 'Ruby')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Ruby')}" th:if="${skillList != null and #lists.contains(skillList, 'Ruby')}"
 					value='Ruby'>Ruby</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Symfony')}" th:if="${#lists.contains(skillList, 'Symfony')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Symfony')}" th:if="${skillList != null and #lists.contains(skillList, 'Symfony')}"
 					value='Symfony'>Symfony</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, '.NET')}" th:if="${#lists.contains(skillList, '.NET')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, '.NET')}" th:if="${skillList != null and #lists.contains(skillList, '.NET')}"
 					value='.NET'>.NET</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Langage C')}" th:if="${#lists.contains(skillList, 'Langage C')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Langage C')}" th:if="${skillList != null and #lists.contains(skillList, 'Langage C')}"
 					value='Langage C'>Langage C</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'C++')}" th:if="${#lists.contains(skillList, 'C++')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'C++')}" th:if="${skillList != null and #lists.contains(skillList, 'C++')}"
 					value='C++'>C++</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'C#')}" th:if="${#lists.contains(skillList, 'C#')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'C#')}" th:if="${skillList != null and #lists.contains(skillList, 'C#')}"
 					value='C#'>C#</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'CSS')}" th:if="${#lists.contains(skillList, 'CSS')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'CSS')}" th:if="${skillList != null and #lists.contains(skillList, 'CSS')}"
 					value='CSS'>CSS</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Magento')}" th:if="${#lists.contains(skillList, 'Magento')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Magento')}" th:if="${skillList != null and #lists.contains(skillList, 'Magento')}"
 					value='Magento'>Magento</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Standard')}" th:if="${#lists.contains(skillList, 'Standard')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Standard')}" th:if="${skillList != null and #lists.contains(skillList, 'Standard')}"
 					value='Standard'>Standard</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Software Engineering')}" th:if="${#lists.contains(skillList, 'Software Engineering')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Software Engineering')}" th:if="${skillList != null and #lists.contains(skillList, 'Software Engineering')}"
 					value='Software Engineering'>Software Engineering</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Wordpress')}" th:if="${#lists.contains(skillList, 'Wordpress')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Wordpress')}" th:if="${skillList != null and #lists.contains(skillList, 'Wordpress')}"
 					value='Wordpress'>Wordpress</option>
 				</optgroup>
 				<optgroup label='Communication, marketing et contenu'>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Data marketing')}" th:if="${#lists.contains(skillList, 'Data marketing')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Data marketing')}" th:if="${skillList != null and #lists.contains(skillList, 'Data marketing')}"
 					value='Data marketing'>Data marketing</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Community management')}" th:if="${#lists.contains(skillList, 'Community management')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Community management')}" th:if="${skillList != null and #lists.contains(skillList, 'Community management')}"
 					value='Community management'>Community management</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Contenu éditorial')}" th:if="${#lists.contains(skillList, 'Contenu éditorial')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Contenu éditorial')}" th:if="${skillList != null and #lists.contains(skillList, 'Contenu éditorial')}"
 					value='Contenu éditorial'>Contenu éditorial</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Cross-canal')}" th:if="${#lists.contains(skillList, 'Cross-canal')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Cross-canal')}" th:if="${skillList != null and #lists.contains(skillList, 'Cross-canal')}"
 					value='Cross-canal'>Cross-canal</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Cross-media')}" th:if="${#lists.contains(skillList, 'Cross-media')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Cross-media')}" th:if="${skillList != null and #lists.contains(skillList, 'Cross-media')}"
 					value='Cross-media'>Cross-media</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Cross-platform')}" th:if="${#lists.contains(skillList, 'Cross-platform')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Cross-platform')}" th:if="${skillList != null and #lists.contains(skillList, 'Cross-platform')}"
 					value='Cross-platform'>Cross-platform</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Digital PR')}" th:if="${#lists.contains(skillList, 'Digital PR')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Digital PR')}" th:if="${skillList != null and #lists.contains(skillList, 'Digital PR')}"
 					value='Digital PR'>Digital PR</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Digital Storytelling')}" th:if="${#lists.contains(skillList, 'Digital Storytelling')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Digital Storytelling')}" th:if="${skillList != null and #lists.contains(skillList, 'Digital Storytelling')}"
 					value='Digital Storytelling'>Digital Storytelling</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Display')}" th:if="${#lists.contains(skillList, 'Display')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Display')}" th:if="${skillList != null and #lists.contains(skillList, 'Display')}"
 					value='Display'>Display</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'e-CRM')}" th:if="${#lists.contains(skillList, 'e-CRM')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'e-CRM')}" th:if="${skillList != null and #lists.contains(skillList, 'e-CRM')}"
 					value='e-CRM'>e-CRM</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Loyalty')}" th:if="${#lists.contains(skillList, 'Loyalty')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Loyalty')}" th:if="${skillList != null and #lists.contains(skillList, 'Loyalty')}"
 					value='Loyalty'>Loyalty</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Medias')}" th:if="${#lists.contains(skillList, 'Medias')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Medias')}" th:if="${skillList != null and #lists.contains(skillList, 'Medias')}"
 					value='Medias'>Medias</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Planning stratégique')}" th:if="${#lists.contains(skillList, 'Planning stratégique')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Planning stratégique')}" th:if="${skillList != null and #lists.contains(skillList, 'Planning stratégique')}"
 					value='Planning stratégique'>Planning stratégique</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Régie mobile')}" th:if="${#lists.contains(skillList, 'Régie mobile')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Régie mobile')}" th:if="${skillList != null and #lists.contains(skillList, 'Régie mobile')}"
 					value='Régie mobile'>Régie mobile</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Retargeting')}" th:if="${#lists.contains(skillList, 'Retargeting')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Retargeting')}" th:if="${skillList != null and #lists.contains(skillList, 'Retargeting')}"
 					value='Retargeting'>Retargeting</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'SEO')}" th:if="${#lists.contains(skillList, 'SEO')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'SEO')}" th:if="${skillList != null and #lists.contains(skillList, 'SEO')}"
 					value='SEO'>SEO</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'SMO')}" th:if="${#lists.contains(skillList, 'SMO')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'SMO')}" th:if="${skillList != null and #lists.contains(skillList, 'SMO')}"
 					value='SMO'>SMO</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Social Media')}" th:if="${#lists.contains(skillList, 'Social Media')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Social Media')}" th:if="${skillList != null and #lists.contains(skillList, 'Social Media')}"
 					value='Social Media'>Social Media</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Social TV')}" th:if="${#lists.contains(skillList, 'Social TV')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Social TV')}" th:if="${skillList != null and #lists.contains(skillList, 'Social TV')}"
 					value='Social TV'>Social TV</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Livre numérique')}" th:if="${#lists.contains(skillList, 'Livre numérique')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Livre numérique')}" th:if="${skillList != null and #lists.contains(skillList, 'Livre numérique')}"
 					value='Livre numérique'>Livre numérique</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'SEA')}" th:if="${#lists.contains(skillList, 'SEA')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'SEA')}" th:if="${skillList != null and #lists.contains(skillList, 'SEA')}"
 					value='SEA'>SEA</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Affiliation')}" th:if="${#lists.contains(skillList, 'Affiliation')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Affiliation')}" th:if="${skillList != null and #lists.contains(skillList, 'Affiliation')}"
 					value='Affiliation'>Affiliation</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Web Analytics')}" th:if="${#lists.contains(skillList, 'Web Analytics')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Web Analytics')}" th:if="${skillList != null and #lists.contains(skillList, 'Web Analytics')}"
 					value='Web Analytics'>Web Analytics</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'ROI du marketing digital')}" th:if="${#lists.contains(skillList, 'ROI du marketing digital')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'ROI du marketing digital')}" th:if="${skillList != null and #lists.contains(skillList, 'ROI du marketing digital')}"
 					value='ROI du marketing digital'>ROI du marketing digital</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Data Analytics')}" th:if="${#lists.contains(skillList, 'Data Analytics')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Data Analytics')}" th:if="${skillList != null and #lists.contains(skillList, 'Data Analytics')}"
 					value='Data Analytics'>Data Analytics</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Communication de crise')}" th:if="${#lists.contains(skillList, 'Communication de crise')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Communication de crise')}" th:if="${skillList != null and #lists.contains(skillList, 'Communication de crise')}"
 					value='Communication de crise'>Communication de crise</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'E-réputation')}" th:if="${#lists.contains(skillList, 'E-réputation')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'E-réputation')}" th:if="${skillList != null and #lists.contains(skillList, 'E-réputation')}"
 					value='E-réputation'>E-réputation</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Edition Numériques')}" th:if="${#lists.contains(skillList, 'Edition Numérique')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Edition Numériques')}" th:if="${skillList != null and #lists.contains(skillList, 'Edition Numérique')}"
 					value='Edition Numérique'>Edition Numérique</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'A/B et multivariate testing')}" th:if="${#lists.contains(skillList, 'A/B et multivariate testing')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'A/B et multivariate testing')}" th:if="${skillList != null and #lists.contains(skillList, 'A/B et multivariate testing')}"
 					value='A/B et multivariate testing'>A/B et multivariate testing</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Growth Hacking')}" th:if="${#lists.contains(skillList, 'Growth Hacking')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Growth Hacking')}" th:if="${skillList != null and #lists.contains(skillList, 'Growth Hacking')}"
 					value='Growth Hacking'>Growth Hacking</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Acquisition')}" th:if="${#lists.contains(skillList, 'Acquisition')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Acquisition')}" th:if="${skillList != null and #lists.contains(skillList, 'Acquisition')}"
 					value='Acquisition'>Acquisition</option>
 				</optgroup>
 				<optgroup label='Innovation, design et nouvelles technologies'>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Big Data')}" th:if="${#lists.contains(skillList, 'Big Data')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Big Data')}" th:if="${skillList != null and #lists.contains(skillList, 'Big Data')}"
 					value='Big Data'>Big Data</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Cloud Computing')}" th:if="${#lists.contains(skillList, 'Cloud Computing')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Cloud Computing')}" th:if="${skillList != null and #lists.contains(skillList, 'Cloud Computing')}"
 					value='Cloud Computing'>Cloud Computing</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Data Science')}" th:if="${#lists.contains(skillList, 'Data Science')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Data Science')}" th:if="${skillList != null and #lists.contains(skillList, 'Data Science')}"
 					value='Data Science'>Data Science</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'e-Santé')}" th:if="${#lists.contains(skillList, 'e-Santé')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'e-Santé')}" th:if="${skillList != null and #lists.contains(skillList, 'e-Santé')}"
 					value='e-Santé'>e-Santé</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'e-Education')}" th:if="${#lists.contains(skillList, 'e-Education')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'e-Education')}" th:if="${skillList != null and #lists.contains(skillList, 'e-Education')}"
 					value='e-Education'>e-Education</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Ergonomie')}" th:if="${#lists.contains(skillList, 'Ergonomie')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Ergonomie')}" th:if="${skillList != null and #lists.contains(skillList, 'Ergonomie')}"
 					value='Ergonomie'>Ergonomie</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Formation/enseignement au numérique')}" th:if="${#lists.contains(skillList, 'Formation/enseignement au numérique')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Formation/enseignement au numérique')}" th:if="${skillList != null and #lists.contains(skillList, 'Formation/enseignement au numérique')}"
 					value='Formation/enseignement au numérique'>Formation/enseignement au numérique</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Gaming')}" th:if="${#lists.contains(skillList, 'Gaming')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Gaming')}" th:if="${skillList != null and #lists.contains(skillList, 'Gaming')}"
 					value='Gaming'>Gaming</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'IHM')}" th:if="${#lists.contains(skillList, 'IHM')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'IHM')}" th:if="${skillList != null and #lists.contains(skillList, 'IHM')}"
 					value='IHM'>IHM</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Low Tech')}" th:if="${#lists.contains(skillList, 'Low Tech')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Low Tech')}" th:if="${skillList != null and #lists.contains(skillList, 'Low Tech')}"
 					value='Low Tech'>Low Tech</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Management de l&rsquo;innovation')}" th:if="${#lists.contains(skillList, 'Management de l&rsquo;innovation')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Management de l&rsquo;innovation')}" th:if="${skillList != null and #lists.contains(skillList, 'Management de l&rsquo;innovation')}"
 					value="Management de l&rsquo;innovation">Management de l'innovation</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Objets connectés')}" th:if="${#lists.contains(skillList, 'Objets connectés')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Objets connectés')}" th:if="${skillList != null and #lists.contains(skillList, 'Objets connectés')}"
 					value='Objets connectés'>Objets connectés</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Open Data')}"	th:if="${#lists.contains(skillList, 'Open Data')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Open Data')}"	th:if="${skillList != null and #lists.contains(skillList, 'Open Data')}"
 					value='Open Data'>Open Data</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Open Innovation')}" th:if="${#lists.contains(skillList, 'Open Innovation')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Open Innovation')}" th:if="${skillList != null and #lists.contains(skillList, 'Open Innovation')}"
 					value='Open Innovation'>Open Innovation</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Robotique')}" th:if="${#lists.contains(skillList, 'Robotique')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Robotique')}" th:if="${skillList != null and #lists.contains(skillList, 'Robotique')}"
 					value='Robotique'>Robotique</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Sharing Economy')}" th:if="${#lists.contains(skillList, 'Sharing Economy')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Sharing Economy')}" th:if="${skillList != null and #lists.contains(skillList, 'Sharing Economy')}"
 					value='Sharing Economy'>Sharing Economy</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'UI Design')}" th:if="${#lists.contains(skillList, 'UI Design')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'UI Design')}" th:if="${skillList != null and #lists.contains(skillList, 'UI Design')}"
 					value='UI Design'>UI Design</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'UX Design')}" th:if="${#lists.contains(skillList, 'UX Design')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'UX Design')}" th:if="${skillList != null and #lists.contains(skillList, 'UX Design')}"
 					value='UX Design'>UX Design</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Wearable Products')}" th:if="${#lists.contains(skillList, 'Wearable Products')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Wearable Products')}" th:if="${skillList != null and #lists.contains(skillList, 'Wearable Products')}"
 					value='Wearable Products'>Wearable Products</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Web Design')}" th:if="${#lists.contains(skillList, 'Web Design')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Web Design')}" th:if="${skillList != null and #lists.contains(skillList, 'Web Design')}"
 					value='Web Design'>Web Design</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Branding')}" th:if="${#lists.contains(skillList, 'Branding')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Branding')}" th:if="${skillList != null and #lists.contains(skillList, 'Branding')}"
 					value='Branding'>Branding</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Transformation Digitale')}" th:if="${#lists.contains(skillList, 'Transformation Digitale')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Transformation Digitale')}" th:if="${skillList != null and #lists.contains(skillList, 'Transformation Digitale')}"
 					value='Transformation Digitale'>Transformation Digitale</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Semantic technologies')}" th:if="${#lists.contains(skillList, 'Semantic technologies')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Semantic technologies')}" th:if="${skillList != null and #lists.contains(skillList, 'Semantic technologies')}"
 					value='Semantic technologies'>Semantic technologies</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'eBook')}" th:if="${#lists.contains(skillList, 'eBook')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'eBook')}" th:if="${skillList != null and #lists.contains(skillList, 'eBook')}"
 					value='eBook'>eBook</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Accessibilité')}" th:if="${#lists.contains(skillList, 'Accessibilité')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Accessibilité')}" th:if="${skillList != null and #lists.contains(skillList, 'Accessibilité')}"
 					value='Accessibilité'>Accessibilité</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Monnaie alternative')}" th:if="${#lists.contains(skillList, 'Monnaie alternative')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Monnaie alternative')}" th:if="${skillList != null and #lists.contains(skillList, 'Monnaie alternative')}"
 					value='Monnaie alternative'>Monnaie alternative</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Data Design')}" th:if="${#lists.contains(skillList, 'Data Design')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Data Design')}" th:if="${skillList != null and #lists.contains(skillList, 'Data Design')}"
 					value='Data Design'>Data Design</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Musique et numérique')}" th:if="${#lists.contains(skillList, 'Musique et numérique')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Musique et numérique')}" th:if="${skillList != null and #lists.contains(skillList, 'Musique et numérique')}"
 					value='Musique et numérique'>Musique et numérique</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Customer Experience Management')}" th:if="${#lists.contains(skillList, 'Customer Experience Management')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Customer Experience Management')}" th:if="${skillList != null and #lists.contains(skillList, 'Customer Experience Management')}"
 					value='Customer Experience Management'>Customer Experience Management</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Responsive Design')}" th:if="${#lists.contains(skillList, 'Responsive Design')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Responsive Design')}" th:if="${skillList != null and #lists.contains(skillList, 'Responsive Design')}"
 					value='Responsive Design'>Responsive Design</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Bitcoin')}" th:if="${#lists.contains(skillList, 'Bitcoin')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Bitcoin')}" th:if="${skillList != null and #lists.contains(skillList, 'Bitcoin')}"
 					value='Bitcoin'>Bitcoin</option>
 				</optgroup>
 				<optgroup label='Politique, business et investissement'>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Digital business development')}" th:if="${#lists.contains(skillList, 'Digital business development')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Digital business development')}" th:if="${skillList != null and #lists.contains(skillList, 'Digital business development')}"
 					value='Digital business development'>Digital business development</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Business Model')}" th:if="${#lists.contains(skillList, 'Business Model')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Business Model')}" th:if="${skillList != null and #lists.contains(skillList, 'Business Model')}"
 					value='Business Model'>Business Model</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Crowdfunding')}" th:if="${#lists.contains(skillList, 'Crowdfunding')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Crowdfunding')}" th:if="${skillList != null and #lists.contains(skillList, 'Crowdfunding')}"
 					value='Crowdfunding'>Crowdfunding</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'E-Commerce')}" th:if="${#lists.contains(skillList, 'E-Commerce')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'E-Commerce')}" th:if="${skillList != null and #lists.contains(skillList, 'E-Commerce')}"
 					value='E-Commerce'>E-Commerce</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Entrepreneuriat')}" th:if="${#lists.contains(skillList, 'Entrepreneuriat')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Entrepreneuriat')}" th:if="${skillList != null and #lists.contains(skillList, 'Entrepreneuriat')}"
 					value='Entrepreneuriat'>Entrepreneuriat</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Juridique')}" th:if="${#lists.contains(skillList, 'Juridique')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Juridique')}" th:if="${skillList != null and #lists.contains(skillList, 'Juridique')}"
 					value='Juridique'>Juridique</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'M-Commerce')}" th:if="${#lists.contains(skillList, 'M-Commerce')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'M-Commerce')}" th:if="${skillList != null and #lists.contains(skillList, 'M-Commerce')}"
 					value='M-Commerce'>M-Commerce</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Mobile')}" th:if="${#lists.contains(skillList, 'Mobile')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Mobile')}" th:if="${skillList != null and #lists.contains(skillList, 'Mobile')}"
 					value='Mobile'>Mobile</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Monétisation')}" th:if="${#lists.contains(skillList, 'Monétisation')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Monétisation')}" th:if="${skillList != null and #lists.contains(skillList, 'Monétisation')}"
 					value='Monétisation'>Monétisation</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Pitch')}" th:if="${#lists.contains(skillList, 'Pitch')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Pitch')}" th:if="${skillList != null and #lists.contains(skillList, 'Pitch')}"
 					value='Pitch'>Pitch</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Start-up')}" th:if="${#lists.contains(skillList, 'Start-up')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Start-up')}" th:if="${skillList != null and #lists.contains(skillList, 'Start-up')}"
 					value='Start-up'>Start-up</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Stratégie')}" th:if="${#lists.contains(skillList, 'Stratégie')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Stratégie')}" th:if="${skillList != null and #lists.contains(skillList, 'Stratégie')}"
 					value='Stratégie'>Stratégie</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Web-to-Store')}" th:if="${#lists.contains(skillList, 'Web-to-Store')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Web-to-Store')}" th:if="${skillList != null and #lists.contains(skillList, 'Web-to-Store')}"
 					value='Web-to-Store'>Web-to-Store</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Réglementation et législation')}" th:if="${#lists.contains(skillList, 'Réglementation et législation')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Réglementation et législation')}" th:if="${skillList != null and #lists.contains(skillList, 'Réglementation et législation')}"
 					value='Réglementation et législation'>Réglementation et législation</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Politique')}" th:if="${#lists.contains(skillList, 'Politique')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Politique')}" th:if="${skillList != null and #lists.contains(skillList, 'Politique')}"
 					value='Politique'>Politique</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'e-Environnement')}" th:if="${#lists.contains(skillList, 'e-Environnement')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'e-Environnement')}" th:if="${skillList != null and #lists.contains(skillList, 'e-Environnement')}"
 					value='e-Environnement'>e-Environnement</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Politique RH')}" th:if="${#lists.contains(skillList, 'Politique RH')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Politique RH')}" th:if="${skillList != null and #lists.contains(skillList, 'Politique RH')}"
 					value='Politique RH'>Politique RH</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'e-Inclusion')}" th:if="${#lists.contains(skillList, 'e-Inclusion')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'e-Inclusion')}" th:if="${skillList != null and #lists.contains(skillList, 'e-Inclusion')}"
 					value='e-Inclusion'>e-Inclusion</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Art numérique')}" th:if="${#lists.contains(skillList, 'Art numérique')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Art numérique')}" th:if="${skillList != null and #lists.contains(skillList, 'Art numérique')}"
 					value='Art numérique'>Art numérique</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Pratiques collaboratives')}" th:if="${#lists.contains(skillList, 'Pratiques collaboratives')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Pratiques collaboratives')}" th:if="${skillList != null and #lists.contains(skillList, 'Pratiques collaboratives')}"
 					value='Pratiques collaboratives'>Pratiques collaboratives</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Venture Capital')}" th:if="${#lists.contains(skillList, 'Venture Capital')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Venture Capital')}" th:if="${skillList != null and #lists.contains(skillList, 'Venture Capital')}"
 					value='Venture Capital'>Venture Capital</option>
 				</optgroup>
 				<optgroup
 					label='Technique, Administration réseau, système et base de données'>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Câbles')}" th:if="${#lists.contains(skillList, 'Câbles')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Câbles')}" th:if="${skillList != null and #lists.contains(skillList, 'Câbles')}"
 					value='Câbles'>Câbles</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'DBA')}" th:if="${#lists.contains(skillList, 'DBA')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'DBA')}" th:if="${skillList != null and #lists.contains(skillList, 'DBA')}"
 					value='DBA'>DBA</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'DNS')}" th:if="${#lists.contains(skillList, 'DNS')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'DNS')}" th:if="${skillList != null and #lists.contains(skillList, 'DNS')}"
 					value='DNS'>DNS</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Hacker')}" th:if="${#lists.contains(skillList, 'Hacker')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Hacker')}" th:if="${skillList != null and #lists.contains(skillList, 'Hacker')}"
 					value='Hacker'>Hacker</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Matériel et Data Center')}" th:if="${#lists.contains(skillList, 'Matériel et Data Center')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Matériel et Data Center')}" th:if="${skillList != null and #lists.contains(skillList, 'Matériel et Data Center')}"
 					value='Matériel et Data Center'>Matériel et Data Center</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Normalisation')}" th:if="${#lists.contains(skillList, 'Normalisation')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Normalisation')}" th:if="${skillList != null and #lists.contains(skillList, 'Normalisation')}"
 					value='Normalisation'>Normalisation</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Routage')}" th:if="${#lists.contains(skillList, 'Routage')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Routage')}" th:if="${skillList != null and #lists.contains(skillList, 'Routage')}"
 					value='Routage'>Routage</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Sécurité informatique')}" th:if="${#lists.contains(skillList, 'Sécurité informatique')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Sécurité informatique')}" th:if="${skillList != null and #lists.contains(skillList, 'Sécurité informatique')}"
 					value='Sécurité informatique'>Sécurité informatique</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Unix')}" th:if="${#lists.contains(skillList, 'Unix')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Unix')}" th:if="${skillList != null and #lists.contains(skillList, 'Unix')}"
 					value='Unix'>Unix</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Windows')}" th:if="${#lists.contains(skillList, 'Windows')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Windows')}" th:if="${skillList != null and #lists.contains(skillList, 'Windows')}"
 					value='Windows'>Windows</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Cybercriminalité')}" th:if="${#lists.contains(skillList, 'Cybercriminalité')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Cybercriminalité')}" th:if="${skillList != null and #lists.contains(skillList, 'Cybercriminalité')}"
 					value='Cybercriminalité'>Cybercriminalité</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Audit')}" th:if="${#lists.contains(skillList, 'Audit')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Audit')}" th:if="${skillList != null and #lists.contains(skillList, 'Audit')}"
 					value='Audit'>Audit</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Future Networks')}" th:if="${#lists.contains(skillList, 'Future Networks')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Future Networks')}" th:if="${skillList != null and #lists.contains(skillList, 'Future Networks')}"
 					value='Future Networks'>Future Networks</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Réseaux sans fil')}" th:if="${#lists.contains(skillList, 'Réseaux sans fil')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Réseaux sans fil')}" th:if="${skillList != null and #lists.contains(skillList, 'Réseaux sans fil')}"
 					value='Réseaux sans fil'>Réseaux sans fil</option>
-					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Réseaux mobiles')}" th:if="${#lists.contains(skillList, 'Réseaux mobiles')}"
+					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Réseaux mobiles')}" th:if="${skillList != null and #lists.contains(skillList, 'Réseaux mobiles')}"
 					value='Réseaux mobiles'>Réseaux mobiles</option>
 				</optgroup>
 			</select>

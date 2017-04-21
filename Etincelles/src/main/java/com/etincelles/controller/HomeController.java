@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -107,12 +106,13 @@ public class HomeController implements ErrorController {
 
         userService.save( user );
 
-        String token = UUID.randomUUID().toString();
-        userService.createPasswordResetTokenForUser( user, token );
+        // String token = UUID.randomUUID().toString();
+        // userService.createPasswordResetTokenForUser( user, token );
 
-        String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+        // String appUrl = "http://" + request.getServerName() + ":" +
+        // request.getServerPort() + request.getContextPath();
 
-        SimpleMailMessage newEmail = mailConstructor.constructResetTokenEmail( appUrl, request.getLocale(), token, user,
+        SimpleMailMessage newEmail = mailConstructor.constructResetPasswordEmail( request.getLocale(), user,
                 password );
 
         mailSender.send( newEmail );
