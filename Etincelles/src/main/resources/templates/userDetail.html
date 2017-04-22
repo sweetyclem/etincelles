@@ -21,8 +21,8 @@
 	<!-- Team Section -->
 	<section style="padding: 1em" id="team">
 		<div class="container" style="width: 100%">
-			<div class="row" th:with="pic=${'/images/user/' + user.id +'.png'}">
-				<div class="col-md-7 col-xs-12" style="background-color: #F9F9F9; min-height:431px">
+			<div class="row grey-back" th:with="pic=${'/images/user/' + user.id +'.png'}">
+				<div class="col-md-7 col-xs-12" style="min-height:431px">
 					<div class="row">
 						<div class="col-md-6 col-md-offset-3 profilePic">
 							<img class="img-responsive center-block"
@@ -91,7 +91,7 @@
 					</div>
 					</div>	
 				</div>
-				<div th:if="${!user.noContact}" class="col-md-5 col-xs-12 text-center" style="background: #F9F9F9;">
+				<div th:if="${!user.noContact}" class="col-md-5 col-xs-12 text-center">
 					<form id="contact" th:action="@{/contact}" method="post">
 						<h3>Contact</h3>
 						<input type="hidden" name="userEmail" th:value="${user.email}" />

@@ -153,9 +153,9 @@
 										<!-- Pour étincelles -->
 										<div class="form-group"
 											th:if="(${user.category != null and user.category.name() == 'Etincelle'})">
-											<label for="promo">* Promo</label><input type="number" required="required"
-												class="form-control" id="promo" name="promo" min="1"
-												th:value="${user.promo != 0 ? user.promo : null}" />
+											<label for="promo">Numéro de promo</label><input type="number"
+												class="form-control" id="promo" name="promo" max="999"
+												th:value="${user.promo}" placeholder="Indiquez votre numéro de promotion (pas l'année de votre sortie)"/>
 										</div>		
 
 										<div class="form-group">
@@ -221,6 +221,7 @@
 				</div>
 			</div>
 		</div>
+		
 	</div>
 	<!-- end of container -->
 
@@ -231,5 +232,6 @@
 		<script
 			th:src="@{/js/bootstrap-select/i18n/defaults-fr_FR.js}"></script>
 	<script th:src="@{/js/scripts.js}"></script>
+	<script src="https://cdn.auth0.com/js/lock/10.14/lock.min.js"></script>
 </body>
 </html>
