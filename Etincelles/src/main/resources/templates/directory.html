@@ -126,6 +126,11 @@
 									target="_blank" class="btn btn-linkedin btn-sm" rel="publisher"
 									th:href="${user.linkedin}"> <i class="fa fa-linkedin"></i>
 								</a>
+								<a
+									th:if="${user.website != null  and !#strings.isEmpty(user.website)}"
+									target="_blank" class="btn btn-website btn-sm" rel="publisher"
+									th:href="${user.website}"> <i class="fa fa-laptop" aria-hidden="true"></i>
+								</a>								
 							</div>
 
 							<div data-th-each="userSkill : ${user.userSkills}">

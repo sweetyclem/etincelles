@@ -188,6 +188,15 @@
 										</div>
 										
 										<div class="form-group">
+											<label for="website">Site personnel</label><input type="url"
+												class="form-control" id="website" name="website"
+												placeholder="url complète"
+												th:value="${user.website}" />
+											<p style="color: #828282; font-size: 0.9em">Par exemple
+												http://socialbuilder.org</p>
+										</div>
+										
+										<div class="form-group">
 											<input th:checked="${user.noContact}" type="checkbox" value="true" name="noContact"/>Je ne souhaite pas qu'on puisse me contacter
 										</div>
 

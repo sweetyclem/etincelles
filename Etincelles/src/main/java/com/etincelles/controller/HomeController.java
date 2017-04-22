@@ -208,7 +208,6 @@ public class HomeController implements ErrorController {
         }
 
         BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
-        String dbPassword = currentUser.getPassword();
 
         // update password
         if ( newPassword != null && !newPassword.isEmpty() && !newPassword.equals( "" ) ) {
@@ -225,6 +224,7 @@ public class HomeController implements ErrorController {
         currentUser.setFacebook( user.getFacebook() );
         currentUser.setTwitter( user.getTwitter() );
         currentUser.setLinkedin( user.getLinkedin() );
+        currentUser.setWebsite( user.getWebsite() );
         currentUser.setPromo( user.getPromo() );
         currentUser.setType( user.getType() );
         currentUser.setSector( user.getSector() );
