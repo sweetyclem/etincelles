@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
@@ -33,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.auth0.Auth0User;
 import com.etincelles.entities.Message;
 import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.Skill;
@@ -507,6 +509,15 @@ public class HomeController implements ErrorController {
     @RequestMapping( "/aboutUs" )
     public String aboutUs() {
         return "aboutUs";
+    }
+
+    @RequestMapping( value = "/portal/home", method = RequestMethod.GET )
+    protected String home( final Map<String, Object> model, final Principal principal ) {
+        System.out.println( "Home page" );
+        final Auth0User user = (Auth0User) principal;
+        System.out.println( "Principal name: " + user.getName() );
+        model.put( "user", user );
+        return "home";
     }
 
 }

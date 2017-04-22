@@ -221,7 +221,32 @@
 				</div>
 			</div>
 		</div>
-		
+		<script type="text/javascript">
+      $(function () {
+        var error = ${error};
+        if (error) {
+          $.growl.error({message: "An error was detected. Please log in"});
+        } else {
+          $.growl({title: "Welcome!", message: "Please log in"});
+        }
+      });
+
+      $(function () {
+            var lock = new Auth0Lock('ClSiFehKEEgQulClm9rGOlUFCPsHkC5T', 'etincelles.eu.auth0.com', {
+                auth: {
+                    redirectUrl: '${fn:replace(pageContext.request.requestURL, pageContext.request.requestURI, '')}${loginCallback}',
+                    responseType: 'code',
+                    params: {
+                        state: '${state}',
+                        scope: 'openid user_id name nickname email picture'
+                    }
+                }
+            });
+            setTimeout(function () {
+                lock.show();
+            }, 1500);
+        });
+    </script>
 	</div>
 	<!-- end of container -->
 
