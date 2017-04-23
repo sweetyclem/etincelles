@@ -9,89 +9,92 @@
 <body>
 	<div th:replace="common/header :: navbar"></div>
 
-	<main class="container" style="width:100%">
+	<main class="container full-width">
 
 	<div>
-		<ol class="breadcrumb" style="background-color: white">
+		<ol class="breadcrumb white-back">
 			<li><a class="no-under" th:href="@{/directory}"><i
 					class="fa fa-long-arrow-left" aria-hidden="true"></i> Retour à la
 					liste</a></li>
 		</ol>
 	</div>
 	<!-- Team Section -->
-	<section style="padding: 1em" id="team">
-		<div class="container" style="width: 100%">
-			<div class="row grey-back" th:with="pic=${'/images/user/' + user.id +'.png'}">
-				<div class="col-md-7 col-xs-12" style="min-height:431px">
+	<section id="team">
+		<div class="container full-width">
+			<div class="row grey-back"
+				th:with="pic=${'/images/user/' + user.id +'.png'}">
+				<div class="col-md-7 col-xs-12 profilePicCol">
 					<div class="row">
 						<div class="col-md-6 col-md-offset-3 profilePic">
 							<img class="img-responsive center-block"
 								th:src="${(user.hasPicture) ? pic : '/images/flower.jpeg'}"
-								th:alt="${user.firstName + ' ' + user.lastName}" />						
+								th:alt="${user.firstName + ' ' + user.lastName}" />
 
 						</div>
 					</div>
-				<div class="row">
+					<div class="row">
 						<div class="col-xs-12 text-center">
-						<br/>							
+							<br />
 							<div class="bottom">
-							<h2
-								th:if="${!#strings.isEmpty(user.lastName) and !#strings.isEmpty(user.firstName)}"
-								class="section-heading"
-								th:text="${user.firstName + ' ' + user.lastName}"></h2>
-							<a
+								<h2
+									th:if="${!#strings.isEmpty(user.lastName) and !#strings.isEmpty(user.firstName)}"
+									class="section-heading"
+									th:text="${user.firstName + ' ' + user.lastName}"></h2>
+								<a
 									th:if="${user.twitter != null and !#strings.isEmpty(user.twitter)}"
 									target="_blank" class="btn btn-twitter btn-sm"
-									th:href="@{user.twitter}"> <i
-									class="fa fa-twitter"></i>
+									th:href="@{user.twitter}"> <i class="fa fa-twitter"></i>
 								</a> <a
 									th:if="${user.facebook != null and !#strings.isEmpty(user.facebook)}"
 									target="_blank" class="btn btn-facebook btn-sm" rel="publisher"
-									th:href="@{user.facebook}">
-									<i class="fa fa-facebook"></i>
+									th:href="@{user.facebook}"> <i class="fa fa-facebook"></i>
 								</a> <a
 									th:if="${user.linkedin != null  and !#strings.isEmpty(user.linkedin)}"
 									target="_blank" class="btn btn-linkedin btn-sm" rel="publisher"
-									th:href="${user.linkedin}"> <i
-									class="fa fa-linkedin"></i>
+									th:href="${user.linkedin}"> <i class="fa fa-linkedin"></i>
 								</a>
-						</div>
+							</div>
 
 							<div class="team-member">
-								<p> 
-									<span th:if="${user.category != null and #strings.equals(user.category,'Equipe')}" class="section-subheading text-muted"
-									th:text="${'Equipe social builder'}"></span>
-									<span th:if="${user.category != null and !#strings.equals(user.category,'Equipe')}" class="section-subheading text-muted"
-									th:text="${' ' + user.category}"></span>
-									<span th:if="${user.type != null}"
-									class="section-subheading text-muted"
-									th:text="${user.type}"></span>
+								<p>
+									<span
+										th:if="${user.category != null and #strings.equals(user.category,'Equipe')}"
+										class="section-subheading text-muted"
+										th:text="${'Equipe social builder'}"></span> <span
+										th:if="${user.category != null and !#strings.equals(user.category,'Equipe')}"
+										class="section-subheading text-muted"
+										th:text="${' ' + user.category}"></span> <span
+										th:if="${user.type != null}"
+										class="section-subheading text-muted" th:text="${user.type}"></span>
 								</p>
 
-								
-							</div>
-
-						<p th:if="${user.promo > 0}">
-							Promo <span th:text="${user.promo}"></span>
-						</p>
-						<p th:if="${user.city != null and !#strings.isEmpty(user.city)}" th:text="${user.city}"></p>						
-						<p th:if="${user.sector != null and !#strings.isEmpty(user.sector)}" th:text="${user.sector}"></p>
-						<div data-th-each="userSkill : ${user.userSkills}">
-							<div data-th-each="skill : ${userSkill.skill}">
-								<div style="font-size: 1.5em" th:if="${skill != null and !#strings.isEmpty(skill)}"
-									class="desc" th:text="${'#' + skill.name}"></div>
+								<p th:if="${user.promo > 0}">
+									Promo <span th:text="${user.promo}"></span>
+								</p>
+								<p th:if="${user.city != null and !#strings.isEmpty(user.city)}"
+									th:text="${user.city}"></p>
+								<p
+									th:if="${user.sector != null and !#strings.isEmpty(user.sector)}"
+									th:text="${user.sector}"></p>
+								<div data-th-each="userSkill : ${user.userSkills}">
+									<div data-th-each="skill : ${userSkill.skill}">
+										<div th:if="${skill != null and !#strings.isEmpty(skill)}"
+											class="desc skills" th:text="${'#' + skill.name}"></div>
+									</div>
+								</div>
 							</div>
 						</div>
-
-					</div>
 					</div>
 					<div class="row text-justify">
-						<div class="col-xs-12 col-sm-10 col-sm-offset-1">	
-						<p th:if="${user.description != null and !#strings.isEmpty(user.description)}" th:utext="${user.description}"></p>
+						<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+							<p
+								th:if="${user.description != null and !#strings.isEmpty(user.description)}"
+								th:utext="${user.description}"></p>
+						</div>
 					</div>
-					</div>	
 				</div>
-				<div th:if="${!user.noContact}" class="col-md-5 col-xs-12 text-center">
+				<div th:if="${!user.noContact}"
+					class="col-md-5 col-lg-4 col-xs-12 text-center">
 					<form id="contact" th:action="@{/contact}" method="post">
 						<h3>Contact</h3>
 						<input type="hidden" name="userEmail" th:value="${user.email}" />
@@ -101,12 +104,12 @@
 						</fieldset>
 						<span id="checkemailMatch"></span>
 						<fieldset>
-							<input placeholder="Adresse email" type="email" name="email" id="email1"
-								tabindex="2" required="required" />
+							<input placeholder="Adresse email" type="email" name="email"
+								id="email1" tabindex="2" required="required" />
 						</fieldset>
 						<fieldset>
-							<input placeholder="Confirmez l'email" type="email" tabindex="3" id="email2"
-								required="required" />
+							<input placeholder="Confirmez l'email" type="email" tabindex="3"
+								id="email2" required="required" />
 						</fieldset>
 						<fieldset>
 							<textarea placeholder="Votre message" tabindex="4" name="content"

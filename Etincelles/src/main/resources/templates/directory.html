@@ -19,12 +19,11 @@
 			<form accept-charset="UTF-8" action="/directorySearch"
 				id="searchform" method="post" class="form-inline">
 				<input type="hidden" name="sectorList" th:value="${sectors}" />
-				<div class="col-xs-10 col-sm-2 form-group"
-					style="line-height: 30px">
+				<div class="col-xs-10 col-sm-2 form-group">
 					<div th:replace="common/skillSelect :: directorySkillSelect"></div>
 				</div>
 				
-				<p class="col-xs-1 col-sm-1" style="height: 34px; width: 20px; padding-left: 0; padding-right: 0; color: gray;" th:text="et"></p>
+				<p class="col-xs-1 col-sm-1 and-box" th:text="et"></p>
 
 				<div class="col-xs-10 col-sm-2">
 					<select id="sector" title="Secteur" name="sectors"
@@ -34,7 +33,7 @@
 					</select>
 				</div>
 				
-				<p class="col-xs-1 col-sm-1" style="height: 34px; width: 20px; padding-left: 0; padding-right: 0; color: gray;" th:text="et"></p>
+				<p class="col-xs-1 col-sm-1 and-box" th:text="et"></p>
 
 				<div class="col-xs-10 col-sm-2">
 					<select id="category" title="Catégorie" name="categories"
@@ -46,10 +45,10 @@
 					</select>
 				</div>
 				
-				<p class="col-xs-1 col-sm-1" style="height: 34px; width: 20px; padding-left: 0; padding-right: 0; color: gray;" th:text="et"></p>
+				<p class="col-xs-1 col-sm-1 and-box" th:text="et"></p>
 
 				<div class="col-xs-10 col-sm-2">
-					<select style="line-height: 30px" name="cities"
+					<select name="cities"
 						class="selectpicker form-control" multiple="multiple"
 						title="Ville">
 						<option th:selected="${searchList  != null and #lists.contains(searchList, 'Paris')}" th:value="Paris">Paris</option>
@@ -75,7 +74,7 @@
 			<div class="col-xs-12">
 				<br />
 				<p>Votre recherche :
-				<span th:each="param, iterStat : ${searchList}" th:text="!${iterStat.last} ? ${param} + ',': ${param}" style="font-size: 1em"></span>
+				<span th:each="param, iterStat : ${searchList}" th:text="!${iterStat.last} ? ${param} + ',': ${param}" ></span>
 				</p>
 			</div>
 		</div>
@@ -108,11 +107,11 @@
 								class="title" th:text="${user.firstName + ' ' + user.lastName}"></div>
 							<div
 								th:if="${user.category != null and #strings.equals(user.category,'Equipe')}"
-								class="desc" th:text="${'Equipe Social Builder'}"></div>
+								class="grey" th:text="${'Equipe Social Builder'}"></div>
 							<div
 								th:if="${user.category != null and !#strings.equals(user.category,'Equipe')}"
-								class="desc" th:text="${user.category}"></div>
-							<div style="padding: 0.5em">
+								class="grey" th:text="${user.category}"></div>
+							<div class="social">
 								<a
 									th:if="${user.twitter != null and !#strings.isEmpty(user.twitter)}"
 									target="_blank" class="btn btn-twitter btn-sm"
@@ -135,18 +134,16 @@
 
 							<div data-th-each="userSkill : ${user.userSkills}">
 								<div data-th-each="skill : ${userSkill.skill}">
-									<div style="font-size: 1.5em"
+									<div
 										th:if="${skill != null and !#strings.isEmpty(skill)}"
 										class="desc" th:text="${'#' + skill.name}"></div>
 								</div>
 							</div>
 							<br />
 						</div>
-						<div
-							style="position: absolute; bottom: 0; width: 100%; height: 50px;">
+						<div id="noContact">
 							<a th:if="${!user.noContact}" target="_blank"
-								style="background-color: #a5b6b7; padding: 0.4em"
-								class="btn btn-default no-under btn-xs"
+								class="btn btn-default no-under btn-xs btn-contact"
 								th:href="@{/userDetail#contact(id=${user.id})}" role="button">Contacter</a>
 						</div>
 					</div></a>

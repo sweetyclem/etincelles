@@ -51,11 +51,11 @@
 					<li class="active"><a class="no-under" href="#tab-1"
 						data-toggle="tab"><span>Modifier</span></a></li>
 					<!-- <li th:classappend="${classActiveOrders}? 'active'"><a
-                        href="#tab-2" data-toggle="tab"><span style="color: red;">Orders</span></a></li>
+                        href="#tab-2" data-toggle="tab"><span>Orders</span></a></li>
                 <li th:classappend="${classActiveBilling}? 'active'"><a
-                        href="#tab-3" data-toggle="tab"><span style="color: red;">Billing</span></a></li>
+                        href="#tab-3" data-toggle="tab"><span>Billing</span></a></li>
                 <li th:classappend="${classActiveShipping}? 'active'"><a
-                        href="#tab-4" data-toggle="tab"><span style="color: red;">Shipping</span></a></li> -->
+                        href="#tab-4" data-toggle="tab"><span>Shipping</span></a></li> -->
 				</ul>
 
 				<!-- Tab panels -->
@@ -64,10 +64,8 @@
 					<!-- Edit user information -->
 					<div class="tab-pane fade in active" id="tab-1">
 						<div class="panel-group">
-							<div class="panel panel-default" style="border: none;">
-								<div class="panel-body"
-									style="background-color: #ededed; margin-top: 20px;">
-
+							<div class="panel panel-default login-panel">
+								<div class="panel-body panel-style">
 
 									<form th:action="@{/updateUserInfo}" method="post"
 										enctype="multipart/form-data">
@@ -97,7 +95,6 @@
 												class="form-control" id="email" name="email"
 												th:value="${user.email}" />
 										</div>
-										<p style="color: #828282"></p>
 																		
 										<div th:if="${user.city != null}" class="form-group" id="city">
 											<label for="city">* Ville</label> <select name="city" id="citySelect"
@@ -164,7 +161,7 @@
 												name="twitter"
 												placeholder="url complète"
 												th:value="${user.twitter}" />
-											<p style="color: #828282; font-size: 0.9em">Par exemple
+											<p class="form-legend">Par exemple
 												https://twitter.com/SocialBuilder</p>
 										</div>
 
@@ -174,7 +171,7 @@
 												name="facebook"
 												placeholder="url complète"
 												th:value="${user.facebook}" />
-											<p style="color: #828282; font-size: 0.9em">Par exemple
+											<p class="form-legend">Par exemple
 												 https://facebook.com/public/SocialBuilder</p>
 										</div>
 
@@ -183,7 +180,7 @@
 												class="form-control" id="linkedin" name="linkedin"
 												placeholder="url complète"
 												th:value="${user.linkedin}" />
-											<p style="color: #828282; font-size: 0.9em">Par exemple
+											<p class="form-legend">Par exemple
 												https://linkedin.com/in/SocialBuilder</p>
 										</div>
 										
@@ -192,7 +189,7 @@
 												class="form-control" id="website" name="website"
 												placeholder="url complète"
 												th:value="${user.website}" />
-											<p style="color: #828282; font-size: 0.9em">Par exemple
+											<p class="form-legend">Par exemple
 												http://socialbuilder.org</p>
 										</div>
 										
@@ -205,15 +202,15 @@
 												type="password" class="form-control" id="currentPassword"
 												name="password" th:value="${currentPassword}"
 												required="required" />
-												<p style="color: #828282 ; font-size: 0.9em">Entrez votre mot de passe actuel
+												<p class="form-legend">Entrez votre mot de passe actuel
 											pour mettre à jour l'email ou le mot de passe.</p>
 										</div>	 -->									
 
 										<br/>
 										<div class="form-group">
-										<div style="font-size: 1.2em">Changer de mot de passe</div><br/>
+										<div class="emphasis">Changer de mot de passe</div><br/>
 											<label for="txtNewPassword">Nouveau mot de passe</label>&nbsp;<span
-												id="checkPasswordMatch" style="color: red;"></span> <input
+												id="checkPasswordMatch" class="red"></span> <input
 												type="password" class="form-control" id="txtNewPassword"
 												name="newPassword" />
 											<label for="txtConfirmPassword">Confirmer mot de

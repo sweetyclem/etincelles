@@ -6,8 +6,8 @@
 	<div th:replace="common/header :: navbar" />
 
 	<div class="container">
-		<div class="row" style="margin-bottom: -100px;">
-			<div class="col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3 col-lg-8 col-lg-offset-2 col-xs-12">
+		<div class="row">
+			<div class="col-md-9 col-md-offset-1 col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2 col-xs-12">
 				<h2 class="section-headline">
 					<span>Mon compte</span>
 				</h2>
@@ -15,8 +15,8 @@
 			</div>
 		</div>
 
-		<div class="row" style="margin-top: 60px;">
-			<div class="col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3 col-lg-8 col-lg-offset-2 col-xs-12">
+		<div class="row">
+			<div class="col-md-9 col-md-offset-1 col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2 col-xs-12">
 
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs">
@@ -34,15 +34,14 @@
 					<div class="tab-pane fade" id="tab-2"
 						th:classappend="${classActiveLogin}? 'in active'">
 						<div class="panel-group">
-							<div class="panel panel-default" style="border: none;">
-								<div class="panel-body"
-									style="background-color: #ededed; margin-top: 20px;">
+							<div class="panel panel-default login-panel">
+								<div class="panel-body">
 									<form th:action="@{/login}" method="post">
 										<div class="form-group">
 											<label for="email">* Email: </label> <input
 												required="required" type="text" class="form-control"
 												name="username" autofocus="autofocus" />
-											<p style="color: #828282; font-size: 1em;">L'email doit correspondre à
+											<p class="form-legend">L'email doit correspondre à
 												l'email fourni à Social Builder</p>
 										</div>
 										<div>
@@ -61,9 +60,8 @@
 					<div class="tab-pane fade" id="tab-3"
 						th:classappend="${classActiveForgetPassword}? 'in active'">
 						<div class="panel-group">
-							<div class="panel panel-default" style="border: none;">
-								<div class="panel-body"
-									style="background-color: #ededed; margin-top: 20px;">
+							<div class="panel panel-default login-panel">
+								<div class="panel-body panel-style">
 									<div th:if="${emailNotExist}" class="alert alert-success">Si
 										votre compte existe, un email vous a été envoyé</div>
 									<div th:if="${forgetPasswordEmailSent}"
@@ -74,7 +72,7 @@
 											<label for="recoverEmail">* Email: </label> <input
 												required="required" autofocus="autofocus" type="email"
 												class="form-control" name="email" />
-											<p style="color: #828282; font-size: 1em;">L'email doit correspondre à
+											<p class="form-legend">L'email doit correspondre à
 												l'email fourni à Social Builder</p>
 										</div>
 
