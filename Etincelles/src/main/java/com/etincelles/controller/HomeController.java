@@ -228,20 +228,8 @@ public class HomeController implements ErrorController {
         currentUser.setType( user.getType() );
         currentUser.setSector( user.getSector() );
 
-        /*
-         * if ( request.getParameterMap().containsKey( "skills" ) ) { String[]
-         * skills = request.getParameterMap().get( "skills" ); if (
-         * skills.length > 4 ) { model.addAttribute( "incorrectSkills", true );
-         * return "myProfile"; } // Delete existing UserSkills and replace them
-         * with the new list for ( String skillString : skills ) { // If skill
-         * does not exist, create it Skill skill = skillRepo.findByname(
-         * skillString ); if ( skill == null ) { skill = new Skill();
-         * skill.setName( skillString ); skillRepo.save( skill ); }
-         * user.getSkills().add( skill ); } }
-         */
-
-        if ( request.getParameterMap().containsKey( "skills" ) ) {
-            String[] skills = request.getParameterMap().get( "skills" );
+        if ( request.getParameterMap().containsKey( "skillNames" ) ) {
+            String[] skills = request.getParameterMap().get( "skillNames" );
             if ( skills.length > 4 ) {
                 model.addAttribute( "incorrectSkills", true );
                 return "myProfile";
@@ -262,7 +250,7 @@ public class HomeController implements ErrorController {
         }
 
         List<String> skills = new ArrayList<>();
-        for ( Skill skill : user.getSkills() ) {
+        for ( Skill skill : currentUser.getSkills() ) {
             skills.add( skill.getName() );
         }
 
