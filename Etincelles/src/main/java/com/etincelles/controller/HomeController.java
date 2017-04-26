@@ -6,10 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +35,6 @@ import com.etincelles.entities.Message;
 import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.Skill;
 import com.etincelles.entities.User;
-import com.etincelles.entities.UserSkill;
 import com.etincelles.repository.SkillRespository;
 import com.etincelles.service.CustomUserService;
 import com.etincelles.service.MessageService;
@@ -141,8 +138,8 @@ public class HomeController implements ErrorController {
         SecurityContextHolder.getContext().setAuthentication( authentication );
 
         List<String> skills = new ArrayList<>();
-        for ( UserSkill userSkill : user.getUserSkills() ) {
-            skills.add( userSkill.getSkill().getName() );
+        for ( Skill skill : user.getSkills() ) {
+            skills.add( skill.getName() );
         }
 
         if ( skills.size() != 0 ) {
@@ -157,10 +154,12 @@ public class HomeController implements ErrorController {
     public String updateGet( Model model, Principal principal ) {
         User activeUser = (User) ( (Authentication) principal ).getPrincipal();
         User user = userService.findByEmail( activeUser.getEmail() );
+
         List<String> skills = new ArrayList<>();
-        for ( UserSkill userSkill : user.getUserSkills() ) {
-            skills.add( userSkill.getSkill().getName() );
+        for ( Skill skill : user.getSkills() ) {
+            skills.add( skill.getName() );
         }
+
         if ( skills.size() != 0 ) {
             model.addAttribute( "skills", skills );
         }
@@ -229,7 +228,18 @@ public class HomeController implements ErrorController {
         currentUser.setType( user.getType() );
         currentUser.setSector( user.getSector() );
 
-        Set<UserSkill> userSkills = new HashSet<>();
+        /*
+         * if ( request.getParameterMap().containsKey( "skills" ) ) { String[]
+         * skills = request.getParameterMap().get( "skills" ); if (
+         * skills.length > 4 ) { model.addAttribute( "incorrectSkills", true );
+         * return "myProfile"; } // Delete existing UserSkills and replace them
+         * with the new list for ( String skillString : skills ) { // If skill
+         * does not exist, create it Skill skill = skillRepo.findByname(
+         * skillString ); if ( skill == null ) { skill = new Skill();
+         * skill.setName( skillString ); skillRepo.save( skill ); }
+         * user.getSkills().add( skill ); } }
+         */
+
         if ( request.getParameterMap().containsKey( "skills" ) ) {
             String[] skills = request.getParameterMap().get( "skills" );
             if ( skills.length > 4 ) {
@@ -237,12 +247,8 @@ public class HomeController implements ErrorController {
                 return "myProfile";
             }
             // Delete existing UserSkills and replace them with the new list
+            List<Skill> skillList = new ArrayList<>();
             for ( String skillString : skills ) {
-                for ( UserSkill userSkill : currentUser.getUserSkills() ) {
-                    customUserService
-                            .executeStringQuery(
-                                    "DELETE FROM user_skill WHERE user_skill_id= " + userSkill.getUserSkillId() );
-                }
                 // If skill does not exist, create it
                 Skill skill = skillRepo.findByname( skillString );
                 if ( skill == null ) {
@@ -250,14 +256,14 @@ public class HomeController implements ErrorController {
                     skill.setName( skillString );
                     skillRepo.save( skill );
                 }
-                userSkills.add( new UserSkill( user, skill ) );
+                skillList.add( skill );
             }
+            currentUser.setSkills( skillList );
         }
-        currentUser.setUserSkills( userSkills );
 
         List<String> skills = new ArrayList<>();
-        for ( UserSkill userSkill : currentUser.getUserSkills() ) {
-            skills.add( userSkill.getSkill().getName() );
+        for ( Skill skill : user.getSkills() ) {
+            skills.add( skill.getName() );
         }
 
         if ( skills.size() != 0 ) {
@@ -294,8 +300,8 @@ public class HomeController implements ErrorController {
 
         List<String> skillList = new ArrayList<>();
         for ( User user : users ) {
-            for ( UserSkill uSkill : user.getUserSkills() ) {
-                skillList.add( uSkill.getSkill().getName() );
+            for ( Skill skill : user.getSkills() ) {
+                skillList.add( skill.getName() );
             }
         }
 
@@ -326,8 +332,8 @@ public class HomeController implements ErrorController {
         User activeUser = (User) ( (Authentication) principal ).getPrincipal();
         User user = userService.findByEmail( activeUser.getEmail() );
         List<String> skills = new ArrayList<>();
-        for ( UserSkill userSkill : user.getUserSkills() ) {
-            skills.add( userSkill.getSkill().getName() );
+        for ( Skill skill : user.getSkills() ) {
+            skills.add( skill.getName() );
         }
 
         if ( skills.size() != 0 ) {

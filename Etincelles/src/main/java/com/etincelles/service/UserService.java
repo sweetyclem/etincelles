@@ -5,7 +5,6 @@ import java.util.Set;
 
 import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.User;
-import com.etincelles.entities.UserSkill;
 import com.etincelles.entities.security.UserRole;
 import com.etincelles.enumeration.Category;
 import com.etincelles.enumeration.City;
@@ -19,7 +18,7 @@ public interface UserService {
 
     User findById( Long id );
 
-    User createUser( User user, Set<UserRole> userRoles, Set<UserSkill> userSkills ) throws Exception;
+    User createUser( User user, Set<UserRole> userRoles ) throws Exception;
 
     User save( User user );
 
