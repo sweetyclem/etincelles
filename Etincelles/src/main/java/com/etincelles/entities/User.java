@@ -20,6 +20,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.SortNatural;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
@@ -72,6 +73,8 @@ public class User implements UserDetails {
 
     @ManyToMany( fetch = FetchType.EAGER )
     @JoinTable( name = "user_skill", joinColumns = @JoinColumn( name = "user_id", referencedColumnName = "id" ), inverseJoinColumns = @JoinColumn( name = "skill_id", referencedColumnName = "id" ) )
+    @SortNatural
+    @javax.persistence.OrderBy( "name" )
     private List<Skill>       skills;
 
     public List<Skill> getSkills() {
