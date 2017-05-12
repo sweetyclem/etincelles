@@ -35,24 +35,25 @@
 					<div class="row">
 						<div class="col-xs-12 text-center">
 							<br />
-							<div class="bottom">
-								<h2
-									th:if="${!#strings.isEmpty(user.lastName) and !#strings.isEmpty(user.firstName)}"
-									class="section-heading"
-									th:text="${user.firstName + ' ' + user.lastName}"></h2>
+							<div class="social">
 								<a
 									th:if="${user.twitter != null and !#strings.isEmpty(user.twitter)}"
 									target="_blank" class="btn btn-twitter btn-sm"
-									th:href="@{user.twitter}"> <i class="fa fa-twitter"></i>
+									th:href="${user.twitter}"> <i class="fa fa-twitter"></i>
 								</a> <a
 									th:if="${user.facebook != null and !#strings.isEmpty(user.facebook)}"
 									target="_blank" class="btn btn-facebook btn-sm" rel="publisher"
-									th:href="@{user.facebook}"> <i class="fa fa-facebook"></i>
+									th:href="${user.facebook}"> <i class="fa fa-facebook"></i>
 								</a> <a
 									th:if="${user.linkedin != null  and !#strings.isEmpty(user.linkedin)}"
 									target="_blank" class="btn btn-linkedin btn-sm" rel="publisher"
 									th:href="${user.linkedin}"> <i class="fa fa-linkedin"></i>
 								</a>
+								<a
+									th:if="${user.website != null  and !#strings.isEmpty(user.website)}"
+									target="_blank" class="btn btn-website btn-sm" rel="publisher"
+									th:href="${user.website}"> <i class="fa fa-laptop" aria-hidden="true"></i>
+								</a>								
 							</div>
 
 							<div class="team-member">
