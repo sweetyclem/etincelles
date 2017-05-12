@@ -73,6 +73,8 @@
 								</p>
 								<p th:if="${user.city != null and !#strings.isEmpty(user.city)}"
 									th:text="${user.city}"></p>
+								<p th:if="${user.currentPosition != null and !#strings.isEmpty(user.currentPosition)}"
+                                    th:text="${user.currentPosition}"></p>
 								<p
 									th:if="${user.sector != null and !#strings.isEmpty(user.sector)}"
 									th:text="${user.sector}"></p>
