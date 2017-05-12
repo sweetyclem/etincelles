@@ -13,7 +13,7 @@
 	<header class="intro-header">
 		<div class="container no-margin-top">
 			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				<div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1">
 					<div class="site-heading">
 						<h1>Actualités</h1>
 						<hr class="small" />
@@ -29,14 +29,15 @@
 	<div class="container">
 		<div data-th-each="message : ${messageList}" class="row">
 			<div th:with="pic=${'/images/message/' + message.id +'.png'}"
-				class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				class="col-md-10 col-md-offset-1">
 					<div class="row">
-					<div class="col-sm-4">
+					<div class="col-sm-5">
+					   <br/><br/>
 						<img class="img-responsive" th:if="${message.hasPicture}"
 						th:src="${'/images/message/'+message.id+'.png'}"/>						
 					</div>
 					<br />
-					<div class="col-sm-8 post-title">
+					<div class="col-sm-7 post-title">
 					<a class="" th:href="@{/post(id=${message.id})}">
 						<span th:utext="${message.title}"></span>
 					</a>
