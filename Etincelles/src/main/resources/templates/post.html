@@ -7,7 +7,7 @@
 <body>
 	<div th:replace="common/header :: navbar"></div>
 	<!-- Header -->
-	<header>
+	<header class="intro-header">
 		<div class="container no-margin-top" id="maincontent" tabindex="-1">
 			<div class="row"
 				th:with="pic=${'/images/message/' + message.id +'.png'}">
@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<div class="row no-margin full-width">
-				<div class="col-sm-4 col-sm-offset-4">
+				<div class="col-sm-6 col-sm-offset-3">
 					<!-- <img class="img-responsive img-circle"
 						th:if="${message.hasPicture == false}"
 						src="http://placekitten.com/600/600?image=14" />  -->
@@ -31,7 +31,7 @@
 
 
 			<div class="row">
-				<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+				<div class="post-title col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
 					<div class="post-heading">
 						<h1 th:utext="${message.title}"></h1>
 						<span th:utext="${#dates.format(message.date,'dd MMM yyyy')}"
