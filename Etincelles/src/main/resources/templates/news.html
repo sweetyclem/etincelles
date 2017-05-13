@@ -37,12 +37,12 @@
 						th:src="${'/images/message/'+message.id+'.png'}"/>						
 					</div>
 					<br />
-					<div class="col-sm-7 news-post-title">
-					<a class="" th:href="@{/post(id=${message.id})}">
+					<div class="col-sm-7">
+					<a class="post-title" th:href="@{/post(id=${message.id})}">
 						<span th:utext="${message.title}"></span>
 					</a>
-						<p th:utext="${#strings.abbreviate(message.text, 300)}"
-							class="post-meta text-justify"></p>
+						<div th:utext="${#strings.abbreviate(message.text, 300)}"
+							class="post-meta text-justify"></div>
 						<br/>
 					</div>
 				</div>
