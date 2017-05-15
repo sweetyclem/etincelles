@@ -45,16 +45,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/news",
             "/badRequestPage",
             "/post",
-            "/userDetail"
+            "/userDetail",
+            "/calendar"
     };
 
     @Override
     protected void configure( HttpSecurity http ) throws Exception {
         http
-                .authorizeRequests().antMatchers( PUBLIC_MATCHERS ).permitAll()
-                .and()
-                .authorizeRequests()
-                .antMatchers( "/calendar" ).authenticated();
+                .authorizeRequests().antMatchers( PUBLIC_MATCHERS ).permitAll();
 
         http
                 .csrf().disable().cors().disable()

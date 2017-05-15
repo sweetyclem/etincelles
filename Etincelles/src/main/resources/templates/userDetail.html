@@ -34,7 +34,10 @@
 					</div>
 					<div class="row">
 						<div class="col-xs-12 text-center">
-							<br />
+							<h2
+								th:if="${!#strings.isEmpty(user.lastName) and !#strings.isEmpty(user.firstName)}"
+								class="section-heading"
+								th:text="${user.firstName + ' ' + user.lastName}"></h2>
 							<div class="social">
 								<a
 									th:if="${user.twitter != null and !#strings.isEmpty(user.twitter)}"
@@ -48,12 +51,12 @@
 									th:if="${user.linkedin != null  and !#strings.isEmpty(user.linkedin)}"
 									target="_blank" class="btn btn-linkedin btn-sm" rel="publisher"
 									th:href="${user.linkedin}"> <i class="fa fa-linkedin"></i>
-								</a>
-								<a
+								</a> <a
 									th:if="${user.website != null  and !#strings.isEmpty(user.website)}"
 									target="_blank" class="btn btn-website btn-sm" rel="publisher"
-									th:href="${user.website}"> <i class="fa fa-laptop" aria-hidden="true"></i>
-								</a>								
+									th:href="${user.website}"> <i class="fa fa-laptop"
+									aria-hidden="true"></i>
+								</a>
 							</div>
 
 							<div class="team-member">
@@ -74,18 +77,18 @@
 								</p>
 								<p th:if="${user.city != null and !#strings.isEmpty(user.city)}"
 									th:text="${user.city}"></p>
-								<p th:if="${user.currentPosition != null and !#strings.isEmpty(user.currentPosition)}"
-                                    th:text="${user.currentPosition}"></p>
+								<p
+									th:if="${user.currentPosition != null and !#strings.isEmpty(user.currentPosition)}"
+									th:text="${user.currentPosition}"></p>
 								<p
 									th:if="${user.sector != null and !#strings.isEmpty(user.sector)}"
 									th:text="${user.sector}"></p>
-									
+
 								<div data-th-each="skill : ${user.skills}">
-									<div
-										th:if="${skill != null and !#strings.isEmpty(skill)}"
+									<div th:if="${skill != null and !#strings.isEmpty(skill)}"
 										class="desc skills" th:text="${'#' + skill.name}"></div>
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
