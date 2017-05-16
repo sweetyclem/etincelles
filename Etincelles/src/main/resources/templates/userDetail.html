@@ -29,11 +29,11 @@
 							<img class="img-responsive center-block"
 								th:src="${(user.hasPicture) ? pic : '/images/flower.jpeg'}"
 								th:alt="${user.firstName + ' ' + user.lastName}" />
-
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-xs-12 text-center">
+						<br/>
 							<h2
 								th:if="${!#strings.isEmpty(user.lastName) and !#strings.isEmpty(user.firstName)}"
 								class="section-heading"
