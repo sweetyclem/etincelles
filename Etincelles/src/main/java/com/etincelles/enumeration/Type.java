@@ -1,7 +1,7 @@
 package com.etincelles.enumeration;
 
 public enum Type {
-    Carrière( "Carrière" ), CarrièreData( "Carrière Data Marketing" ), Startup( "Startup" );
+    Carriere( "Carrière" ), CarriereData( "Carrière Data Marketing" ), Startup( "Startup" );
 
     private final String name;
 
