@@ -144,6 +144,9 @@
 									aria-hidden="true"></i>
 								</a>
 							</div>
+							
+							<p  class="blackText" th:if="${user.currentPosition != null and !#strings.isEmpty(user.currentPosition)}"
+									th:text="${user.currentPosition}"></p>
 
 							<div data-th-each="skill : ${user.skills}">
 								<div th:if="${skill != null and !#strings.isEmpty(skill)}"

@@ -82,7 +82,7 @@
 									th:text="${user.currentPosition}"></p>
 								<p
 									th:if="${user.sector != null and !#strings.isEmpty(user.sector)}"
-									th:text="${user.sector}"></p>
+									th:text="${user.sector}"></p>								
 
 								<div data-th-each="skill : ${user.skills}">
 									<div th:if="${skill != null and !#strings.isEmpty(skill)}"
