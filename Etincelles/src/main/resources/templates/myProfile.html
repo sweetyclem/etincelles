@@ -131,12 +131,14 @@
 										
 										<div class="form-group" th:if="${user.currentPosition == null or (#strings.isEmpty(user.currentPosition))}">
                                         <label for="currentPosition">Situation actuelle</label>
-                                            <input name="currentPosition" type="text" class="form-control" maxlength="45" placeholder="En poste chez xxx, en création d'entreprise, à la recherche d'un emploi..."/>
+                                            <input name="currentPosition" type="text" class="form-control" maxlength="60" placeholder="En poste chez xxx, en création d'entreprise, à la recherche d'un emploi..."/>
+                                        	<p style="color: #828282; font-size: 0.9em">Maximum 60 caractères</p>
                                         </div>
                                         
                                         <div class="form-group" th:if="${user.currentPosition != null and !(#strings.isEmpty(user.currentPosition))}">
                                             <label for="currentPosition">Situation actuelle</label>
-                                            <input name="currentPosition" type="text" class="form-control" maxlength="45"  th:value="${user.currentPosition}" placeholder="En poste chez xxx, en création d'entreprise, à la recherche d'un emploi..."/>
+                                            <input name="currentPosition" type="text" class="form-control" maxlength="60"  th:value="${user.currentPosition}" placeholder="En poste chez xxx, en création d'entreprise, à la recherche d'un emploi..."/>
+                                        	<p style="color: #828282; font-size: 0.9em">Maximum 60 caractères</p>
                                         </div>
 
 										<div class="form-group">
