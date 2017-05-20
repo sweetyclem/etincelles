@@ -6,12 +6,29 @@
 
 <body>
 	<div th:replace="common/header :: navbar" />
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12">
-			<br/><br/>
-				<p th:if="${emailSent}">Votre email a bien été envoyé</p>
+	
+	<!-- Page Header -->
+	<!-- Set your background image for this header on the line below. -->
+	<header class="intro-header">
+		<div class="container no-margin-top">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+					<div class="site-heading">
+						<h1>Social Builder</h1>
+						<hr class="small" />
+					</div>
+				</div>
 			</div>
+		</div>
+	</header>
+
+	<!-- Main Content -->
+	<div class="container">
+		<div class="col-md-10 col-md-offset-1 col-xs-12">
+			<p class="text-justify font-text">
+				Votre email a bien ete envoye
+				
+			</p><br/>
 		</div>
 	</div>
 
