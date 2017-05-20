@@ -23,8 +23,6 @@
 					<div th:replace="common/skillSelect :: directorySkillSelect"></div>
 				</div>
 
-				<p class="hidden-xs col-xs-1 col-sm-1 and-box" th:text="et"></p>
-
 				<div class="col-xs-10 col-sm-2">
 					<select id="sector" title="Secteur" name="sectors"
 						class="selectpicker form-control" multiple="multiple">
@@ -33,8 +31,6 @@
 							th:value="${sector}" th:text="${sector}"></option>
 					</select>
 				</div>
-
-				<p class="hidden-xs col-sm-1 and-box" th:text="et"></p>
 
 				<div class="col-xs-10 col-sm-2">
 					<select id="category" title="Catégorie" name="categories"
@@ -54,10 +50,8 @@
 					</select>
 				</div>
 
-				<p class="hidden-xs col-xs-1 col-sm-1 and-box" th:text="et"></p>
-
 				<div class="col-xs-10 col-sm-2">
-					<select name="cities" class="selectpicker form-control"
+					<select id="cities" name="cities" class="selectpicker form-control"
 						multiple="multiple" title="Ville">
 						<option
 							th:selected="${searchList  != null and #lists.contains(searchList, 'Paris')}"
@@ -144,9 +138,10 @@
 									aria-hidden="true"></i>
 								</a>
 							</div>
-							
-							<p  class="blackText" th:if="${user.currentPosition != null and !#strings.isEmpty(user.currentPosition)}"
-									th:text="${user.currentPosition}"></p>
+
+							<p class="blackText"
+								th:if="${user.currentPosition != null and !#strings.isEmpty(user.currentPosition)}"
+								th:text="${user.currentPosition}"></p>
 
 							<div data-th-each="skill : ${user.skills}">
 								<div th:if="${skill != null and !#strings.isEmpty(skill)}"
@@ -167,6 +162,12 @@
 	<!-- Bootstrap select -->
 	<script
 		th:src="@{/css/bootstrap-select-1.12.2/dist/js/bootstrap-select.js}"></script>
+	<script>
+		$("#sector").selectpicker("render");
+		$("#category").selectpicker("render");
+		$("#skillSelect").selectpicker("render");
+		$("#cities").selectpicker("render");
+	</script>
 </body>
 <div th:replace="common/footer :: footer" />
 </html>

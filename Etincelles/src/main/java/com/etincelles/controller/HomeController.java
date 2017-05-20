@@ -41,6 +41,7 @@ import com.etincelles.service.impl.UserSecurityService;
 import com.etincelles.utility.FileUtility;
 import com.etincelles.utility.MailConstructor;
 import com.etincelles.utility.SecurityUtility;
+import com.etincelles.utility.UserSearch;
 
 @Controller
 public class HomeController {
@@ -67,6 +68,9 @@ public class HomeController {
 
     @Autowired
     private FileUtility         fileUtility;
+
+    @Autowired
+    private UserSearch          userSearch;
 
     @RequestMapping( "/" )
     public String index() {
@@ -357,13 +361,22 @@ public class HomeController {
     @RequestMapping( "/searchUser" )
     public String searchBook( @ModelAttribute( "keyword" ) final String keyword, final HttpSession session,
             final Principal principal, final Model model ) {
+        List<User> userList = new ArrayList<User>();
+        try {
+            userList = userSearch.search( keyword );
+        } catch ( Exception ex ) {
 
-        final List<User> userList = this.userService.blurrySearch( keyword );
-
+        }
         if ( userList.isEmpty() ) {
-            model.addAttribute( "emptyList", true );
+            model.addAttribute( "listEmpty", true );
             model.addAttribute( "directory", true );
             return "directory";
+        }
+
+        for ( final User user : userList ) {
+            if ( !user.getEnabled() ) {
+                userList.remove( user );
+            }
         }
 
         model.addAttribute( "skillList", session.getAttribute( "skillList" ) );
