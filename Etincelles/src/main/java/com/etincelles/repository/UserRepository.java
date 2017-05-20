@@ -16,10 +16,13 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     List<User> findByCity( City city );
 
-    List<User> findByfirstNameContaining( String firstName );
-
-    List<User> findBylastNameContaining( String lastName );
-
     @Query( "select u from User u order by u.lastName" )
     List<User> findAll();
+
+    @Query( "SELECT u FROM User u WHERE LOWER(u.firstName) LIKE LOWER(CONCAT('%',?1, '%')) OR " +
+            "LOWER(u.description) LIKE LOWER(CONCAT('%',?1, '%')) OR LOWER(u.lastName) LIKE LOWER(CONCAT('%',?1, '%'))"
+            + "OR LOWER(u.currentPosition) LIKE LOWER(CONCAT('%',?1, '%'))"
+            + "OR LOWER(u.sector) LIKE LOWER(CONCAT('%',?1, '%'))"
+            + "OR LOWER(u.city) LIKE LOWER(CONCAT('%',?1, '%'))" + "OR LOWER(u.type) LIKE LOWER(CONCAT('%',?1, '%'))" )
+    List<User> findByKeyword( String keyword );
 }

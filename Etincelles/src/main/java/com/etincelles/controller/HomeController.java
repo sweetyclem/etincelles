@@ -365,7 +365,14 @@ public class HomeController {
             model.addAttribute( "directory", true );
             return "directory";
         }
+        final List<String> sectors = new ArrayList<>();
+        for ( final User user : userList ) {
+            if ( user.getSector() != null && !user.getSector().isEmpty() && !sectors.contains( user.getSector() ) ) {
+                sectors.add( user.getSector() );
+            }
+        }
 
+        model.addAttribute( "sectors", sectors );
         model.addAttribute( "skillList", session.getAttribute( "skillList" ) );
         model.addAttribute( "userList", userList );
         model.addAttribute( "directory", true );

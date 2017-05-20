@@ -95,19 +95,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> blurrySearch( String name ) {
-        List<User> firstNameList = userRepository.findByfirstNameContaining( name );
-        List<User> lastNameList = userRepository.findBylastNameContaining( name );
+    public List<User> blurrySearch( String keyword ) {
+        List<User> keywordList = userRepository.findByKeyword( keyword );
         List<User> activeUserList = new ArrayList<>();
 
-        for ( User user : firstNameList ) {
+        for ( User user : keywordList ) {
             if ( user.getEnabled() ) {
-                activeUserList.add( user );
-            }
-        }
-
-        for ( User user : lastNameList ) {
-            if ( user.getEnabled() && !firstNameList.contains( user ) ) {
                 activeUserList.add( user );
             }
         }
