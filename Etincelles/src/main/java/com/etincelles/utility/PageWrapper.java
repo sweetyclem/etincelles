@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
  * Created by tiansha on 2015/11/3.
  */
 public class PageWrapper<T> {
-    public static final int MAX_PAGE_ITEM_DISPLAY = 5;
+    public static final int MAX_PAGE_ITEM_DISPLAY = 35;
     private Page<T>         page;
     private List<PageItem>  items;
     private int             currentNumber;

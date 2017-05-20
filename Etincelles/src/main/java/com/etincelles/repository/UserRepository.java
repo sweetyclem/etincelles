@@ -2,6 +2,8 @@ package com.etincelles.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
@@ -16,8 +18,8 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
     List<User> findByCity( City city );
 
-    @Query( "select u from User u order by u.lastName" )
-    List<User> findAll();
+    @Query( "select u from User u where u.enabled = true and u.firstName is not null and u.firstName != '' order by u.lastName" )
+    Page<User> findAll( Pageable pageable );
 
     @Query( "SELECT u FROM User u WHERE LOWER(u.firstName) LIKE LOWER(CONCAT('%',?1, '%')) OR " +
             "LOWER(u.description) LIKE LOWER(CONCAT('%',?1, '%')) OR LOWER(u.lastName) LIKE LOWER(CONCAT('%',?1, '%'))"

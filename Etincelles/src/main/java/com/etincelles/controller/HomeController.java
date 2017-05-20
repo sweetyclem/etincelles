@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -278,38 +279,10 @@ public class HomeController {
     }
 
     @RequestMapping( "/directory" )
-    public String directory( final Model model, final HttpSession session, Pageable pageable ) {
-        List<User> userList;
+    public String directory( final Model model, final HttpSession session,
+            @PageableDefault( value = 30 ) Pageable pageable ) {
         Page<User> userPage = this.userService.findAll( pageable );
-        // final List<User> users = new ArrayList<>();
-        // for ( final User user : userList ) {
-        // if ( user.getEnabled() ) {
-        // users.add( user );
-        // }
-        // }
-        //
-        // final List<String> skillList = new ArrayList<>();
-        // for ( final User user : users ) {
-        // for ( final Skill skill : user.getSkills() ) {
-        // skillList.add( skill.getName() );
-        // }
-        // }
-        //
-        // final List<String> sectors = new ArrayList<>();
-        // for ( final User user : userList ) {
-        // if ( user.getSector() != null && !user.getSector().isEmpty() &&
-        // !sectors.contains( user.getSector() ) ) {
-        // sectors.add( user.getSector() );
-        // }
-        // }
-        // Page<User> userPage = (Page<User>) userList;
-
-        // session.setAttribute( "sectors", sectors );
-        // model.addAttribute( "sectors", sectors );
-        // session.setAttribute( "skillList", skillList );
-        // model.addAttribute( "skillList", skillList );
-
-        PageWrapper<User> page = new PageWrapper<User>( userPage, "/products" );
+        PageWrapper<User> page = new PageWrapper<User>( userPage, "/directory" );
         model.addAttribute( "userList", page.getContent() );
         model.addAttribute( "page", page );
 

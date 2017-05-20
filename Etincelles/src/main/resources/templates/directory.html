@@ -105,7 +105,6 @@
 
 		<div class="row">
 			<div data-th-each="user : ${userList}"
-				th:if="${user.firstName != null}"
 				class="userCard col-xs-10 col-xs-offset-1 col-sm-offset-0 col-lg-3 col-sm-5 col-md-4">
 				<br /> <a class="no-under" target="_blank"
 					th:href="@{/userDetail(id=${user.id})}"><div
