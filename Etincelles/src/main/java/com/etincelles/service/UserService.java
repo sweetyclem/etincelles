@@ -3,6 +3,9 @@ package com.etincelles.service;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.User;
 import com.etincelles.entities.security.UserRole;
@@ -22,7 +25,7 @@ public interface UserService {
 
     User save( User user );
 
-    List<User> findAll();
+    Page<User> findAll( Pageable pageable );
 
     List<User> findByCategory( Category category );
 

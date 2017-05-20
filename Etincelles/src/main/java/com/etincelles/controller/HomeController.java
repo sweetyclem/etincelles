@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -40,6 +42,7 @@ import com.etincelles.service.UserService;
 import com.etincelles.service.impl.UserSecurityService;
 import com.etincelles.utility.FileUtility;
 import com.etincelles.utility.MailConstructor;
+import com.etincelles.utility.PageWrapper;
 import com.etincelles.utility.SecurityUtility;
 
 @Controller
@@ -275,35 +278,43 @@ public class HomeController {
     }
 
     @RequestMapping( "/directory" )
-    public String directory( final Model model, final HttpSession session ) {
+    public String directory( final Model model, final HttpSession session, Pageable pageable ) {
         List<User> userList;
-        userList = this.userService.findAll();
-        final List<User> users = new ArrayList<>();
-        for ( final User user : userList ) {
-            if ( user.getEnabled() ) {
-                users.add( user );
-            }
-        }
+        Page<User> userPage = this.userService.findAll( pageable );
+        // final List<User> users = new ArrayList<>();
+        // for ( final User user : userList ) {
+        // if ( user.getEnabled() ) {
+        // users.add( user );
+        // }
+        // }
+        //
+        // final List<String> skillList = new ArrayList<>();
+        // for ( final User user : users ) {
+        // for ( final Skill skill : user.getSkills() ) {
+        // skillList.add( skill.getName() );
+        // }
+        // }
+        //
+        // final List<String> sectors = new ArrayList<>();
+        // for ( final User user : userList ) {
+        // if ( user.getSector() != null && !user.getSector().isEmpty() &&
+        // !sectors.contains( user.getSector() ) ) {
+        // sectors.add( user.getSector() );
+        // }
+        // }
+        // Page<User> userPage = (Page<User>) userList;
 
-        final List<String> skillList = new ArrayList<>();
-        for ( final User user : users ) {
-            for ( final Skill skill : user.getSkills() ) {
-                skillList.add( skill.getName() );
-            }
-        }
+        // session.setAttribute( "sectors", sectors );
+        // model.addAttribute( "sectors", sectors );
+        // session.setAttribute( "skillList", skillList );
+        // model.addAttribute( "skillList", skillList );
 
-        final List<String> sectors = new ArrayList<>();
-        for ( final User user : userList ) {
-            if ( user.getSector() != null && !user.getSector().isEmpty() && !sectors.contains( user.getSector() ) ) {
-                sectors.add( user.getSector() );
-            }
-        }
-        session.setAttribute( "sectors", sectors );
-        model.addAttribute( "sectors", sectors );
-        session.setAttribute( "skillList", skillList );
-        model.addAttribute( "skillList", skillList );
+        PageWrapper<User> page = new PageWrapper<User>( userPage, "/products" );
+        model.addAttribute( "userList", page.getContent() );
+        model.addAttribute( "page", page );
+
         model.addAttribute( "directory", true );
-        model.addAttribute( "userList", users );
+        // model.addAttribute( "userList", userPage );
         return "directory";
     }
 

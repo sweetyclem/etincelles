@@ -1,12 +1,13 @@
 package com.etincelles.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -85,8 +86,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAll() {
-        return (List<User>) userRepository.findAll();
+    public Page<User> findAll( Pageable pageable ) {
+        return userRepository.findAll( pageable );
     }
 
     @Override
@@ -96,9 +97,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> blurrySearch( String name ) {
-        List<User> firstNameList = userRepository.findByfirstNameContaining( name );
-        List<User> lastNameList = userRepository.findBylastNameContaining( name );
-        List<User> activeUserList = new ArrayList<>();
+        List<User> firstNameList = (List<User>) userRepository.findByfirstNameContaining( name );
+        List<User> lastNameList = (List<User>) userRepository.findBylastNameContaining( name );
+        List<User> activeUserList = null;
 
         for ( User user : firstNameList ) {
             if ( user.getEnabled() ) {
