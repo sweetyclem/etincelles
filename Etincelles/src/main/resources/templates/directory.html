@@ -27,12 +27,12 @@
 				id="searchform" method="post" class="form-inline">
 				<input type="hidden" name="sectorList" th:value="${sectors}" />
 
-				<div class="col-xs-10 col-sm-2 form-group no-margin-bottom">
+				<div class="col-xs-10 col-sm-2 form-group no-margin-bottom margin-mobile">
 					<div th:replace="common/skillSelect :: directorySkillSelect"></div>
 				</div>
 
 
-				<div class="col-xs-10 col-sm-2">
+				<div class="col-xs-10 col-sm-2 margin-mobile">
 					<select id="sector" title="Secteur" name="sectors"
 						class="selectpicker form-control" multiple="multiple">
 						<option data-th-each="sector : ${sectors}"
@@ -42,7 +42,7 @@
 				</div>
 
 
-				<div class="col-xs-10 col-sm-2">
+				<div class="col-xs-10 col-sm-2 margin-mobile">
 					<select id="category" title="Catégorie" name="categories"
 						multiple="multiple" class="selectpicker form-control">
 						<option
@@ -61,7 +61,7 @@
 				</div>
 
 
-				<div class="col-xs-10 col-sm-2">
+				<div class="col-xs-10 col-sm-2 margin-mobile">
 					<select name="cities" class="selectpicker form-control"
 						multiple="multiple" title="Ville">
 						<option
@@ -74,12 +74,12 @@
 				</div>
 
 				<div
-					class="col-xs-12 col-sm-1 submit">
+					class="col-xs-12 col-sm-1 submit margin-mobile">
 					<input class="btn btn-default" name='submit' type='submit'
 						value='Valider' />
 
 				</div>
-				<div class="col-xs-12 col-sm-1 submit">
+				<div class="col-xs-12 col-sm-1 submit filter-box">
 					<a class="btn btn-default no-under" th:href="@{/directory}"
 						role="button">Réinitialiser</a>
 				</div>
