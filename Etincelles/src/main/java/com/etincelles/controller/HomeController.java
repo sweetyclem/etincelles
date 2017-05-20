@@ -308,8 +308,13 @@ public class HomeController {
     }
 
     @RequestMapping( "/userDetail" )
-    public String UserDetail( @RequestParam( "id" ) final Long id, final Model model ) {
-        final User user = this.userService.findById( id );
+    public String UserDetail( @RequestParam( value = "id", required = false ) Long id, final Model model,
+            HttpSession httpSession ) {
+        if ( id == null ) {
+            id = (Long) httpSession.getAttribute( "id" );
+            model.addAttribute( "emailSent", true );
+        }
+        User user = this.userService.findById( id );
         model.addAttribute( "user", user );
         return "userDetail";
     }
@@ -361,7 +366,7 @@ public class HomeController {
         final List<User> userList = this.userService.blurrySearch( keyword );
 
         if ( userList.isEmpty() ) {
-            model.addAttribute( "emptyList", true );
+            model.addAttribute( "listEmpty", true );
             model.addAttribute( "directory", true );
             model.addAttribute( "noFilter", true );
             return "directory";
@@ -479,11 +484,15 @@ public class HomeController {
     @RequestMapping( value = "/contact", method = RequestMethod.POST )
     public String contact( final Model model, @RequestParam( "name" ) final String name,
             @RequestParam( "email" ) final String email, @RequestParam( "content" ) final String text,
-            @RequestParam( "userEmail" ) final String userEmail ) {
+            @RequestParam( "userEmail" ) final String userEmail, HttpSession httpSession ) {
         final SimpleMailMessage newEmail = this.mailConstructor.constructContactEmail( name, email, text, userEmail );
         this.mailSender.send( newEmail );
-        model.addAttribute( "emailSent", true );
-        return "confirmSend";
+
+        User user = userService.findByEmail( userEmail );
+
+        httpSession.setAttribute( "id", user.getId() );
+        httpSession.setAttribute( "emailSent", true );
+        return "redirect:/userDetail";
     }
 
     @RequestMapping( "/aboutUs" )
