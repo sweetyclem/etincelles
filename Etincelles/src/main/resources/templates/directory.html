@@ -8,14 +8,21 @@
 	<div th:replace="common/header :: navbar" />
 	<br />
 	<div class="container">
-		<div class="row">
+		<div class="row" th:if="${noFilter == null}">
 			<div id="categoryDiv" class="col-xs-10">
 				<h4>
 					<label for="skill">Filtrer</label>
 				</h4>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" th:if="${noFilter != null}">
+			<div id="categoryDiv" class="col-xs-10">
+				<h4>
+					<label for="skill">Résultats</label>
+				</h4>
+			</div>
+		</div>
+		<div class="row" th:if="${noFilter == null}">
 			<form accept-charset="UTF-8" action="/directorySearch"
 				id="searchform" method="post" class="form-inline">
 				<input type="hidden" name="sectorList" th:value="${sectors}" />
@@ -23,7 +30,6 @@
 					<div th:replace="common/skillSelect :: directorySkillSelect"></div>
 				</div>
 
-				<p class="hidden-xs col-xs-1 col-sm-1 and-box" th:text="et"></p>
 
 				<div class="col-xs-10 col-sm-2">
 					<select id="sector" title="Secteur" name="sectors"
@@ -34,7 +40,6 @@
 					</select>
 				</div>
 
-				<p class="hidden-xs col-sm-1 and-box" th:text="et"></p>
 
 				<div class="col-xs-10 col-sm-2">
 					<select id="category" title="Catégorie" name="categories"
@@ -54,7 +59,6 @@
 					</select>
 				</div>
 
-				<p class="hidden-xs col-xs-1 col-sm-1 and-box" th:text="et"></p>
 
 				<div class="col-xs-10 col-sm-2">
 					<select name="cities" class="selectpicker form-control"
