@@ -26,6 +26,7 @@
 			<form accept-charset="UTF-8" action="/directorySearch"
 				id="searchform" method="post" class="form-inline">
 				<input type="hidden" name="sectorList" th:value="${sectors}" />
+
 				<div class="col-xs-10 col-sm-2 form-group no-margin-bottom">
 					<div th:replace="common/skillSelect :: directorySkillSelect"></div>
 				</div>
@@ -73,16 +74,51 @@
 				</div>
 
 				<div
-					class="col-xs-3 col-xs-offset-3 col-sm-offset-0 col-sm-1 submit">
+					class="col-xs-5 col-xs-offset-3 col-sm-offset-0 col-sm-1 submit">
 					<input class="btn btn-default" name='submit' type='submit'
 						value='Valider' />
 
 				</div>
-				<div class="col-xs-4 col-sm-1 submit">
+				<div class="col-xs-5 col-sm-1 submit">
 					<a class="btn btn-default no-under" th:href="@{/directory}"
 						role="button">Réinitialiser</a>
 				</div>
 			</form>
+		</div>
+		
+		<div class="row">
+			<!-- Pagination Bar -->
+			<div th:fragment='paginationbar'>
+				<div class="col-sm-12">
+					<ul class='pagination pagination-centered'>
+						<li th:class="${page.firstPage}?'disabled':''"><span
+							th:if='${page.firstPage}'>← First</span> <a
+							th:if='${not page.firstPage}'
+							th:href='@{${page.url}(page=0,size=${page.size})}'>← First</a></li>
+						<li th:class="${page.hasPreviousPage}? '' : 'disabled'"><span
+							th:if='${not page.hasPreviousPage}'>«</span> <a
+							th:if='${page.hasPreviousPage}'
+							th:href='@{${page.url}(page=${page.number-2},size=${page.size})}'
+							title='Go to previous page'>«</a></li>
+						<li th:each='item : ${page.items}'
+							th:class="${item.current}? 'active' : ''"><span
+							th:if='${item.current}' th:text='${item.number}'>1</span> <a
+							th:if='${not item.current}'
+							th:href='@{${page.url}(page=${item.number-1},size=${page.size})}'><span
+								th:text='${item.number}'>1</span></a></li>
+						<li th:class="${page.hasNextPage}? '' : 'disabled'"><span
+							th:if='${not page.hasNextPage}'>»</span> <a
+							th:if='${page.hasNextPage}'
+							th:href='@{${page.url}(page=${page.number},size=${page.size})}'
+							title='Go to next page'>»</a></li>
+						<li th:class="${page.lastPage}? 'disabled' : ''"><span
+							th:if='${page.lastPage}'>Last →</span> <a
+							th:if='${not page.lastPage}'
+							th:href='@{${page.url}(page=${page.totalPages - 1},size=${page.size})}'>Last
+								→</a></li>
+					</ul>
+				</div>
+			</div>
 
 		</div>
 
@@ -147,9 +183,10 @@
 									aria-hidden="true"></i>
 								</a>
 							</div>
-							
-							<p  class="blackText" th:if="${user.currentPosition != null and !#strings.isEmpty(user.currentPosition)}"
-									th:text="${user.currentPosition}"></p>
+
+							<p class="blackText"
+								th:if="${user.currentPosition != null and !#strings.isEmpty(user.currentPosition)}"
+								th:text="${user.currentPosition}"></p>
 
 							<div data-th-each="skill : ${user.skills}">
 								<div th:if="${skill != null and !#strings.isEmpty(skill)}"
@@ -165,35 +202,40 @@
 					</div></a>
 			</div>
 		</div>
-		
+
 		<!-- Pagination Bar -->
-    <div th:fragment='paginationbar'>
-        <div>
-            <ul class='pagination pagination-centered'>
-                <li th:class="${page.firstPage}?'disabled':''">
-                <span th:if='${page.firstPage}'>← First</span>
-                <a th:if='${not page.firstPage}' th:href='@{${page.url}(page=0,size=${page.size})}'>← First</a>
-                </li>
-                <li th:class="${page.hasPreviousPage}? '' : 'disabled'">
-                <span th:if='${not page.hasPreviousPage}'>«</span>
-                <a th:if='${page.hasPreviousPage}' th:href='@{${page.url}(page=${page.number-2},size=${page.size})}' title='Go to previous page'>«</a>
-                </li>
-                <li th:each='item : ${page.items}' th:class="${item.current}? 'active' : ''">
-                <span th:if='${item.current}' th:text='${item.number}'>1</span>
-                <a th:if='${not item.current}' th:href='@{${page.url}(page=${item.number-1},size=${page.size})}'><span th:text='${item.number}'>1</span></a>
-                </li>
-                <li th:class="${page.hasNextPage}? '' : 'disabled'">
-                <span th:if='${not page.hasNextPage}'>»</span>
-                <a th:if='${page.hasNextPage}' th:href='@{${page.url}(page=${page.number},size=${page.size})}' title='Go to next page'>»</a>
-                </li>
-                <li th:class="${page.lastPage}? 'disabled' : ''">
-                <span th:if='${page.lastPage}'>Last →</span>
-                <a th:if='${not page.lastPage}' th:href='@{${page.url}(page=${page.totalPages - 1},size=${page.size})}'>Last →</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-		
+		<div th:fragment='paginationbar'>
+			<div>
+				<ul class='pagination pagination-centered'>
+					<li th:class="${page.firstPage}?'disabled':''"><span
+						th:if='${page.firstPage}'>← First</span> <a
+						th:if='${not page.firstPage}'
+						th:href='@{${page.url}(page=0,size=${page.size})}'>← First</a></li>
+					<li th:class="${page.hasPreviousPage}? '' : 'disabled'"><span
+						th:if='${not page.hasPreviousPage}'>«</span> <a
+						th:if='${page.hasPreviousPage}'
+						th:href='@{${page.url}(page=${page.number-2},size=${page.size})}'
+						title='Go to previous page'>«</a></li>
+					<li th:each='item : ${page.items}'
+						th:class="${item.current}? 'active' : ''"><span
+						th:if='${item.current}' th:text='${item.number}'>1</span> <a
+						th:if='${not item.current}'
+						th:href='@{${page.url}(page=${item.number-1},size=${page.size})}'><span
+							th:text='${item.number}'>1</span></a></li>
+					<li th:class="${page.hasNextPage}? '' : 'disabled'"><span
+						th:if='${not page.hasNextPage}'>»</span> <a
+						th:if='${page.hasNextPage}'
+						th:href='@{${page.url}(page=${page.number},size=${page.size})}'
+						title='Go to next page'>»</a></li>
+					<li th:class="${page.lastPage}? 'disabled' : ''"><span
+						th:if='${page.lastPage}'>Last →</span> <a
+						th:if='${not page.lastPage}'
+						th:href='@{${page.url}(page=${page.totalPages - 1},size=${page.size})}'>Last
+							→</a></li>
+				</ul>
+			</div>
+		</div>
+
 	</div>
 	<div th:replace="common/header :: body-bottom-scripts" />
 	<!-- Bootstrap select -->
