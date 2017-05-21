@@ -23,24 +23,18 @@
 			</div>
 		</div>
 		<div class="row" th:if="${noFilter == null}">
-			<form accept-charset="UTF-8" action="/directorySearch"
+			<form accept-charset="UTF-8" action="/filterResult"
 				id="searchform" method="post" class="form-inline">
 				<input type="hidden" name="sectorList" th:value="${sectors}" />
 
 				<div class="col-xs-10 col-sm-2 form-group no-margin-bottom margin-mobile">
 					<div th:replace="common/skillSelect :: directorySkillSelect"></div>
 				</div>
-
+				
 
 				<div class="col-xs-10 col-sm-2 margin-mobile">
-					<select id="sector" title="Secteur" name="sectors"
-						class="selectpicker form-control" multiple="multiple">
-						<option data-th-each="sector : ${sectors}"
-							th:selected="${searchList  != null and #lists.contains(searchList, sector)}"
-							th:value="${sector}" th:text="${sector}"></option>
-					</select>
-				</div>
-
+					<div th:replace="common/sectorSelect :: directorySectorSelect"></div>
+				</div> 
 
 				<div class="col-xs-10 col-sm-2 margin-mobile">
 					<select id="category" title="Catégorie" name="categories"
