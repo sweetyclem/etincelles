@@ -4,9 +4,33 @@
 <meta charset="utf-8" />
 </head>
 <body>
+	<div>
+		<select name="sector" title="Secteur" id="sectorSelect" class="form-control selectpicker" th:fragment="directorySectorSelect" multiple="multiple">
+			<option value='Agroalimentaire '>Agroalimentaire</option>
+			<option value='Artisanat / Culture / Spectacle'>Artisanat / Culture / Spectacle</option>
+			<option value='Banque / Finance / Assurance'>Banque / Finance / Assurance</option>
+			<option value='BTP / Matériaux de construction'>BTP / Matériaux de construction</option>
+			<option value='Chimie / Parachimie'>Chimie / Parachimie</option>
+			<option	value='Commerce / Négoce / Distribution / E-commerce'>Commerce / Négoce / Distribution / E-commerce</option>
+			<option value='Droit'>Droit</option>
+			<option value='Economie sociale et solidaire / Développement durable'>Economie sociale et solidaire / Développement durable</option>
+			<option value='Édition / Communication / Multimédia / Audiovisuel'>Édition / Communication / Multimédia / Audiovisuel</option>
+			<option value='Électronique / Électricité'>Électronique / Électricité</option>
+			<option value='Enseignement / Formation'>Enseignement / Formation</option>
+			<option value='Études et conseils / Services aux entreprises'>Études et conseils / Services aux entreprises</option>
+			<option value='Fonction publique'>Fonction publique</option>
+			<option value='Hôtellerie / Restauration / Tourisme'>Hôtellerie / Restauration / Tourisme</option>
+			<option value='Informatique / Télécoms'>Informatique / Télécoms</option>
+			<option value='Industrie / Machines et équipements'>Industrie / Machines et équipements</option>
+			<option value='Santé / Industrie pharmaceutique'>Santé / Industrie pharmaceutique</option>
+			<option value='Services à la personne'>Services à la personne</option>
+			<option value='Transports / Logistique'>Transports / Logistique</option>
+		</select>
+	</div>
+	
 	<div th:fragment="regularSectorSelect">
-		<select name="sector" id="sectorSelect" class="form-control">
-			<option selected="selected" disabled="disabled">Choisir un secteur</option>
+		<select name="sector" title="Secteur" id="sectorSelect" class="form-control">
+			<option selected="selected" disabled="disabled">Secteur</option>
 			<option value='Agroalimentaire '>Agroalimentaire</option>
 			<option value='Artisanat / Culture / Spectacle'>Artisanat / Culture / Spectacle</option>
 			<option value='Banque / Finance / Assurance'>Banque / Finance / Assurance</option>
