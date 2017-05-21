@@ -1,7 +1,5 @@
 package com.etincelles.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -15,8 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.User;
 import com.etincelles.entities.security.UserRole;
-import com.etincelles.enumeration.Category;
-import com.etincelles.enumeration.City;
 import com.etincelles.repository.PasswordResetTokenRepository;
 import com.etincelles.repository.RoleRepository;
 import com.etincelles.repository.SkillRespository;
@@ -92,27 +88,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findByCategory( Category category ) {
-        return userRepository.findByCategory( category );
+    public Page<User> blurrySearch( String keyword, Pageable pageable ) {
+        Page<User> keywordList = userRepository.findByKeywordAndSort( keyword, pageable );
+        return keywordList;
     }
-
-    @Override
-    public List<User> blurrySearch( String keyword ) {
-        List<User> keywordList = userRepository.findFromKeyword( keyword );
-        List<User> activeUserList = new ArrayList<>();
-
-        for ( User user : keywordList ) {
-            if ( user.getEnabled() ) {
-                activeUserList.add( user );
-            }
-        }
-
-        return activeUserList;
-    }
-
-    @Override
-    public List<User> findByCity( City city ) {
-        return userRepository.findByCity( city );
-    }
-
 }

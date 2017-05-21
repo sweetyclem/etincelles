@@ -286,8 +286,16 @@ public class HomeController {
         model.addAttribute( "userList", page.getContent() );
         model.addAttribute( "page", page );
 
+        List<Skill> skills = skillRepo.findAll();
+        List<String> skillList = new ArrayList<>();
+        for ( Skill skill : skills ) {
+            skillList.add( skill.getName() );
+        }
+
+        session.setAttribute( "skillList", skillList );
+        model.addAttribute( "skillList", skillList );
+
         model.addAttribute( "directory", true );
-        // model.addAttribute( "userList", userPage );
         return "directory";
     }
 
@@ -345,11 +353,14 @@ public class HomeController {
 
     @RequestMapping( "/searchUser" )
     public String searchBook( @ModelAttribute( "keyword" ) final String keyword, final HttpSession session,
-            final Principal principal, final Model model ) {
+            final Principal principal, final Model model, @PageableDefault( value = 30 ) Pageable pageable ) {
 
-        final List<User> userList = this.userService.blurrySearch( keyword );
+        final Page<User> userList = this.userService.blurrySearch( keyword, pageable );
+        PageWrapper<User> page = new PageWrapper<User>( userList, "/directory" );
+        model.addAttribute( "userList", page.getContent() );
+        model.addAttribute( "page", page );
 
-        if ( userList.isEmpty() ) {
+        if ( userList == null ) {
             model.addAttribute( "listEmpty", true );
             model.addAttribute( "directory", true );
             model.addAttribute( "noFilter", true );
@@ -362,8 +373,8 @@ public class HomeController {
         return "directory";
     }
 
-    @RequestMapping( value = "/directorySearch", method = RequestMethod.POST )
-    public String directorySearchPost( final Model model, final HttpServletRequest request,
+    @RequestMapping( value = "/filterResult", method = RequestMethod.POST )
+    public String filterResultPost( final Model model, final HttpServletRequest request,
             final HttpSession session ) {
 
         String queryString = "SELECT distinct id from etincelles.user where";
@@ -389,16 +400,16 @@ public class HomeController {
             queryString += " user_skill.skill_id in (" + skillIds + ")";
         }
 
-        if ( request.getParameterMap().containsKey( "sectors" ) ) {
-            final String[] sectors = request.getParameterValues( "sectors" );
+        if ( request.getParameterMap().containsKey( "sector" ) ) {
+            final String[] sector = request.getParameterValues( "sector" );
             if ( needAnd ) {
                 queryString += " and ";
             }
             String sectorString = "";
-            for ( int i = 0; i < sectors.length; i++ ) {
-                search.add( sectors[i] );
-                sectorString += "'" + sectors[i] + "'";
-                if ( i != sectors.length - 1 ) {
+            for ( int i = 0; i < sector.length; i++ ) {
+                search.add( sector[i] );
+                sectorString += "'" + sector[i] + "'";
+                if ( i != sector.length - 1 ) {
                     sectorString += ",";
                 }
             }
@@ -450,18 +461,39 @@ public class HomeController {
             empty = false;
         }
 
+        List<String> skills = new ArrayList<>();
+        List<String> sectors = new ArrayList<>();
+        List<String> categoryList = new ArrayList<>();
+        List<String> cityList = new ArrayList<>();
+        for ( User user : userList ) {
+            for ( final Skill skill : user.getSkills() ) {
+                skills.add( skill.getName() );
+            }
+            if ( user.getSector() != null && user.getSector() != "" && !sectors.contains( user.getSector() ) ) {
+                sectors.add( user.getSector() );
+            }
+            if ( user.getCategory() != null && !categoryList.contains( user.getCategory().toString() ) ) {
+                categoryList.add( user.getCategory().toString() );
+            }
+            if ( user.getCity() != null && !cityList.contains( user.getCity().toString() ) ) {
+                cityList.add( user.getCity().toString() );
+            }
+        }
+
+        model.addAttribute( "skillList", skills );
+        model.addAttribute( "sectors", sectors );
+        model.addAttribute( "categoryList", categoryList );
+        model.addAttribute( "cityList", cityList );
         model.addAttribute( "query", queryString );
-        model.addAttribute( "sectors", session.getAttribute( "sectors" ) );
-        model.addAttribute( "skillList", session.getAttribute( "skillList" ) );
         model.addAttribute( "listEmpty", empty );
         model.addAttribute( "userList", userList );
         model.addAttribute( "searchList", search );
         model.addAttribute( "directory", true );
-        return "directory";
+        return "filterResult";
     }
 
-    @RequestMapping( "/directorySearch" )
-    public String directorySearch() {
+    @RequestMapping( "/filterResult" )
+    public String filterResult() {
         return "redirect:/directory";
     }
 

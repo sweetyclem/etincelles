@@ -1,6 +1,5 @@
 package com.etincelles.service;
 
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.domain.Page;
@@ -9,8 +8,6 @@ import org.springframework.data.domain.Pageable;
 import com.etincelles.entities.PasswordResetToken;
 import com.etincelles.entities.User;
 import com.etincelles.entities.security.UserRole;
-import com.etincelles.enumeration.Category;
-import com.etincelles.enumeration.City;
 
 public interface UserService {
     PasswordResetToken getPasswordResetToken( final String token );
@@ -27,9 +24,5 @@ public interface UserService {
 
     Page<User> findAll( Pageable pageable );
 
-    List<User> findByCategory( Category category );
-
-    List<User> findByCity( City city );
-
-    public List<User> blurrySearch( String name );
+    Page<User> blurrySearch( String keyword, Pageable pageable );
 }
