@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/updateUser",
             "/directoryIndex",
             "/directory",
-            "/directorySearch",
+            "/filterResult",
             "/news",
             "/badRequestPage",
             "/post",

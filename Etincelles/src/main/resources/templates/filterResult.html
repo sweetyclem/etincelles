@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header">
+<meta charset="utf-8" />
+</head>
+
+<body>
+	<div th:replace="common/header :: navbar" />
+	<br />
+	<div class="container">
+		<div class="row" th:if="${noFilter == null}">
+			<div id="categoryDiv" class="col-xs-10">
+				<h4>
+					<label for="skill">Filtrer</label>
+				</h4>
+			</div>
+		</div>
+		<div class="row" th:if="${noFilter != null}">
+			<div id="categoryDiv" class="col-xs-10">
+				<h4>
+					<label for="skill">Résultats</label>
+				</h4>
+			</div>
+		</div>
+		<div class="row" th:if="${noFilter == null}">
+			<form accept-charset="UTF-8" action="/filterResult"
+				id="searchform" method="post" class="form-inline">
+				<input type="hidden" name="sectorList" th:value="${sectors}" />
+
+				<div class="col-xs-10 col-sm-2 form-group no-margin-bottom margin-mobile">
+					<div th:replace="common/skillSelect :: directorySkillSelect"></div>
+				</div>
+
+
+				<div class="col-xs-10 col-sm-2 margin-mobile">
+					<select id="sector" title="Secteur" name="sector"
+						class="selectpicker form-control" multiple="multiple">
+						<option data-th-each="sector : ${sectors}"
+							th:selected="${searchList != null and #lists.contains(searchList, sector)}"
+							th:value="${sector}" th:text="${sector}"></option>
+					</select>
+				</div>
+
+				<div class="col-xs-10 col-sm-2 margin-mobile">
+					<select id="category" title="Catégorie" name="categories"
+						multiple="multiple" class="selectpicker form-control">
+						<option
+							th:if="${categoryList != null and #lists.contains(categoryList, 'Etincelle')}"
+							th:selected="${searchList  != null and #lists.contains(searchList, 'Etincelle')}"
+							th:value="Etincelle">Etincelle</option>
+						<option
+							th:if="${categoryList != null and #lists.contains(categoryList, 'Mentore')}"
+							th:selected="${searchList  != null and #lists.contains(searchList, 'Mentore')}"
+							th:value="Mentore">Mentor.e</option>
+						<option
+							th:if="${categoryList != null and #lists.contains(categoryList, 'Coach')}"
+							th:selected="${searchList  != null and #lists.contains(searchList, 'Coach')}"
+							th:value="Coach">Coach</option>
+						<option
+							th:if="${categoryList != null and #lists.contains(categoryList, 'Equipe')}"
+							th:selected="${searchList  != null and #lists.contains(searchList, 'Equipe')}"
+							th:value="Equipe">Equipe Social Builder</option>
+					</select>
+				</div>
+
+
+				<div class="col-xs-10 col-sm-2 margin-mobile">
+					<select name="cities" class="selectpicker form-control"
+						multiple="multiple" title="Ville">
+						<option
+							th:if="${cityList != null and #lists.contains(cityList, 'Paris')}"
+							th:selected="${searchList  != null and #lists.contains(searchList, 'Paris')}"
+							th:value="Paris">Paris</option>
+						<option
+							th:if="${cityList != null and #lists.contains(cityList, 'Lyon')}"
+							th:selected="${searchList  != null and #lists.contains(searchList, 'Lyon')}"
+							th:value="Lyon">Lyon</option>
+					</select>
+				</div>
+
+				<div
+					class="col-xs-12 col-sm-1 submit margin-mobile">
+					<input class="btn btn-default" name='submit' type='submit'
+						value='Valider'/>
+
+				</div>
+				<div class="col-xs-12 col-sm-1 submit filter-box">
+					<a class="btn btn-default no-under" th:href="@{/directory}"
+						role="button">Réinitialiser</a>
+				</div>
+			</form>
+		</div>
+
+		<div class="row" th:if="${searchList}">
+			<div class="col-xs-12">
+				<br />
+				<p>
+					Votre recherche : <span th:each="param, iterStat : ${searchList}"
+						th:text="!${iterStat.last} ? ${param} + ',': ${param}"></span>
+				</p>
+			</div>
+		</div>
+
+		<div class="row" th:if="${listEmpty}">
+			<div class="col-xs-12">
+				<br />
+				<p>Aucun résultat</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div data-th-each="user : ${userList}"
+				class="userCard col-xs-10 col-xs-offset-1 col-sm-offset-0 col-lg-3 col-sm-5 col-md-4">
+				<br /> <a class="no-under" target="_blank"
+					th:href="@{/userDetail(id=${user.id})}"><div
+						class="card hovercard ">
+						<div class="cardheader"></div>
+						<div class="avatar">
+							<img th:if="${user.hasPicture == false}"
+								th:src="@{/images/flower.jpeg}"
+								th:alt="${user.firstName + ' ' + user.lastName}" /> <img
+								th:if="${user.hasPicture}"
+								th:src="${'/images/user/'+ user.id +'.png'}"
+								th:alt="${user.firstName + ' ' + user.lastName}" />
+						</div>
+						<div class="info">
+							<div th:if="${user.firstName != null || user.lastName != null}"
+								class="title" th:text="${user.firstName + ' ' + user.lastName}"></div>
+							<div
+								th:if="${user.category != null and #strings.equals(user.category,'Equipe')}"
+								class="grey" th:text="${'Equipe Social Builder'}"></div>
+							<div
+								th:if="${user.category != null and !#strings.equals(user.category,'Equipe')}"
+								class="grey" th:text="${user.category}"></div>
+							<div class="social">
+								<a
+									th:if="${user.twitter != null and !#strings.isEmpty(user.twitter)}"
+									target="_blank" class="btn btn-twitter btn-sm"
+									th:href="${user.twitter}"> <i class="fa fa-twitter"></i>
+								</a> <a
+									th:if="${user.facebook != null and !#strings.isEmpty(user.facebook)}"
+									target="_blank" class="btn btn-facebook btn-sm" rel="publisher"
+									th:href="${user.facebook}"> <i class="fa fa-facebook"></i>
+								</a> <a
+									th:if="${user.linkedin != null  and !#strings.isEmpty(user.linkedin)}"
+									target="_blank" class="btn btn-linkedin btn-sm" rel="publisher"
+									th:href="${user.linkedin}"> <i class="fa fa-linkedin"></i>
+								</a> <a
+									th:if="${user.website != null  and !#strings.isEmpty(user.website)}"
+									target="_blank" class="btn btn-website btn-sm" rel="publisher"
+									th:href="${user.website}"> <i class="fa fa-laptop"
+									aria-hidden="true"></i>
+								</a>
+							</div>
+
+							<p class="blackText"
+								th:if="${user.currentPosition != null and !#strings.isEmpty(user.currentPosition)}"
+								th:text="${user.currentPosition}"></p>
+
+							<div data-th-each="skill : ${user.skills}">
+								<div th:if="${skill != null and !#strings.isEmpty(skill)}"
+									class="desc" th:text="${'#' + skill.name}"></div>
+							</div>
+							<br />
+						</div>
+						<div id="noContact">
+							<a th:if="${!user.noContact}" target="_blank"
+								class="btn btn-default no-under btn-xs btn-contact"
+								th:href="@{/userDetail#contact(id=${user.id})}" role="button">Contacter</a>
+						</div>
+					</div></a>
+			</div>
+		</div>
+
+	</div>
+	<div th:replace="common/header :: body-bottom-scripts" />
+	<!-- Bootstrap select -->
+	<script
+		th:src="@{/css/bootstrap-select-1.12.2/dist/js/bootstrap-select.js}"></script>
+</body>
+<div th:replace="common/footer :: footer" />
+</html>
