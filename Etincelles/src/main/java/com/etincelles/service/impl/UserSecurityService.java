@@ -24,8 +24,11 @@ public class UserSecurityService implements UserDetailsService {
         if ( null == user ) {
             throw new UsernameNotFoundException( "Email not found" );
         }
+        if ( user.isEnabled() ) {
+            return user;
+        }
 
-        return user;
+        return null;
     }
 
     public UserDetails loadUserByEmail( String email ) throws UsernameNotFoundException {
