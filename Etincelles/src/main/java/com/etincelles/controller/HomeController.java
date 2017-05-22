@@ -377,14 +377,14 @@ public class HomeController {
     public String filterResultPost( final Model model, final HttpServletRequest request,
             final HttpSession session ) {
 
-        String queryString = "SELECT distinct id from etincelles.user where";
+        String queryString = "SELECT distinct id from etincelles.user where user.enabled = true ";
         final List<String> search = new ArrayList<>();
         boolean needAnd = false;
         boolean empty = true;
 
         if ( request.getParameterMap().containsKey( "skills" ) ) {
             final String[] skills = request.getParameterValues( "skills" );
-            queryString = "SELECT distinct id from etincelles.user, etincelles.user_skill where user.id = user_skill.user_id and";
+            queryString = "SELECT distinct id from etincelles.user, etincelles.user_skill where user.enabled = true and user.id = user_skill.user_id and";
             String skillIds = "";
             for ( int i = 0; i < skills.length; i++ ) {
                 search.add( skills[i] );
@@ -457,6 +457,12 @@ public class HomeController {
 
         List<User> userList = null;
         userList = this.customUserService.searchQuery( queryString );
+        try {
+            userList.stream()
+                    .sorted( ( object1, object2 ) -> object1.getLastName().compareTo( object2.getLastName() ) );
+        } catch ( Exception e ) {
+            // TODO: handle exception
+        }
         if ( !userList.isEmpty() ) {
             empty = false;
         }
