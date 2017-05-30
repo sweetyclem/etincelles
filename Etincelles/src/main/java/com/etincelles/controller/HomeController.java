@@ -369,14 +369,14 @@ public class HomeController {
     @RequestMapping(value = "/filterResult", method = RequestMethod.POST)
     public String filterResultPost(final Model model, final HttpServletRequest request, final HttpSession session) {
 
-        String queryString = "SELECT distinct id from etincelles.user where user.enabled = true and user.firstName  is not null AND user.firstName != '' and ";
+        String queryString = "SELECT distinct id from etincelles.user where user.enabled = true and user.first_name  is not null AND user.first_name != '' and ";
         final List<String> search = new ArrayList<>();
         boolean needAnd = false;
         boolean empty = true;
 
         if (request.getParameterMap().containsKey("skills")) {
             final String[] skills = request.getParameterValues("skills");
-            queryString = "SELECT distinct id from etincelles.user, etincelles.user_skill where user.enabled = true and user.firstName  is not null AND user.firstName != ''  and user.id = user_skill.user_id and";
+            queryString = "SELECT distinct id from etincelles.user, etincelles.user_skill where user.enabled = true and user.first_name  is not null AND user.first_name != ''  and user.id = user_skill.user_id and";
             String skillIds = "";
             for (int i = 0; i < skills.length; i++) {
                 search.add(skills[i]);
