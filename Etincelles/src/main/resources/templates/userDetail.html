@@ -69,10 +69,16 @@
 									<span
 										th:if="${user.category != null and #strings.equals(user.category,'Equipe')}"
 										class="section-subheading text-muted"
-										th:text="${'Equipe social builder'}"></span> <span
-										th:if="${user.category != null and !#strings.equals(user.category,'Equipe')}"
+										th:text="${'Equipe social builder'}"></span>
+									<div
+                                th:if="${user.category != null and #strings.equals(user.category,'Mentore')}"
+                                class="grey" th:text="${'Mentor.e'}"></div>
+								    <span
+										th:if="${user.category != null and !#strings.equals(user.category,'Equipe') and !#strings.equals(user.category,'Mentore')}"
 										class="section-subheading text-muted"
-										th:text="${' ' + user.category}"></span> <span
+										th:text="${' ' + user.category}"></span>
+										
+									<span
 										th:if="${user.type != null}"
 										class="section-subheading text-muted" th:text="${user.type}"></span>
 								</p>

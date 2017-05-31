@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.w3.org/1000/xhtml">
-<head th:replace="common/header :: common-header">
-<meta charset="utf-8" />
+<head>
+    <div th:replace="common/header :: common-header">
+    </div>
+    <meta charset="utf-8" />
+    <div th:replace="common/header :: body-bottom-scripts" />
+    <!-- Bootstrap select -->
+    <script
+        th:src="@{/css/bootstrap-select-1.12.2/dist/js/bootstrap-select.js}"></script>
 </head>
 
 <body>
@@ -155,7 +161,10 @@
 								th:if="${user.category != null and #strings.equals(user.category,'Equipe')}"
 								class="grey" th:text="${'Equipe Social Builder'}"></div>
 							<div
-								th:if="${user.category != null and !#strings.equals(user.category,'Equipe')}"
+                                th:if="${user.category != null and #strings.equals(user.category,'Mentore')}"
+                                class="grey" th:text="${'Mentor.e'}"></div>
+							<div
+								th:if="${user.category != null and !#strings.equals(user.category,'Equipe') and !#strings.equals(user.category,'Mentore')}"
 								class="grey" th:text="${user.category}"></div>
 							<div class="social">
 								<a
@@ -231,10 +240,7 @@
 		</div>
 
 	</div>
-	<div th:replace="common/header :: body-bottom-scripts" />
-	<!-- Bootstrap select -->
-	<script
-		th:src="@{/css/bootstrap-select-1.12.2/dist/js/bootstrap-select.js}"></script>
+	
 </body>
 <div th:replace="common/footer :: footer" />
 </html>
