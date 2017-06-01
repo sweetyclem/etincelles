@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.w3.org/1000/xhtml">
-<head th:replace="common/header :: common-header">
-<meta charset="utf-8" />
+<head>
+    <div th:replace="common/header :: common-header">
+    </div>
+    <meta charset="utf-8" />
+    <div th:replace="common/header :: body-bottom-scripts" />
+    <script type="text/javascript" th:src="@{/js/multiselect.js}"></script>
+    <script type="text/javascript">
+	$(function() {
+	    $('.multiselect-ui').multiselect({
+	        includeSelectAllOption: false
+	    });
+	});
+	</script>
 </head>
 
 <body>
@@ -34,7 +45,7 @@
 
 				<div class="col-xs-10 col-sm-2 margin-mobile">
 					<select id="sector" title="Secteur" name="sector"
-						class="selectpicker form-control" multiple="multiple">
+						class="form-control multiselect-ui" multiple="multiple">
 						<option data-th-each="sector : ${sectors}"
 							th:selected="${searchList != null and #lists.contains(searchList, sector)}"
 							th:value="${sector}" th:text="${sector}"></option>
@@ -43,7 +54,7 @@
 
 				<div class="col-xs-10 col-sm-2 margin-mobile">
 					<select id="category" title="Catégorie" name="categories"
-						multiple="multiple" class="selectpicker form-control">
+						multiple="multiple" class="multiselect-ui form-control">
 						<option
 							th:if="${categoryList != null and #lists.contains(categoryList, 'Etincelle')}"
 							th:selected="${searchList  != null and #lists.contains(searchList, 'Etincelle')}"
@@ -65,7 +76,7 @@
 
 
 				<div class="col-xs-10 col-sm-2 margin-mobile">
-					<select name="cities" class="selectpicker form-control"
+					<select name="cities" class="multiselect-ui form-control"
 						multiple="multiple" title="Ville">
 						<option
 							th:if="${cityList != null and #lists.contains(cityList, 'Paris')}"
@@ -172,11 +183,7 @@
 			</div>
 		</div>
 
-	</div>
-	<div th:replace="common/header :: body-bottom-scripts" />
-	<!-- Bootstrap select -->
-	<script
-		th:src="@{/css/bootstrap-select-1.12.2/dist/js/bootstrap-select.js}"></script>
+	</div>	
 </body>
 <div th:replace="common/footer :: footer" />
 </html>

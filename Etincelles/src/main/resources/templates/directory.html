@@ -5,9 +5,14 @@
     </div>
     <meta charset="utf-8" />
     <div th:replace="common/header :: body-bottom-scripts" />
-    <!-- Bootstrap select -->
-    <script
-        th:src="@{/css/bootstrap-select-1.12.2/dist/js/bootstrap-select.js}"></script>
+    <script type="text/javascript" th:src="@{/js/multiselect.js}"></script>
+    <script type="text/javascript">
+	$(function() {
+	    $('.multiselect-ui').multiselect({
+	        includeSelectAllOption: false
+	    });
+	});
+	</script>
 </head>
 
 <body>
@@ -40,11 +45,11 @@
 
 				<div class="col-xs-10 col-sm-2 margin-mobile">
 					<div th:replace="common/sectorSelect :: directorySectorSelect"></div>
-				</div> 
+				</div>
 
 				<div class="col-xs-10 col-sm-2 margin-mobile">
-					<select id="category" title="Catégorie" name="categories"
-						multiple="multiple" class="selectpicker form-control">
+					<select id="category" title="Catégorie" name="categories" multiple="multiple"
+						 class="form-control multiselect-ui">
 						<option
 							th:selected="${searchList  != null and #lists.contains(searchList, 'Etincelle')}"
 							th:value="Etincelle">Etincelle</option>
@@ -62,7 +67,7 @@
 
 
 				<div class="col-xs-10 col-sm-2 margin-mobile">
-					<select name="cities" class="selectpicker form-control"
+					<select name="cities" class="form-control multiselect-ui"
 						multiple="multiple" title="Ville">
 						<option
 							th:selected="${searchList  != null and #lists.contains(searchList, 'Paris')}"

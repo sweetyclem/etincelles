@@ -418,7 +418,7 @@
 
 <div th:fragment="directorySkillSelect">		
 			<select  name="skills" id="skillSelect"
-				class="selectpicker form-control" multiple="multiple"
+				class="form-control multiselect-ui overflow" multiple="multiple"
 				title="Compétences">
 				<optgroup label='Gestion de projet et méthodologies'>
 					<option th:selected="${searchList  != null and #lists.contains(searchList, 'Gestion de projet')}" th:if="${skillList != null and #lists.contains(skillList, 'Gestion de projet')}" value='Gestion de projet'>Gestion de projet</option>
