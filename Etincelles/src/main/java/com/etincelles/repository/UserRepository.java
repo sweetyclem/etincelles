@@ -1,5 +1,7 @@
 package com.etincelles.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -24,4 +26,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
             + " OR LOWER(u.type) LIKE LOWER(CONCAT('%',?1, '%'))"
             + " ORDER BY u.lastName" )
     Page<User> findByKeywordAndSort( String keyword, Pageable pageable );
+
+    @Query( "SELECT distinct u.sector FROM User u WHERE u.enabled = true AND u.firstName is not null AND u.firstName != '' AND u.sector != null ORDER BY u.sector" )
+    List<String> getSectors();
 }

@@ -1,5 +1,6 @@
 package com.etincelles.service;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.domain.Page;
@@ -25,4 +26,6 @@ public interface UserService {
     Page<User> findAll( Pageable pageable );
 
     Page<User> blurrySearch( String keyword, Pageable pageable );
+
+    List<String> getSectors();
 }

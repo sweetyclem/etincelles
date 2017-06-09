@@ -1,5 +1,6 @@
 package com.etincelles.service.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -91,5 +92,10 @@ public class UserServiceImpl implements UserService {
     public Page<User> blurrySearch( String keyword, Pageable pageable ) {
         Page<User> keywordList = userRepository.findByKeywordAndSort( keyword, pageable );
         return keywordList;
+    }
+
+    @Override
+    public List<String> getSectors() {
+        return userRepository.getSectors();
     }
 }
