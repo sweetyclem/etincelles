@@ -19,85 +19,88 @@
 	<div th:replace="common/header :: navbar" />
 	<br />
 	<div class="container">
-		<div class="row" th:if="${noFilter == null}">
-			<div id="categoryDiv" class="col-xs-10">
-				<h4>
-					<label for="skill">Filtrer</label>
-				</h4>
+	
+		<h4 th:if="${noFilter != null}">
+			<label>Résultats</label>
+		</h4>
+
+		<div class="panel-group" id="accordion" th:if="${noFilter == null}">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title" th:if="${noFilter == null}">
+						<a class="accordion-toggle" data-toggle="collapse"
+							data-parent="#accordion" href="#filters"> Filtrer </a>
+					</h4>					
+				</div>
+				<div id="filters" class="panel-collapse collapse">
+					<div class="panel-body">
+
+						<div class="row" th:if="${noFilter == null}">
+							<form accept-charset="UTF-8" action="/filterResult"
+								id="searchform" method="post" class="form-inline">
+								<input type="hidden" name="sectorList" th:value="${sectors}" />
+
+								<div
+									class="col-xs-10 col-sm-2 form-group no-margin-bottom margin-mobile">
+									<span class="filter-label">Compétences</span>
+									<div th:replace="common/skillSelect :: directorySkillSelect"></div>
+								</div>
+
+
+								<div class="col-xs-10 col-sm-2 margin-mobile">
+									<span class="filter-label">Secteur</span>
+									<div th:replace="common/sectorSelect :: directorySectorSelect"></div>
+								</div>
+
+								<div class="col-xs-10 col-sm-2 margin-mobile">
+									<span class="filter-label">Catégorie</span> <select
+										id="category" title="Catégorie" name="categories"
+										multiple="multiple" class="form-control multiselect-ui">
+										<option
+											th:selected="${searchList  != null and #lists.contains(searchList, 'Etincelle')}"
+											th:value="Etincelle">Etincelle</option>
+										<option
+											th:selected="${searchList  != null and #lists.contains(searchList, 'Mentore')}"
+											th:value="Mentore">Mentor.e</option>
+										<option
+											th:selected="${searchList  != null and #lists.contains(searchList, 'Coach')}"
+											th:value="Coach">Coach</option>
+										<option
+											th:selected="${searchList  != null and #lists.contains(searchList, 'Equipe')}"
+											th:value="Equipe">Equipe Social Builder</option>
+									</select>
+								</div>
+
+
+								<div class="col-xs-10 col-sm-2 margin-mobile">
+									<span class="filter-label">Ville</span> <select name="cities"
+										class="form-control multiselect-ui" multiple="multiple"
+										title="Ville">
+										<option
+											th:selected="${searchList  != null and #lists.contains(searchList, 'Paris')}"
+											th:value="Paris">Paris</option>
+										<option
+											th:selected="${searchList  != null and #lists.contains(searchList, 'Lyon')}"
+											th:value="Lyon">Lyon</option>
+									</select>
+								</div>
+
+								<div class="col-xs-12 col-sm-2 submit margin-mobile" id="directorySubmit">
+									<br /> <input class="btn btn-default" name='submit'
+										type='submit' value='Valider' />
+
+								</div>
+								<div class="col-xs-12 col-sm-1 submit filter-box" id="directoryReset">
+									<br /> <a class="btn btn-default no-under"
+										th:href="@{/directory}" role="button">Réinitialiser</a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="row" th:if="${noFilter != null}">
-			<div id="categoryDiv" class="col-xs-10">
-				<h4>
-					<label for="skill">Résultats</label>
-				</h4>
-			</div>
-		</div>
-		
-		<div class="row" th:if="${noFilter == null}">
-			<form accept-charset="UTF-8" action="/filterResult"
-				id="searchform" method="post" class="form-inline">
-				<input type="hidden" name="sectorList" th:value="${sectors}" />
 
-				<div class="col-xs-10 col-sm-2 form-group no-margin-bottom margin-mobile">
-					<span class="filter-label">Compétences</span>
-					<div th:replace="common/skillSelect :: directorySkillSelect"></div>
-				</div>
-				
-
-				<div class="col-xs-10 col-sm-2 margin-mobile">
-					<span class="filter-label">Secteur</span>
-					<div th:replace="common/sectorSelect :: directorySectorSelect"></div>
-				</div>
-
-				<div class="col-xs-10 col-sm-2 margin-mobile">
-					<span class="filter-label">Catégorie</span>
-					<select id="category" title="Catégorie" name="categories" multiple="multiple"
-						 class="form-control multiselect-ui">
-						<option
-							th:selected="${searchList  != null and #lists.contains(searchList, 'Etincelle')}"
-							th:value="Etincelle">Etincelle</option>
-						<option
-							th:selected="${searchList  != null and #lists.contains(searchList, 'Mentore')}"
-							th:value="Mentore">Mentor.e</option>
-						<option
-							th:selected="${searchList  != null and #lists.contains(searchList, 'Coach')}"
-							th:value="Coach">Coach</option>
-						<option
-							th:selected="${searchList  != null and #lists.contains(searchList, 'Equipe')}"
-							th:value="Equipe">Equipe Social Builder</option>
-					</select>
-				</div>
-
-
-				<div class="col-xs-10 col-sm-2 margin-mobile">
-					<span class="filter-label">Ville</span>
-					<select name="cities" class="form-control multiselect-ui"
-						multiple="multiple" title="Ville">
-						<option
-							th:selected="${searchList  != null and #lists.contains(searchList, 'Paris')}"
-							th:value="Paris">Paris</option>
-						<option
-							th:selected="${searchList  != null and #lists.contains(searchList, 'Lyon')}"
-							th:value="Lyon">Lyon</option>
-					</select>
-				</div>
-
-				<div
-					class="col-xs-12 col-sm-1 submit margin-mobile">
-					<br/>
-					<input class="btn btn-default" name='submit' type='submit'
-						value='Valider' />
-
-				</div>
-				<div class="col-xs-12 col-sm-1 submit filter-box">
-				<br/>
-					<a class="btn btn-default no-under" th:href="@{/directory}"
-						role="button">Réinitialiser</a>
-				</div>
-			</form>
-		</div>
-		
 		<div class="row">
 			<!-- Pagination Bar -->
 			<div th:fragment='paginationbar'>
@@ -133,7 +136,7 @@
 			</div>
 
 		</div>
-
+		
 		<div class="row" th:if="${searchList}">
 			<div class="col-xs-12">
 				<br />
