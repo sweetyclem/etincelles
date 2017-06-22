@@ -58,19 +58,12 @@
 						<li><a th:href="@{/news}">Actualités</a></li>
 						<li><a class="nav-link" th:href="@{/calendar}">Agenda</a></li>
 						<li><a th:href="@{/aboutUs}">Qui sommes nous</a></li>
-						<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Plus<span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a class="nav-link" th:href="@{/forum}">Forum</a></li>
-								<li><a class="nav-link" th:href="@{/calendar}">Agenda</a></li>
-							</ul></li>	-->
-						<li>
+						<li class="search-li">
 							<form class="navbar-form" role="search"
 								th:action="@{/searchUser}" method="post">
 								<input type="text" name="keyword" class="form-control"
 									placeholder="Mot clé"/>
-								<button type="submit" class="btn btn-default">OK</button>
+								<button type="submit" class="btn btn-search">OK</button>
 							</form>
 						</li>
 					</ul>
