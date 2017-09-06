@@ -33,8 +33,10 @@
 					<div class="row">
 					<div class="col-sm-5">
 					   <br/><br/>
-						<img class="img-responsive" th:if="${message.hasPicture}"
-						th:src="${'/images/message/'+message.id+'.png'}"/>						
+					   <a class="post-title" th:href="@{/post(id=${message.id})}">
+							<img class="img-responsive" th:if="${message.hasPicture}"
+							th:src="${'/images/message/'+message.id+'.png'}"/>
+						</a>			
 					</div>
 					<br />
 					<div class="col-sm-7">
