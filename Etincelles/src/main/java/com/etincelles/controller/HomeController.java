@@ -340,12 +340,12 @@ public class HomeController {
         return "calendar";
     }
 
-    @RequestMapping( "/news" )
-    public String news( final Model model ) {
+    @RequestMapping( "/blog" )
+    public String blog( final Model model ) {
         List<Message> messagesList;
         messagesList = this.messageService.findAll();
         model.addAttribute( "messageList", messagesList );
-        return "news";
+        return "blog";
     }
 
     @RequestMapping( "/post" )

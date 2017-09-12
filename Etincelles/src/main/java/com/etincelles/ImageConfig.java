@@ -10,5 +10,6 @@ public class ImageConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers( ResourceHandlerRegistry registry ) {
         super.addResourceHandlers( registry );
         registry.addResourceHandler( "/**" ).addResourceLocations( "file:///home/clem/etincelles/" );
+        registry.addResourceHandler( "/favicon.ico" ).addResourceLocations( "/" );
     }
 }

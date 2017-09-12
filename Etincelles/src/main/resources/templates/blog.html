@@ -43,7 +43,7 @@
 					<a class="post-title" th:href="@{/post(id=${message.id})}">
 						<span th:utext="${message.title}"></span>
 					</a>
-						<div th:utext="${#strings.abbreviate(message.text, 300)}"
+						<div th:utext="${#strings.abbreviate(message.text, 230)}"
 							class="post-meta text-justify"></div>
 						<br/>
 					</div>

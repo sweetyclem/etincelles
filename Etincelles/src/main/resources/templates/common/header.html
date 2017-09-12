@@ -55,15 +55,14 @@
 
 					<ul class="nav navbar-nav">
 						<li><a th:href="@{/directory}">Annuaire</a></li>
-						<li><a th:href="@{/news}">Actualités</a></li>
+						<li><a th:href="@{/blog}">Blog</a></li>
 						<li><a class="nav-link" th:href="@{/calendar}">Agenda</a></li>
 						<li><a th:href="@{/aboutUs}">Qui sommes nous</a></li>
 						<li class="search-li">
 							<form class="navbar-form" role="search"
 								th:action="@{/searchUser}" method="post">
-								<input type="text" name="keyword" class="form-control"
-									placeholder="Mot clé"/>
-								<button type="submit" class="btn btn-search">OK</button>
+								<input type="text" name="keyword" class="form-control"/>
+								<button type="submit" class="btn btn-search"><i class="fa fa-search" aria-hidden="true"></i></button>
 							</form>
 						</li>
 						<li class="social">
@@ -80,9 +79,9 @@
 
 					<ul class="nav navbar-nav navbar-right">
 						<li><a sec:authorize="isAnonymous()" th:href="@{/login}">Mon
-								compte</a></li>
+								compte<i class="fa fa-user" aria-hidden="true"></i></a></li>
 						<li><a sec:authorize="isAuthenticated()"
-							th:href="@{/myProfile}">Mon compte</a></li>
+							th:href="@{/myProfile}">Mon compte<i class="fa fa-user" aria-hidden="true"></i></a></li>
 						<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Déconnexion</a></li>
 					</ul>
 					<!-- navbar-right -->
