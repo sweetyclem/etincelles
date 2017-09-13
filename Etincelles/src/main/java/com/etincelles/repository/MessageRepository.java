@@ -12,4 +12,6 @@ public interface MessageRepository extends CrudRepository<Message, Long> {
     List<Message> findByTitleContaining( String title );
 
     List<Message> findByTextContaining( String text );
+
+    List<Message> findAllByOrderByDateDesc();
 }

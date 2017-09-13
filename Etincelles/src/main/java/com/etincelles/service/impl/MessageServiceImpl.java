@@ -40,7 +40,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public List<Message> findAll() {
-        List<Message> messageList = (List<Message>) messageRepository.findAll();
+        List<Message> messageList = (List<Message>) messageRepository.findAllByOrderByDateDesc();
         return messageList;
     }
 
