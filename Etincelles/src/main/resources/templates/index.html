@@ -35,7 +35,7 @@
 	            <img src="images/img0001.png" alt=""/>
 	        </div>
 	        <div class="scroll-invitation">
-	        	<i style="font-size: 3em;" class="fa fa-angle-down scroll-icon" aria-hidden="true"></i>
+	        	<a href="#portfolio"><i style="font-size: 3em;" class="fa fa-angle-down scroll-icon" aria-hidden="true"></i></a>
 	        </div>
 	    </div>
 	</div>
@@ -83,6 +83,14 @@
 	</main>
 	<div th:replace="common/header :: body-bottom-scripts" />
 	<script th:src="@{/js/coverr.js}"></script>
+	<script>
+		$('a[href^="#"]').click(function(){  
+		    var id = $(this).attr("href");
+		    var offset = $(id).offset().top 
+		    $('html, body').animate({scrollTop: offset}, 'slow'); 
+		    return false;  
+		}); 
+	</script>
 </body>
 <div th:replace="common/footer :: footer" />
 </html>
