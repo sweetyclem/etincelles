@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.w3.org/1000/xhtml">
-<head th:replace="common/header :: common-header" >
+<head>
 	<meta charset="utf-8" />
+	<div th:replace="common/header :: common-header" />
 </head>
 
 <body>
@@ -10,9 +11,18 @@
 	<main class="no-margin-top">
 	
 	<!-- Header -->
-
-	
-    <header class="intro-header">
+	<div class="homepage-hero-module">
+		<div class="video-container">
+	        <div class="filter"></div>
+	        <video autoplay="autoplay" loop="loop" class="fillWidth">
+	            <source src="images/We-Work-We-Wait.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+	            <source src="images/We-Work-We-Wait.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+	        </video>
+	        <div class="poster hidden">
+	            <img  src="images/img0001.png" alt=""/>
+	            <!-- src="https://dummyimage.com/1300x750/00cec0/00cec0"  -->
+	        </div>
+	        <header class="intro-header">
         <div class="container no-margin-top"  tabindex="-1">
             <div class="row">
                 <div class="col-lg-12">
@@ -27,16 +37,12 @@
             </div>
         </div>
     </header>
+	    </div>
+    </div>
 
     <!-- Portfolio Grid Section -->
     <section id="portfolio">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Découvrir</h2>
-                </div>
-            </div>
-            <br/><br/>
             <div class="row">
                 <div class="col-sm-4 portfolio-item">
                     <a th:href="@{/directory}" class="portfolio-link" data-toggle="modal">
@@ -76,6 +82,7 @@
 
 	</main>
 	<div th:replace="common/header :: body-bottom-scripts" />
+	<script th:src="@{/js/coverr.js}"></script>
 </body>
 <div th:replace="common/footer :: footer" />
 </html>
