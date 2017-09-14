@@ -10,8 +10,13 @@
 	<main class="no-margin-top">
 	
 	<!-- Header -->
+	<div class="row" id="poster-img">
+		<div class="col-sm-12">
+		   <img class="img-responsive" src="images/img0002.png" alt=""/>
+		</div>
+	</div>
 
-	<div class="homepage-hero-module">
+	<div class="homepage-hero-module hidden" id="video">
 	    <div class="video-container">
 	    	<div class="title-container">
                 <div class="headline">
@@ -27,7 +32,8 @@
                 </div>
             </div>
 	        <div class="filter"></div>
-	        <video autoplay="autoplay" loop="loop" class="fillWidth">
+	        
+	        <video autoplay="autoplay" loop="loop" class="fillWidth" poster="images/img0001.png">
 	            <source src="images/We-Work-We-Wait.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
 	            <source src="images/We-Work-We-Wait.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
 	        </video>
@@ -35,7 +41,7 @@
 	            <img src="images/img0001.png" alt=""/>
 	        </div>
 	        <div class="scroll-invitation">
-	        	<a href="#portfolio"><i style="font-size: 3em;" class="fa fa-angle-down scroll-icon" aria-hidden="true"></i></a>
+	        	<a href="#portfolio"><i style="font-size: 4em;" class="fa fa-angle-down scroll-icon" aria-hidden="true"></i></a>
 	        </div>
 	    </div>
 	</div>
@@ -83,6 +89,10 @@
 	</main>
 	<div th:replace="common/header :: body-bottom-scripts" />
 	<script th:src="@{/js/coverr.js}"></script>
+	<script>
+	$('#video').removeClass('hidden');
+	$('#poster-img').hide();
+	</script>
 	<script>
 		$('a[href^="#"]').click(function(){  
 		    var id = $(this).attr("href");
