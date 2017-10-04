@@ -27,25 +27,25 @@
 
 	<!-- Main Content -->
 	<div class="container">
-		<div data-th-each="message : ${messageList}" class="row">
-			<div th:with="pic=${'/images/message/' + message.id +'.png'}"
+		<div data-th-each="post : ${postList}" class="row">
+			<div th:with="pic=${'/images/post/' + post.id +'.png'}"
 				class="col-md-10 col-md-offset-1">
 					<div class="row">
 					<div class="col-sm-5">
-					   <a class="post-title" th:href="@{/post(id=${message.id})}">
-							<img class="img-responsive" th:if="${message.hasPicture}"
-							th:src="${'/images/message/'+message.id+'.png'}"/>
+					   <a class="post-title" th:href="@{/post(id=${post.id})}">
+							<img class="img-responsive" th:if="${post.hasPicture}"
+							th:src="${'/images/post/'+post.id+'.png'}"/>
 						</a>
-						<a class="post-title" th:href="@{/post(id=${message.id})}">
-							<img class="img-responsive" th:if="${!message.hasPicture}"
+						<a class="post-title" th:href="@{/post(id=${post.id})}">
+							<img class="img-responsive" th:if="${!post.hasPicture}"
 							th:src="${'/images/img0001.png'}"/>
 						</a>									
 					</div>
 					<div class="col-sm-7">
-					<a class="post-title" th:href="@{/post(id=${message.id})}">
-						<span th:utext="${message.title}"></span>
+					<a class="post-title" th:href="@{/post(id=${post.id})}">
+						<span th:utext="${post.title}"></span>
 					</a>
-						<div th:utext="${#strings.abbreviate(message.text, 230)}"
+						<div th:utext="${#strings.abbreviate(post.text, 230)}"
 							class="post-meta text-justify"></div>
 					</div>
 				</div>

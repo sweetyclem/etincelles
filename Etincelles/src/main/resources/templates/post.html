@@ -10,7 +10,7 @@
 	<header class="intro-header">
 		<div class="container no-margin-top" id="maincontent" tabindex="-1">
 			<div class="row"
-				th:with="pic=${'/images/message/' + message.id +'.png'}">
+				th:with="pic=${'/images/post/' + post.id +'.png'}">
 				<div class="col-xs-12 col-sm-4 back-arrow">
 					<ol class="breadcrumb green-back">
 						<li><a class="no-under" th:href="@{/blog}"><i
@@ -21,11 +21,11 @@
 			<div class="row no-margin full-width">
 				<div class="col-sm-6 col-sm-offset-3">
 					<!-- <img class="img-responsive img-circle"
-						th:if="${message.hasPicture == false}"
+						th:if="${post.hasPicture == false}"
 						src="http://placekitten.com/600/600?image=14" />  -->
 					<img class="img-responsive"
-						th:if="${message.hasPicture}"
-						th:src="${'/images/message/'+ message.id +'.png'}" />
+						th:if="${post.hasPicture}"
+						th:src="${'/images/post/'+ post.id +'.png'}" />
 				</div>
 			</div>
 
@@ -33,8 +33,8 @@
 			<div class="row">
 				<div class="post-title col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
 					<div class="post-heading">
-						<h1 th:utext="${message.title}"></h1>
-						<span th:utext="${#dates.format(message.date,'dd MMM yyyy')}"
+						<h1 th:utext="${post.title}"></h1>
+						<span th:utext="${#dates.format(post.date,'dd MMM yyyy')}"
 							class="meta"></span>
 					</div>
 				</div>
@@ -49,7 +49,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
-					<p class="text-justify" th:utext="${message.text}"></p>
+					<p class="text-justify" th:utext="${post.text}"></p>
 				</div>
 			</div>
 		</div>

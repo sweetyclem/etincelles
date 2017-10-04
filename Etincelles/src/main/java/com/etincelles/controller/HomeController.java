@@ -32,13 +32,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.etincelles.entities.Message;
 import com.etincelles.entities.PasswordResetToken;
+import com.etincelles.entities.Post;
 import com.etincelles.entities.Skill;
 import com.etincelles.entities.User;
 import com.etincelles.repository.SkillRespository;
 import com.etincelles.service.CustomUserService;
-import com.etincelles.service.MessageService;
+import com.etincelles.service.PostService;
 import com.etincelles.service.UserService;
 import com.etincelles.service.impl.UserSecurityService;
 import com.etincelles.utility.FileUtility;
@@ -58,7 +58,7 @@ public class HomeController {
     private UserService         userService;
 
     @Autowired
-    private MessageService      messageService;
+    private PostService         postService;
 
     @Autowired
     private CustomUserService   customUserService;
@@ -124,8 +124,8 @@ public class HomeController {
         final PasswordResetToken passToken = this.userService.getPasswordResetToken( token );
 
         if ( passToken == null ) {
-            final String message = "Invalid Token.";
-            model.addAttribute( "message", message );
+            final String post = "Invalid Token.";
+            model.addAttribute( "post", post );
             return "redirect:/badRequestPage";
         }
 
@@ -342,16 +342,16 @@ public class HomeController {
 
     @RequestMapping( "/blog" )
     public String blog( final Model model ) {
-        List<Message> messagesList;
-        messagesList = this.messageService.findAll();
-        model.addAttribute( "messageList", messagesList );
+        List<Post> postsList;
+        postsList = this.postService.findAll();
+        model.addAttribute( "postList", postsList );
         return "blog";
     }
 
     @RequestMapping( "/post" )
     public String post( final Model model, @RequestParam( "id" ) final Long id ) {
-        final Message message = this.messageService.findById( id );
-        model.addAttribute( "message", message );
+        final Post post = this.postService.findById( id );
+        model.addAttribute( "post", post );
         return "post";
     }
 
