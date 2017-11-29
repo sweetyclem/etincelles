@@ -30,7 +30,7 @@
 		<div data-th-each="post : ${postList}" class="row">
 			<div th:with="pic=${'/images/post/' + post.id +'.png'}"
 				class="col-md-10 col-md-offset-1">
-					<div class="row" th:with="preview=${#strings.abbreviate(post.text, 230)}">
+					<div class="row" th:with="preview=${T(org.jsoup.Jsoup).parse(post.text).text()}">
 					<div class="col-sm-5">
 					   <a class="post-title" th:href="@{/post(id=${post.id})}">
 							<img class="img-responsive" th:if="${post.hasPicture}"
@@ -45,7 +45,7 @@
 					<a class="post-title" th:href="@{/post(id=${post.id})}">
 						<span th:utext="${post.title}"></span>
 					</a>
-						<div th:text="${T(org.jsoup.Jsoup).parse(preview).text()}"
+						<div th:text="${#strings.abbreviate(preview, 700)}"
 							class="post-meta text-justify"></div>
 					</div>
 				</div>
