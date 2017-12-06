@@ -1,7 +1,9 @@
 package com.etincelles.enumeration;
 
 public enum Type {
-    Carriere( "Carrière" ), CarriereData( "Carrière Data Marketing" ), Startup( "Startup" );
+    Carriere( "Carrière" ), DataMarketing( "Carrière Data Marketing" ), Startup(
+            "Startup" ), DigitalBuisnessDevelopment( "Digital Business Development" ), SalesforceDatabaseAdmin(
+                    "Administration Base de données Salesforce" );
 
     private final String name;
 
