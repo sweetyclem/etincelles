@@ -28,13 +28,13 @@
 	<!-- Main Content -->
 	<div class="container">
 		<div data-th-each="post : ${postList}" class="row">
-			<div th:with="pic=${'/images/post/' + post.id +'.png'}"
+			<div th:with="pic=${'/user_resources/post/' + post.id +'.png'}"
 				class="col-md-10 col-md-offset-1">
 					<div class="row" th:with="preview=${T(org.jsoup.Jsoup).parse(post.text).text()}">
 					<div class="col-sm-5">
 					   <a class="post-title" th:href="@{/post(id=${post.id})}">
 							<img class="img-responsive" th:if="${post.hasPicture}"
-							th:src="${'/images/post/'+post.id+'.png'}"/>
+							th:src="${'/user_resources/post/'+post.id+'.png'}"/>
 						</a>
 						<a class="post-title" th:href="@{/post(id=${post.id})}">
 							<img class="img-responsive" th:if="${!post.hasPicture}"
