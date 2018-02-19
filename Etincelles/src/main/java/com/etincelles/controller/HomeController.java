@@ -197,11 +197,11 @@ public class HomeController {
                 final BufferedImage croppedImage = this.fileUtility.cropImageSquare( picture.getBytes() );
 
                 final String name = user.getId() + ".png";
-                if ( Files.exists( Paths.get( "/home/clem/etincelles/images/user/" + name ) ) ) {
-                    Files.delete( Paths.get( "/home/clem/etincelles/images/user/" + name ) );
+                if ( Files.exists( Paths.get( "/home/clem/etincelles/user_resources/user/" + name ) ) ) {
+                    Files.delete( Paths.get( "/home/clem/etincelles/user_resources/user/" + name ) );
                 }
                 // Save the file locally
-                final File outputfile = new File( "/home/clem/etincelles/images/user/" + name );
+                final File outputfile = new File( "/home/clem/etincelles/user_resources/user/" + name );
                 ImageIO.write( croppedImage, "png", outputfile );
                 currentUser.setHasPicture( true );
             } catch ( final Exception e ) {
