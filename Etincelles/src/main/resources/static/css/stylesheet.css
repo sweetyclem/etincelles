@@ -1273,3 +1273,8 @@ section>h2 {
 .scroll-icon {
     color: grey;
 }
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
