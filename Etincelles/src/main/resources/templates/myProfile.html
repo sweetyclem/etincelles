@@ -1,6 +1,6 @@
 <html lang="fr" xmlns:th="http://www.w3.org/1000/xhtml">
-<head> 
-<div th:replace="common/header :: common-header"/>
+<head>
+<div th:replace="common/header :: common-header" />
 <meta charset="utf-8" />
 <!-- Bootstrap select -->
 <link rel="stylesheet"
@@ -13,9 +13,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
-					<h4 class="section-headline">
-						<span th:text="${user.email}"></span>
-					</h4>
+				<h4 class="section-headline">
+					<span th:text="${user.email}"></span>
+				</h4>
 			</div>
 		</div>
 
@@ -24,11 +24,11 @@
 			<div class="alert alert-danger" th:if="${uploadError}">
 				<strong>Le fichier est trop volumieux, maximum 50Mo</strong>
 			</div>
-			
+
 			<div class="alert alert-danger" th:if="${incorrectPassword}">
 				<strong>Le mot de passe est incorrect</strong>
 			</div>
-			
+
 			<div class="alert alert-danger" th:if="${incorrectSkills}">
 				<strong>Vous devez sélectionner 4 compétences maximum</strong>
 			</div>
@@ -69,7 +69,7 @@
 								<div class="panel-body panel-style">
 
 									<form th:action="@{/updateUserInfo}" method="post"
-										enctype="multipart/form-data">
+										enctype="multipart/form-data" action="">
 
 										<input type="hidden" name="id" th:value="${user.id}" />
 
@@ -90,89 +90,97 @@
 										</div>
 
 										<div class="form-group">
-											<label for="email">* Email</label><input type="text" required="required"
-												class="form-control" id="email" name="email"
-												th:value="${user.email}" />
+											<label for="email">* Email</label><input type="text"
+												required="required" class="form-control" id="email"
+												name="email" th:value="${user.email}" />
 										</div>
-																		
+
 										<div th:if="${user.city != null}" class="form-group" id="city">
-											<label for="city">* Ville</label> <select name="city" id="citySelect"
-												class="form-control" required="required">
-												<option th:selected="(${user.city.name()}=='Paris')" th:value="Paris">Paris</option>
-												<option th:selected="(${user.city.name()}=='Lyon')" th:value="Lyon">Lyon</option>
+											<label for="city">* Ville</label> <select name="city"
+												id="citySelect" class="form-control" required="required">
+												<option th:selected="(${user.city.name()}=='Paris')"
+													th:value="Paris">Paris</option>
+												<option th:selected="(${user.city.name()}=='Lyon')"
+													th:value="Lyon">Lyon</option>
 											</select>
 										</div>
-										
+
 										<div th:if="${user.city == null}" class="form-group" id="city">
-											<label for="city">* Ville</label> <select name="city" id="citySelect"
-												class="form-control" required="required">
-												<option value="" selected="selected" disabled="disabled">Choisir une ville</option>
+											<label for="city">* Ville</label> <select name="city"
+												id="citySelect" class="form-control" required="required">
+												<option value="" selected="selected" disabled="disabled">Choisir
+													une ville</option>
 												<option th:value="Paris">Paris</option>
 												<option th:value="Lyon">Lyon</option>
 											</select>
 										</div>
-										
+
 										<div class="form-group" th:if="${skills == null}">
-										<label for="skills">Compétences (4 maximum)</label>
+											<label for="skills">Compétences (4 maximum)</label>
 											<div th:replace="common/skillSelect :: regularSkillSelect"></div>
 										</div>
-										
+
 										<div class="form-group" th:if="${skills != null}">
 											<label for="skills">Compétences (4 maximum)</label>
 											<div th:replace="common/skillSelect :: userSkillSelect"></div>
-										</div>									
-																				
-										<div class="form-group" th:if="${user.sector == null or (#strings.isEmpty(user.sector))}">
-										<label for="sector">Secteur</label>
+										</div>
+
+										<div class="form-group"
+											th:if="${user.sector == null or (#strings.isEmpty(user.sector))}">
+											<label for="sector">Secteur</label>
 											<div th:replace="common/sectorSelect :: regularSectorSelect"></div>
 										</div>
-										
-										<div class="form-group" th:if="${user.sector != null and !(#strings.isEmpty(user.sector))}">
+
+										<div class="form-group"
+											th:if="${user.sector != null and !(#strings.isEmpty(user.sector))}">
 											<label for="sector">Secteur</label>
 											<div th:replace="common/sectorSelect :: userSectorSelect"></div>
 										</div>
-										
-										<div class="form-group" th:if="${user.currentPosition == null or (#strings.isEmpty(user.currentPosition))}">
-                                        <label for="currentPosition">Situation actuelle</label>
-                                            <input name="currentPosition" type="text" class="form-control" maxlength="60" placeholder="En poste chez xxx, en création d'entreprise, à la recherche d'un emploi..."/>
-                                        	<p style="color: #828282; font-size: 0.9em">Maximum 60 caractères</p>
-                                        </div>
-                                        
-                                        <div class="form-group" th:if="${user.currentPosition != null and !(#strings.isEmpty(user.currentPosition))}">
-                                            <label for="currentPosition">Situation actuelle</label>
-                                            <input name="currentPosition" type="text" class="form-control" maxlength="60"  th:value="${user.currentPosition}" placeholder="En poste chez xxx, en création d'entreprise, à la recherche d'un emploi..."/>
-                                        	<p style="color: #828282; font-size: 0.9em">Maximum 60 caractères</p>
-                                        </div>
+
+										<div class="form-group"
+											th:if="${user.currentPosition == null or (#strings.isEmpty(user.currentPosition))}">
+											<label for="currentPosition">Situation actuelle</label> <input
+												name="currentPosition" type="text" class="form-control"
+												maxlength="60"
+												placeholder="En poste chez xxx, en création d'entreprise, à la recherche d'un emploi..." />
+											<p style="color: #828282; font-size: 0.9em">Maximum 60
+												caractères</p>
+										</div>
+
+										<div class="form-group"
+											th:if="${user.currentPosition != null and !(#strings.isEmpty(user.currentPosition))}">
+											<label for="currentPosition">Situation actuelle</label> <input
+												name="currentPosition" type="text" class="form-control"
+												maxlength="60" th:value="${user.currentPosition}"
+												placeholder="En poste chez xxx, en création d'entreprise, à la recherche d'un emploi..." />
+											<p style="color: #828282; font-size: 0.9em">Maximum 60
+												caractères</p>
+										</div>
 
 										<div class="form-group">
 											<label for="description">Description</label>
 											<!-- <p th:utext="${user.description}"></p> -->
 											<textarea class="form-control editme" id="description"
-												name="description" th:utext="${user.description}"></textarea>
+												name="description" th:utext="${user.description}" cols=""
+												rows=""></textarea>
 
-										</div>
-
-										<div class="form-group">
-											<label for="picture">Photo</label><input type="file"
-												class="form-control" id="picture" name="picture"
-												th:value="${user.picture}" />
 										</div>
 
 										<!-- Pour étincelles -->
 										<div class="form-group"
 											th:if="(${user.category != null and user.category.name() == 'Etincelle'})">
-											<label for="promo">* Numéro de promo</label><input type="number"
-												class="form-control" id="promo" name="promo" max="999" required="required"
-												th:value="${user.promo}" placeholder="Indiquez votre numéro de promotion (pas l'année de votre sortie)"/>
-												<p class="form-legend">Mettez la promo à 0 pour ne plus l'afficher</p>
-										</div>	
+											<label for="promo">* Numéro de promo</label><input
+												type="number" class="form-control" id="promo" name="promo"
+												max="999" required="required" th:value="${user.promo}"
+												placeholder="Indiquez votre numéro de promotion (pas l'année de votre sortie)" />
+											<p class="form-legend">Mettez la promo à 0 pour ne plus
+												l'afficher</p>
+										</div>
 
 										<div class="form-group">
 											<label for="twitter">Compte twitter</label><input type="url"
-												class="form-control" id="twitter"
-												name="twitter"
-												placeholder="url complète"
-												th:value="${user.twitter}" />
+												class="form-control" id="twitter" name="twitter"
+												placeholder="url complète" th:value="${user.twitter}" />
 											<p class="form-legend">Par exemple
 												https://twitter.com/SocialBuilder</p>
 										</div>
@@ -180,33 +188,32 @@
 										<div class="form-group">
 											<label for="facebook">Compte facebook</label><input
 												type="url" class="form-control" id="facebook"
-												name="facebook"
-												placeholder="url complète"
+												name="facebook" placeholder="url complète"
 												th:value="${user.facebook}" />
 											<p class="form-legend">Par exemple
-												 https://facebook.com/public/SocialBuilder</p>
+												https://facebook.com/public/SocialBuilder</p>
 										</div>
 
 										<div class="form-group">
 											<label for="linkedin">Linkedin</label><input type="url"
 												class="form-control" id="linkedin" name="linkedin"
-												placeholder="url complète"
-												th:value="${user.linkedin}" />
+												placeholder="url complète" th:value="${user.linkedin}" />
 											<p class="form-legend">Par exemple
 												https://linkedin.com/in/SocialBuilder</p>
 										</div>
-										
+
 										<div class="form-group">
 											<label for="website">Site personnel</label><input type="url"
 												class="form-control" id="website" name="website"
-												placeholder="url complète"
-												th:value="${user.website}" />
+												placeholder="url complète" th:value="${user.website}" />
 											<p class="form-legend">Par exemple
 												http://socialbuilder.org</p>
 										</div>
-										
+
 										<div class="form-group">
-											<input th:checked="${user.noContact}" type="checkbox" value="true" name="noContact"/>Je ne souhaite pas qu'on puisse me contacter
+											<input th:checked="${user.noContact}" type="checkbox"
+												value="true" name="noContact" />Je ne souhaite pas qu'on
+											puisse me contacter
 										</div>
 
 										<!-- <div class="form-group">
@@ -216,21 +223,38 @@
 												required="required" />
 												<p class="form-legend">Entrez votre mot de passe actuel
 											pour mettre à jour l'email ou le mot de passe.</p>
-										</div>	 -->									
+										</div>	 -->
 
-										<br/>
-										<div class="form-group">
-										<div class="emphasis">Changer de mot de passe</div><br/>
-											<label for="txtNewPassword">Nouveau mot de passe</label>&nbsp;<span
-												id="checkPasswordMatch" class="red"></span> <input
-												type="password" class="form-control" id="txtNewPassword"
-												name="newPassword" />
-											<label for="txtConfirmPassword">Confirmer mot de
-												passe</label><input type="password" class="form-control"
-												id="txtConfirmPassword" />
-										</div>										
 										<br />
-										<button id="updateUserInfoButton" type="submit" class="btn btn-primary">Valider</button>
+										<div class="form-group">
+											<div class="emphasis">Changer de mot de passe</div>
+											<br /> <label for="txtNewPassword">Nouveau mot de
+												passe</label>&nbsp;<span id="checkPasswordMatch" class="red"></span>
+											<input type="password" class="form-control"
+												id="txtNewPassword" name="newPassword" /> <label
+												for="txtConfirmPassword">Confirmer mot de passe</label><input
+												type="password" class="form-control" id="txtConfirmPassword" />
+										</div>
+
+										<div class="form-group row">
+											<div class="col-md-6">
+												<label>Image actuelle :</label> <img
+													th:if="${user.hasPicture}" class="img-responsive" alt=""
+													th:src="@{'/user_resources/user/'+ ${user.id} +'.png'}"
+													src="" /> <img class="img-responsive"
+													th:if="${!user.hasPicture}"
+													th:src="${'/images/flower.jpeg'}" src="" alt="" />
+											</div>
+											<div class="col-md-6">
+												<label for="picture">Changer l'image :</label> <input
+													type="file" class="form-control" id="picture"
+													name="picture" th:value="${user.picture}" />
+											</div>
+										</div>
+
+										<br />
+										<button id="updateUserInfoButton" type="submit"
+											class="pull-right btn btn-primary">Valider</button>
 									</form>
 								</div>
 							</div>
@@ -239,18 +263,18 @@
 				</div>
 			</div>
 		</div>
-		
+		<div th:replace="common/footer :: footer"></div>
 	</div>
 	<!-- end of container -->
 
-	<div th:replace="common/header :: body-bottom-scripts" />
+	<div th:replace="common/header :: body-bottom-scripts"></div>
 	<!-- Bootstrap select -->
-		<script
-			th:src="@{/js/bootstrap-select/bootstrap-select.min.js}"></script>
-		<script
-			th:src="@{/js/bootstrap-select/i18n/defaults-fr_FR.js}"></script>
-	<script th:src="@{/js/scripts.js}"></script>
-	<script src="https://cdn.auth0.com/js/lock/10.14/lock.min.js"></script>
+	<script th:src="@{/js/bootstrap-select/bootstrap-select.min.js}"
+		type="text/javascript"></script>
+	<script th:src="@{/js/bootstrap-select/i18n/defaults-fr_FR.js}"
+		type="text/javascript"></script>
+	<script th:src="@{/js/scripts.js}" type="text/javascript"></script>
+	<script src="https://cdn.auth0.com/js/lock/10.14/lock.min.js"
+		type="text/javascript"></script>
 </body>
-<div th:replace="common/footer :: footer" />
 </html>
