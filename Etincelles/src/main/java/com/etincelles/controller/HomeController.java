@@ -72,6 +72,9 @@ public class HomeController {
     @Autowired
     private FileUtility         fileUtility;
 
+    @Autowired
+    private SecurityUtility     securityUtility;
+
     @RequestMapping( "/" )
     public String index() {
         return "index";
@@ -96,9 +99,9 @@ public class HomeController {
             return "myAccount";
         }
 
-        final String password = SecurityUtility.randomPassword();
+        final String password = securityUtility.randomPassword();
 
-        final String encryptedPassword = SecurityUtility.passwordEncoder().encode( password );
+        final String encryptedPassword = securityUtility.passwordEncoder().encode( password );
         user.setPassword( encryptedPassword );
 
         this.userService.save( user );
@@ -210,7 +213,7 @@ public class HomeController {
             }
         }
 
-        final BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
+        final BCryptPasswordEncoder passwordEncoder = securityUtility.passwordEncoder();
 
         // update password
         if ( newPassword != null && !newPassword.isEmpty() && !newPassword.equals( "" ) ) {
