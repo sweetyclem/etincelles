@@ -1,0 +1,58 @@
+server.port=8080
+server.address=127.0.0.1
+spring.thymeleaf.cache=false
+spring.http.multipart.max-file-size=50MB
+spring.http.multipart.max-request-size=50MB
+
+SALT=
+SALTCHARS=
+
+# ===========================
+# = LOGGING
+# ===========================
+logging.level.org.springframework.web=ERROR
+logging.level.org.hibernate=ERROR
+logging.level.=ERROR
+logging.file=/home/app.log
+
+# ===========================
+# = DATA SOURCE
+# ===========================
+
+spring.datasource.url=
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+#username and password
+spring.datasource.username=
+spring.datasource.password=
+
+#Keep the configuration alive if idle for a long time
+spring.datasource.testWhileIdle = true
+spring.datasource.validationQuery = SELECT 1
+
+# ===========================
+# = JPA / HIBERNATE
+# ===========================
+
+#Use spring.jpa.properties for Hibernate native properties
+spring.jpa.show-sql=false
+
+#schema will be updated accordingly to java entities
+spring.jpa.hibernate.ddl-auto = update
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+
+spring.jpa.properties.hibernate.search.default.directory_provider = filesystem
+spring.jpa.properties.hibernate.search.default.indexBase = /home/app/indexes
+
+# ===========================
+# = JAVA MAIL CONFIG
+# ===========================
+
+spring.mail.host=
+spring.mail.username=
+spring.mail.password=
+spring.mail.properties.smtp.starttls.enable=true
+spring.mail.properties.smtp.auth=true
+spring.mail.port=
+support.email=
+
+
