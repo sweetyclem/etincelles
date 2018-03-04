@@ -1,5 +1,5 @@
-# etincellesFront
-This website is the client side of a community website that contains a directory of members, a google calendar integration, a blog and an about us page.
+# etincelles
+This website is a community website that contains a directory of members, a google calendar integration, a blog and an about us page.
 
 To use this project, clone it then open Eclipse (or another editor) and click import > existing maven project.
 You need to create an application.properties file for the project to work that needs to be located at src/main/resources/ and have this format : https://github.com/sweetyclem/etincelles/blob/master/application.properties.sample 
