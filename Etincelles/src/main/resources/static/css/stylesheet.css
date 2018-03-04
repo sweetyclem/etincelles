@@ -5,6 +5,14 @@ body {
     height: 100%;
 }
 
+
+/* #index_page {
+	background-image: url("../images/lyon2.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment:fixed;
+} */
+
 header {
     text-align: center;
 }
@@ -30,6 +38,13 @@ h2 {
     margin-top: 2px;
 }
 
+
+/* @media (min-width: 768px) {
+    h2 {
+        font-size: 2.7em;
+    }
+} */
+
 h3 {
     font-size: 1.6em;
     margin-top: 2px;
@@ -46,6 +61,12 @@ li {
     font-size: 1.2em;
 }
 
+
+/* li:before {
+	content: "�  ";
+	color: #57402F;
+} */
+
 ul {
     list-style: none;
     padding: 0;
@@ -55,6 +76,107 @@ ul {
 * {
     box-sizing: border-box;
 }
+
+
+/* Navbar */
+
+.navbar-default {
+    background-color: #00CEC1;
+    border-color: #00CEC1;
+    color: #747a78;
+}
+
+.navbar-default .navbar-nav>li:not(.social) {
+    border: solid 0.1px rgba(253, 253, 253, 0.1);
+    border-radius: 3px;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-default .navbar-nav>li.social>a {
+    display: block;
+}
+
+.navbar-default .navbar-nav>li.social {
+    display: block;
+    height: 50px;
+}
+
+.nav>li.social>a {
+    padding: 0;
+}
+
+.nav>li.social>a {
+    padding: 0;
+}
+
+@media (min-width: 768px) {
+    .navbar-nav>li.social>a {
+        padding: 0;
+    }
+}
+
+.navbar-default .navbar-nav>li>a>img {
+    vertical-align: middle;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    background-color: #00FAA0;
+    color: black;
+    border-top-color: #00FAA0;
+    border-bottom-color: #00FAA0;
+    border-radius: 3px;
+}
+
+.navbar-default .navbar-nav>li.social>a:hover {
+    background-color: #00CEC1;
+}
+
+.navbar-default .navbar-nav>li:not(.social)>a {
+    color: white;
+    font-size: 1em;
+    background-color: #00CEC1;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #00CEC1;
+    border-color: white;
+}
+
+.navbar-default .navbar-toggle {
+    background-color: #00CEC1;
+    border-color: white;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: white;
+}
+
+nav ul li:before {
+    content: "";
+}
+
+nav ul li {
+    font-size: 20px
+}
+
+#home {
+    width: 85%;
+    margin: auto;
+    text-align: left;
+}
+
+.navbar-brand {
+    padding-top: 7px;
+    font-size: 18px;
+    float: left;
+    max-width: 160px;
+}
+
 
 /* Links */
 
@@ -82,6 +204,9 @@ a:focus {
     color: #57402F;
 }
 
+
+/* Custom */
+
 hr:not(.star-light) {
     border: none;
     height: 0.15em;
@@ -91,6 +216,11 @@ hr:not(.star-light) {
 
 
 /* Buttons */
+
+.btn-search {
+    background-color: #fff;
+    border-color: #ccc;
+}
 
 .btn-index {
     background-color: rgba(0, 206, 193, 0.85);
@@ -109,7 +239,9 @@ hr:not(.star-light) {
 
 input[type="checkbox"] {
     width: 1em;
+    /*Desired width*/
     height: 1em;
+    /*Desired height*/
 }
 
 
@@ -144,6 +276,8 @@ input[type="checkbox"] {
 }
 
 .card.hovercard .cardheader {
+    /*background: url('../images/texture.jpg');
+    background-size: cover;*/
     background-color: #00CEC1;
     height: 135px;
 }
@@ -192,7 +326,9 @@ input[type="checkbox"] {
 }
 
 .card.hovercard .info .desc {
+    /* overflow: hidden; */
     font-size: 1.2em;
+    /* line-height: 20px; */
     color: #737373;
     text-overflow: ellipsis;
 }
@@ -249,8 +385,16 @@ input[type="checkbox"] {
     #calendarWidget {
         height: 300px;
     }
+    .navbar-default .navbar-collapse,
+    .navbar-default .navbar-form {
+        margin: 0;
+    }
     #updateForm {
         padding: 0;
+        margin: 0;
+    }
+    .container-fluid>.navbar-collapse,
+    .container-fluid>.navbar-header {
         margin: 0;
     }
 }
@@ -408,6 +552,13 @@ input[type="checkbox"] {
     font-weight: normal;
 }
 
+.footer {
+    color: black;
+    text-align: center;
+    padding: 1.2em;
+    size: 1.2em
+}
+
 .blackText {
     color: black;
 }
@@ -420,6 +571,34 @@ input[type="checkbox"] {
     .margin-mobile {
         margin-bottom: 0.4em;
     }
+}
+
+@media (max-width: 1078px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    /* since 3.1.0 */
 }
 
 .infoBox {
@@ -455,10 +634,15 @@ input[type="checkbox"] {
 }
 
 .panel-heading .accordion-toggle:after {
+    /* symbol for "opening" panels */
     font-family: 'Glyphicons Halflings';
+    /* essential for enabling glyphicon */
     content: "\e114";
+    /* adjust as needed, taken from bootstrap.css */
     float: right;
+    /* adjust as needed */
     color: grey;
+    /* adjust as needed */
 }
 
 .panel-heading>h4>a {
@@ -494,6 +678,10 @@ input[type="checkbox"] {
     text-align: center;
 }
 
+.fa-user {
+    margin-left: 10px;
+}
+
 header .container {
     padding-top: 50px;
     padding-bottom: 0px;
@@ -521,6 +709,12 @@ header .container {
     margin-bottom: -50px;
 }
 
+
+/* .no-video .video-container video,
+.touch .video-container video {
+    display: none;
+} */
+
 .video-container {
     position: relative;
     bottom: 0%;
@@ -546,6 +740,7 @@ header .container {
 .video-container video {
     position: absolute;
     z-index: 0;
+    /* bottom: 0; */
 }
 
 .video-container video.fillWidth {
