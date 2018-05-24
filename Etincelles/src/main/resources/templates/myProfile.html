@@ -40,6 +40,9 @@
 			<div class="alert alert-success" th:if="${updateSuccess}">
 				<strong>Informations mises à jour</strong>
 			</div>
+			<div class="alert">
+				<strong>Les informations que vous remplissez seront affichées sur l'annuaire et serviront à mieux connaître les compétences de la communauté Etincelles.</strong>
+			</div>
 			<div class="bg-info" th:if="${updateUserInfo}">User info
 				updated.</div>
 		</div>
@@ -74,6 +77,12 @@
 										<input type="hidden" name="id" th:value="${user.id}" />
 
 										<div class="form-group">
+										<div class="row">
+											<a style="color: white;"
+						role="button" class="btn-danger btn btn-xs no-under" onclick="return confirm('Supprimer mon compte et toutes mes données ?');"
+						th:href="@{/deleteUser(id=${user.id})}"><span
+							th:text="Supprimer mon compte"></span></a>
+										</div>
 											<div class="row">
 												<div class="col-xs-6">
 													<label for="firstName">* Prénom</label> <input type="text"
