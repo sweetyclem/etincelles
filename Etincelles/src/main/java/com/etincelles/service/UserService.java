@@ -28,4 +28,6 @@ public interface UserService {
     Page<User> blurrySearch( String keyword, Pageable pageable );
 
     List<String> getSectors();
+
+    public void removeOne( Long id );
 }

@@ -20,6 +20,10 @@
 	<br />
 	<div class="container">
 	
+			<div class="alert alert-success" th:if="${userRemoved}">
+				<strong>Votre compte a bien été supprimé</strong>
+			</div>
+	
 		<h4 th:if="${noFilter != null}">
 			<label>Résultats</label>
 		</h4>

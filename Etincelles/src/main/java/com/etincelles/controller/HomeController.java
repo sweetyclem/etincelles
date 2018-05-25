@@ -529,16 +529,11 @@ public class HomeController {
         return "aboutUs";
     }
 
-
-    @RequestMapping( value = "/deleteUser", method = RequestMethod.POST )
-		public String deleteUser( Model model, @RequestParam( "id" ) Long id ) {
-        User user = userService.removeOne( id );
-        model.addAttribute( "userRemoved", true );
-        return "redirect:/directory";
-    }
-
-
-
-
+    @RequestMapping( value = "/deleteUser", method = RequestMethod.GET )
+    public String deleteUser( Model model, @RequestParam( "id" ) Long id ) {
+        userService.removeOne( id );
+        model.addAttribute( "userRemoved", true );
+        return "redirect:/logout";
+    }
 
 }
