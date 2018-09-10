@@ -25,7 +25,8 @@
 	</div>
 	<!-- Team Section -->
 	<section id="team">
-		<div class="container full-width">
+		<div class="container no-user full-width text-center" th:if="${user == null}">Utilisatrice.eur supprimé.e</div>
+		<div class="container full-width" th:if="${user}">
 			<div class="row grey-back"
 				th:with="pic=${'/user_resources/user/' + user.id +'.png'}">
 				<div class="col-md-7 col-xs-12 profilePicCol">

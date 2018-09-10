@@ -500,6 +500,7 @@ input[type="checkbox"] {
 
 #team {
     padding: 1em;
+    height: 65vh;
 }
 
 .profilePicCol {
@@ -793,4 +794,9 @@ header .container {
 .vertical-align {
     display: flex;
     align-items: center;
+}
+
+.no-user {
+	font-size: 2em;
+	height: 100%;
 }
